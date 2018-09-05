@@ -1,0 +1,35 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/andyMenuStyle</item>
+    </style>
+
+    <style name="andyMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">3dp</item>
+        <item name="android:popupBackground">#dcdcdc</item>
+    </style>
+
+    <style name="popupWindowAnim" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/popup_windows_in</item>
+        <item name="@android:windowExitAnimation">@anim/popup_windows_out</item>
+    </style>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--Dialog的windowFrame框為無-->
+        <item name="android:windowIsFloating">false</item><!--是否浮現在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--提示框是透明的 -->
+        <item name="android:windowNoTitle">true</item><!--提示框是否有標題-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--提示框的背景顏色-->
+        <item name="android:windowCloseOnTouchOutside">true</item><!--點擊外部是否關閉-->
+        <item name="android:backgroundDimEnabled">true</item><!--畫面以外的地方灰底-->
+    </style>
+
+    <style name="tabLayoutText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">30dp</item>
+    </style>
+</resources>

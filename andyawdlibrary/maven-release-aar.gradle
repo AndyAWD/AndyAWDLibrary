@@ -1,0 +1,36 @@
+//1.maven-插件
+apply plugin: 'maven'
+
+//2.maven-信息
+// ext is a gradle closure allowing the declaration of global properties
+ext {
+    PUBLISH_GROUP_ID = 'tw.com.andyawd'
+    PUBLISH_ARTIFACT_ID = 'andyawdlibrary'
+    PUBLISH_VERSION = '1.0.1'
+}
+
+//3.maven-輸出路徑
+uploadArchives {
+    repositories.mavenDeployer {
+        //這裡就是最後輸出地址，在自己電腦上新建個文件夾，把文件夾路徑粘貼在此
+        //注意”file://“ + 路徑，有三個斜槓，別漏了
+        repository(url: "file:///AndroidStudioAar")
+
+        pom.project {
+            groupId project.PUBLISH_GROUP_ID
+            artifactId project.PUBLISH_ARTIFACT_ID
+            version project.PUBLISH_VERSION
+        }
+    }
+}
+
+//以下代碼會生成 jar 包源文件，如果是不開源碼，請不要輸入這段
+//aar 包內包含註釋
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+
+artifacts {
+    archives androidSourcesJar
+}
