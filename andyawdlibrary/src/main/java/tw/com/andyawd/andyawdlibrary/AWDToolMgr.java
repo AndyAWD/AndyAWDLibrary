@@ -1,6 +1,7 @@
 package tw.com.andyawd.andyawdlibrary;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,8 +11,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +24,9 @@ import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by andydai on 2018/1/16.
@@ -49,7 +55,7 @@ public class AWDToolMgr {
     }
 
     /**
-     * 吐司訊息2
+     * 吐司訊息
      *
      * @param message
      */
@@ -117,9 +123,9 @@ public class AWDToolMgr {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
         byte[] imageBytes = baos.toByteArray();
-        String strBase64Image = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
+        String base64Image = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
 
-        return strBase64Image;
+        return base64Image;
     }
 
     /**
@@ -174,6 +180,12 @@ public class AWDToolMgr {
         context = null;
     }
 
+    /**
+     * 千分位樣式
+     *
+     * @param number
+     * @return
+     */
     public String setThousandBitStyle(String number) {
         try {
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
@@ -183,5 +195,59 @@ public class AWDToolMgr {
         } catch (Exception e) {
             return "0";
         }
+    }
+
+    /**
+     * X 面骰模擬器
+     *
+     * @return
+     */
+    public String DiceRandomSimulator(int diceCount) {
+        String strRandom = "";
+        Random random = new Random();
+        strRandom = String.valueOf(random.nextInt(diceCount) + 1);
+        return strRandom;
+    }
+
+    /**
+     * 簡單震動，會給一個0.1秒，強度50的震動
+     *
+     * @param context
+     */
+    public void setVibrator(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Vibrator", MODE_PRIVATE);
+        boolean strVibratorSelect = sharedPreferences.getBoolean("Vibrator", false);
+        vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(100, 50));
+            } else {
+                vibrator.vibrate(100);
+            }
+        }
+        context = null;
+    }
+
+    /**
+     * 自定震動
+     *
+     * @param context
+     * @param VibratorTimer     設定毫秒數
+     * @param VibratorAmplitude 設定震動強度0~255
+     */
+    public void setVibrator(Context context, int VibratorTimer, int VibratorAmplitude) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Vibrator", MODE_PRIVATE);
+        boolean strVibratorSelect = sharedPreferences.getBoolean("Vibrator", false);
+        vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(VibratorTimer, VibratorAmplitude));
+            } else {
+                vibrator.vibrate(VibratorTimer);
+            }
+        }
+        context = null;
     }
 }
