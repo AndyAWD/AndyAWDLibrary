@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 
 public class AWDObjectData {
+
     public static class ViewPagerActivity implements Serializable {
         private View view;
         private AWDAppCompatActivity appCompatActivity;
@@ -32,6 +33,18 @@ public class AWDObjectData {
 
         public void setAWDAppCompatActivity(AWDAppCompatActivity appCompatActivity) {
             this.appCompatActivity = appCompatActivity;
+        }
+    }
+
+    public static class BluetoothInfo{
+        public String paired;
+        public String name;
+        public String address;
+
+        public BluetoothInfo(String paired, String name, String address) {
+            this.paired = paired;
+            this.name = name;
+            this.address = address;
         }
     }
 }

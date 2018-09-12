@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/wheat"
+        tools:context="tw.com.andyawd.andytool.MainActivity">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tbAm_ShowMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/skyblue"
+            android:minHeight="50dp"
+            android:textColor="@color/metro_252525"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/btAm_Toast"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btAm_Toast"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Toast"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tbAm_ShowMessage" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btAm_SnackBarModeBase"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:text="基本SnackBar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarModeTextColor"
+            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btAm_SnackBarModeTextColor"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:text="文字變色SnackBar"
+            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarModeBase"
+            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarModeTextColorBackground"
+            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btAm_SnackBarModeTextColorBackground"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:text="文字背景變色SnackBar"
+            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarModeTextColor"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
