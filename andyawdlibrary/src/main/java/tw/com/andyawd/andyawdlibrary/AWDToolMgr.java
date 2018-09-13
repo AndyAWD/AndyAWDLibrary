@@ -15,9 +15,13 @@ import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +43,7 @@ public class AWDToolMgr {
     private static Snackbar snackbar;
     private static Snackbar snackbarTextColor;
     private static Snackbar snackbarTextColorBackground;
+    private static Snackbar snackbarTextColorBackgroundLayout;
 
     private PackageManager packageManager;
     private List<PackageInfo> lstPackageManager = new ArrayList<>();
@@ -70,40 +75,6 @@ public class AWDToolMgr {
         }
         toast.show();
         context = null;
-    }
-
-    /**
-     * 底層訊息
-     *
-     * @param view
-     * @param showMessage
-     */
-    public void Snackbar(View view, String showMessage, int durationSnackbar) {
-        if (null == snackbar) {
-            snackbar = Snackbar.make(view, showMessage, durationSnackbar);
-        }
-        snackbar.show();
-    }
-
-    public void snackbarTextColor(View view, String showMessage, int textColor, int durationSnackbar) {
-        if (null == snackbarTextColor) {
-            snackbarTextColor = Snackbar.make(view, showMessage, durationSnackbar);
-            View vSnackbar = snackbarTextColor.getView();
-            TextView tvSnackbarText = (TextView) vSnackbar.findViewById(android.support.design.R.id.snackbar_text);
-            tvSnackbarText.setTextColor(textColor);
-        }
-        snackbarTextColor.show();
-    }
-
-    public void snackbarTextColorBackground(View view, String showMessage, ColorStateList colorStateList, int bacakgroundColor, int durationSnackbar) {
-        if (null == snackbarTextColorBackground) {
-            snackbarTextColorBackground = Snackbar.make(view, showMessage, durationSnackbar);
-            View vSnackbar = snackbarTextColorBackground.getView();
-            TextView tvSnackbarText = (TextView) vSnackbar.findViewById(android.support.design.R.id.snackbar_text);
-            tvSnackbarText.setTextColor(colorStateList);
-            vSnackbar.setBackgroundColor(bacakgroundColor);
-        }
-        snackbarTextColorBackground.show();
     }
 
     /**

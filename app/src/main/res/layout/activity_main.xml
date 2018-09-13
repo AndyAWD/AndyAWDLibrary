@@ -38,41 +38,54 @@
             app:layout_constraintTop_toBottomOf="@+id/tbAm_ShowMessage" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarModeBase"
+            android:id="@+id/btAm_SnackBarMode0"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="4dp"
-            android:text="基本SnackBar"
+            android:text="SnackBar 0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarModeTextColor"
+            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode1"
             app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarModeTextColor"
+            android:id="@+id/btAm_SnackBarMode1"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginTop="4dp"
-            android:text="文字變色SnackBar"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarModeBase"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarModeTextColorBackground"
+            android:text="SnackBar 1"
+            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode0"
+            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode2"
             app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarModeTextColorBackground"
+            android:id="@+id/btAm_SnackBarMode2"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginBottom="4dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="4dp"
-            android:text="文字背景變色SnackBar"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarModeTextColor"
+            android:text="SnackBar 2"
+            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode1"
+            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode3"
+            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btAm_SnackBarMode3"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="4dp"
+            android:text="SnackBar 3"
+            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
     </android.support.constraint.ConstraintLayout>
