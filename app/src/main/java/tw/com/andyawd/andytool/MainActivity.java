@@ -7,8 +7,10 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import tw.com.andyawd.andyawdlibrary.AWDSnackbarMgr;
+import tw.com.andyawd.andyawdlibrary.AWDToolMgr;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton btAm_SnackBarMode1;
     private AppCompatButton btAm_SnackBarMode2;
     private AppCompatButton btAm_SnackBarMode3;
+    private AppCompatButton btAm_SnackBarMode4;
+    private AppCompatButton btAm_SnackBarModeDismass;
 
     private AWDSnackbarMgr awdSnackbarMgr;
-
+    private AWDSnackbarMgr awdSnackbarMgr2;
 
 
     @Override
@@ -42,8 +46,12 @@ public class MainActivity extends AppCompatActivity {
         btAm_SnackBarMode1.setOnClickListener(btAm_SnackBarMode1_Click);
         btAm_SnackBarMode2 = (AppCompatButton) findViewById(R.id.btAm_SnackBarMode2);
         btAm_SnackBarMode2.setOnClickListener(btAm_SnackBarMode2_Click);
-        btAm_SnackBarMode3 = (AppCompatButton)findViewById(R.id.btAm_SnackBarMode3);
+        btAm_SnackBarMode3 = (AppCompatButton) findViewById(R.id.btAm_SnackBarMode3);
         btAm_SnackBarMode3.setOnClickListener(btAm_SnackBarMode3_Click);
+        btAm_SnackBarMode4 = (AppCompatButton) findViewById(R.id.btAm_SnackBarMode4);
+        btAm_SnackBarMode4.setOnClickListener(btAm_SnackBarMode4_Click);
+        btAm_SnackBarModeDismass = (AppCompatButton) findViewById(R.id.btAm_SnackBarModeDismass);
+        btAm_SnackBarModeDismass.setOnClickListener(btAm_SnackBarModeDismass_Click);
 
         awdSnackbarMgr = new AWDSnackbarMgr.initi()
                 .setView(getWindow().getDecorView())
@@ -52,17 +60,35 @@ public class MainActivity extends AppCompatActivity {
                 .setBacakgroundColor(R.color.metro_f4b300)
                 .setTextColor(R.color.metro_ae113d)
                 .setLayout(R.layout.view_show_select)
-                .setMessage("000000")
+                .setActionTextColor(R.color.deepskyblue)
+                .setActionText("按鈕文字")
+                .setMessage("這邊顯示文字")
+                .setOnActionClickListener(awdSnackbarMgr2_Action)
                 .build();
 
+        awdSnackbarMgr = new AWDSnackbarMgr.initi()
+                .setDuration(Snackbar.LENGTH_INDEFINITE)
+                .setView(getWindow().getDecorView())
+                .setContext(MainActivity.this)
+                .setMessage("這邊顯示文字")
+                .setTextColor(R.color.metro_ae113d)
+                .setActionText("6666666")
+                .setOnActionClickListener(awdSnackbarMgr2_Action)
+                .build();
+        awdSnackbarMgr.setLog(AWDSnackbarMgr.Log_On);
+
+        awdSnackbarMgr2 = new AWDSnackbarMgr.initi()
+                .setView(getWindow().getDecorView())
+                .setMessage("789456123")
+                .setDuration(Snackbar.LENGTH_SHORT)
+                .build();
 
     }
 
     private View.OnClickListener btAm_Toast_CLick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.d("maho0912", "btAm_StartClick_CLick");
-            //AWDToolMgr.getInstance().Toast(MainActivity.this, "btAm_Toast_CLick", Toast.LENGTH_SHORT);
+            AWDToolMgr.getInstance().Toast(MainActivity.this, "btAm_Toast_CLick", Toast.LENGTH_SHORT);
         }
     };
 
@@ -70,30 +96,50 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            awdSnackbarMgr.show(AWDSnackbarMgr.Basic);
-            //awdSnackbarMgr.dismiss();
+            //awdSnackbarMgr.show(AWDSnackbarMgr.Mode_Basic);
+            awdSnackbarMgr.show();
+
         }
     };
 
     private View.OnClickListener btAm_SnackBarMode1_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            awdSnackbarMgr.show(AWDSnackbarMgr.TextColor);
-
+            //awdSnackbarMgr2.show();
+            awdSnackbarMgr2.show();
         }
     };
 
     private View.OnClickListener btAm_SnackBarMode2_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            awdSnackbarMgr.show(AWDSnackbarMgr.BackgroundColor);
         }
     };
 
     private View.OnClickListener btAm_SnackBarMode3_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            awdSnackbarMgr.show(AWDSnackbarMgr.TextBackgroundColor);
+        }
+    };
+
+    private View.OnClickListener btAm_SnackBarMode4_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        }
+    };
+
+    private View.OnClickListener btAm_SnackBarModeDismass_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            awdSnackbarMgr.dismiss(AWDSnackbarMgr.GC_On);
+        }
+    };
+
+    private AWDSnackbarMgr.setOnActionClickListener awdSnackbarMgr2_Action = new AWDSnackbarMgr.setOnActionClickListener() {
+        @Override
+        public void Action() {
+            Log.d("AWDSnackbarMgr", "snackbar_Action_002");
+            AWDToolMgr.getInstance().Toast(MainActivity.this, "6666666666", Toast.LENGTH_SHORT);
         }
     };
 }
