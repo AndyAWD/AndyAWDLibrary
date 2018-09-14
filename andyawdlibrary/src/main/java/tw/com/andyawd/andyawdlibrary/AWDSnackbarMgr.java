@@ -20,20 +20,14 @@ import android.widget.TextView;
  */
 
 public class AWDSnackbarMgr {
-
-    private static Snackbar snackbar;
-
     public static final boolean Log_On = true;
     public static final boolean Log_Off = false;
-
     public static final boolean GC_On = true;
     public static final boolean GC_Off = false;
-
     private static final boolean Show_On = true;
     private static final boolean Show_Off = false;
 
-    public static final String ActionButtonText = "Button";
-
+    private static Snackbar snackbar;
     private View vSnackbar;
     private initi builder;
     private TextView tvSnackbarText;
@@ -150,7 +144,6 @@ public class AWDSnackbarMgr {
     private View.OnClickListener snackbar_Action = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.d("AWDSnackbarMgr", "snackbar_Action_001");
             builder.mActionClickListener.Action();
         }
     };
