@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import tw.com.andyawd.andyawdlibrary.AWDSnackbarMgr;
+import tw.com.andyawd.andyawdlibrary.AWDToastMgr;
 import tw.com.andyawd.andyawdlibrary.AWDToolMgr;
 
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton btAm_SnackBarMode3;
     private AppCompatButton btAm_SnackBarMode4;
     private AppCompatButton btAm_SnackBarModeDismass;
+    private AWDToastMgr awdToastMgr;
 
     private AWDSnackbarMgr awdSnackbarMgr;
     private AWDSnackbarMgr awdSnackbarMgr2;
@@ -55,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         awdSnackbarMgr = new AWDSnackbarMgr.initi()
                 .setView(getWindow().getDecorView())
-                .setDuration(Snackbar.LENGTH_SHORT)
                 .setContext(MainActivity.this)
+                .setDuration(Snackbar.LENGTH_SHORT)
                 .setBacakgroundColor(R.color.metro_f4b300)
                 .setTextColor(R.color.metro_ae113d)
                 .setLayout(R.layout.view_show_select)
@@ -64,49 +68,50 @@ public class MainActivity extends AppCompatActivity {
                 .setActionText("按鈕文字")
                 .setMessage("這邊顯示文字")
                 .setOnActionClickListener(awdSnackbarMgr2_Action)
-                .build();
-
-        awdSnackbarMgr = new AWDSnackbarMgr.initi()
-                .setDuration(Snackbar.LENGTH_INDEFINITE)
-                .setView(getWindow().getDecorView())
-                .setContext(MainActivity.this)
-                .setMessage("這邊顯示文字")
-                .setTextColor(R.color.metro_ae113d)
-                .setActionText("6666666")
-                .setOnActionClickListener(awdSnackbarMgr2_Action)
+                .setTextSize(50)
                 .build();
         awdSnackbarMgr.setLog(AWDSnackbarMgr.Log_On);
 
-        awdSnackbarMgr2 = new AWDSnackbarMgr.initi()
-                .setView(getWindow().getDecorView())
-                .setMessage("789456123")
-                .setDuration(Snackbar.LENGTH_SHORT)
+        awdToastMgr = new AWDToastMgr.initi()
+                .setContext(MainActivity.this)
+                .setDuration(Toast.LENGTH_SHORT)
+                .setGravity(Gravity.CENTER, 200, 500)
+                .setTextColor(R.color.white)
+                .setTextSize(50)
+                .setBacakgroundPicture(R.drawable.background_bigtest)
+                .setTextBacakgroundColor(R.color.deepskyblue)
                 .build();
 
+        awdToastMgr.setLog(AWDToastMgr.Log_On);
+
+        /*
+        .setTextColor(R.color.metro_ae113d)
+                .setActionText("6666666")
+                .setOnActionClickListener(awdSnackbarMgr2_Action)
+         */
     }
 
     private View.OnClickListener btAm_Toast_CLick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            AWDToolMgr.getInstance().Toast(MainActivity.this, "btAm_Toast_CLick", Toast.LENGTH_SHORT);
+            awdToastMgr.show("吐司測試");
+
         }
     };
 
     private View.OnClickListener btAm_SnackBarMode0_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            //awdSnackbarMgr.show(AWDSnackbarMgr.Mode_Basic);
-            awdSnackbarMgr.show();
-
+            for (int i = 0; i < 10000; i++) {
+                awdSnackbarMgr.show();
+            }
         }
     };
 
     private View.OnClickListener btAm_SnackBarMode1_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //awdSnackbarMgr2.show();
-            awdSnackbarMgr2.show();
+            awdSnackbarMgr.show();
         }
     };
 
@@ -119,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btAm_SnackBarMode3_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            System.gc();
         }
     };
 

@@ -76,6 +76,14 @@ public class AWDSnackbarMgr {
                     }
                 }
 
+                if (0 != builder.mTextSize) {
+                    tvSnackbarText.setTextSize(builder.mTextSize);
+                } else {
+                    if (blnLogSwitch) {
+                        Log.d("AWDSnackbarMgr", "Mode_TextColor : " + String.valueOf(builder.mTextSize));
+                    }
+                }
+
                 if (0 != builder.mLayout) {
                     Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
                     View vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
@@ -173,6 +181,7 @@ public class AWDSnackbarMgr {
         private String mActionText = null;  //設定按鈕文字
         private int mActionTextColor = 0;   //設定按鈕文字顏色
         private setOnActionClickListener mActionClickListener;  //按鈕監聽
+        private int mTextSize = 0;   //設定文字大小
 
         public initi setView(View view) {
             this.mView = view;
@@ -221,6 +230,11 @@ public class AWDSnackbarMgr {
 
         public initi setOnActionClickListener(setOnActionClickListener ActionClickListener) {
             this.mActionClickListener = ActionClickListener;
+            return this;
+        }
+
+        public initi setTextSize(int textSize) {
+            this.mTextSize = textSize;
             return this;
         }
 

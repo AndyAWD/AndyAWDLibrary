@@ -40,10 +40,6 @@ import static android.content.Context.MODE_PRIVATE;
 public class AWDToolMgr {
 
     private static Toast toast;
-    private static Snackbar snackbar;
-    private static Snackbar snackbarTextColor;
-    private static Snackbar snackbarTextColorBackground;
-    private static Snackbar snackbarTextColorBackgroundLayout;
 
     private PackageManager packageManager;
     private List<PackageInfo> lstPackageManager = new ArrayList<>();
