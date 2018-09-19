@@ -131,6 +131,19 @@ public class AWDToastMgr {
         toast.show();
     }
 
+    public void show() {
+        if (null == toast) {
+
+        } else {
+            if (NoSetting != builder.mLayout) {
+
+            } else {
+                toast.setText("");
+            }
+        }
+        toast.show();
+    }
+
     /**
      * @param view 取得元件
      * @return
