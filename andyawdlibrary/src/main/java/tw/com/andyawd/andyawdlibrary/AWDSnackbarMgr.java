@@ -1,6 +1,9 @@
 package tw.com.andyawd.andyawdlibrary;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.CountDownTimer;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
@@ -9,13 +12,17 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.io.InputStream;
 
 
 /**
  * Created by andydai on 2018/9/13.
- * <p>
+ *
  * Activity取View可以用getWindow().getDecorView()
  */
 
@@ -26,11 +33,16 @@ public class AWDSnackbarMgr {
     public static final boolean GC_Off = false;
     private static final boolean Show_On = true;
     private static final boolean Show_Off = false;
+    private static final int NoSetting = 529;
 
     private static Snackbar snackbar;
     private View vSnackbar;
+    private View vSnackbarLayout;
     private initi builder;
     private TextView tvSnackbarText;
+    private Snackbar.SnackbarLayout snackbarLayout;
+    private LinearLayout.LayoutParams layoutParams;
+
     private boolean blnLogSwitch = Log_On;
     private boolean blnSnackbarIsCanShow = Show_Off;
 
@@ -44,9 +56,9 @@ public class AWDSnackbarMgr {
     }
 
     private void InitiSnackbar() {
-        if (null != builder.mView && null != builder.mMessage && 529 != builder.mDuration) {
+        if (null != builder.mView && null != builder.mMessage && NoSetting != builder.mDuration) {
             if (null != builder.mActionClickListener) {
-                if (0 != builder.mActionTextColor) {
+                if (NoSetting != builder.mActionTextColor) {
                     snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback).setAction(builder.mActionText, snackbar_Action).setActionTextColor(builder.mActionTextColor);
                 } else {
                     snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback).setAction(builder.mActionText, snackbar_Action);
@@ -54,47 +66,66 @@ public class AWDSnackbarMgr {
             } else {
                 snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback);
             }
+
             blnSnackbarIsCanShow = Show_On;
 
             vSnackbar = snackbar.getView();
             tvSnackbarText = (TextView) vSnackbar.findViewById(android.support.design.R.id.snackbar_text);
+            snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
+            vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
+            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.gravity = Gravity.CENTER_VERTICAL;
 
             if (null != builder.mContext) {
-                if (0 != builder.mTextColor) {
+                if (NoSetting != builder.mTextColor) {
                     tvSnackbarText.setTextColor(ContextCompat.getColor(builder.mContext, builder.mTextColor));
                 } else {
                     if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "Mode_TextColor : " + String.valueOf(builder.mTextColor));
+                        Log.d("AWDSnackbarMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
                     }
                 }
 
-                if (0 != builder.mBackgroundColor) {
+                if (NoSetting != builder.mBackgroundColor) {
                     vSnackbar.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mBackgroundColor));
                 } else {
                     if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "BacakgroundColor : " + builder.mBackgroundColor);
+                        Log.d("AWDSnackbarMgr", "mBackgroundColor : " + builder.mBackgroundColor);
                     }
                 }
 
-                if (0 != builder.mTextSize) {
+                if (NoSetting != builder.mTextSize) {
                     tvSnackbarText.setTextSize(builder.mTextSize);
                 } else {
                     if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "Mode_TextColor : " + String.valueOf(builder.mTextSize));
+                        Log.d("AWDSnackbarMgr", "mTextSize : " + String.valueOf(builder.mTextSize));
                     }
                 }
 
-                if (0 != builder.mLayout) {
-                    Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
-                    View vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParams.gravity = Gravity.CENTER_VERTICAL;
+                if (NoSetting != builder.mLayout) {
                     snackbarLayout.addView(vSnackbarLayout, 0, layoutParams);
                 } else {
                     if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "Mode_Layout : " + String.valueOf(builder.mLayout));
+                        Log.d("AWDSnackbarMgr", "mLayout : " + String.valueOf(builder.mLayout));
                     }
                 }
+
+                if (NoSetting != builder.mBacakgroundPicture) {
+                    ImageView imageView = new ImageView(builder.mContext);
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inPreferredConfig = Bitmap.Config.RGB_565;
+                    options.inPurgeable = true;
+                    options.inInputShareable = true;
+                    InputStream inputStream = builder.mContext.getResources().openRawResource(builder.mBacakgroundPicture);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+                    BitmapDrawable bitmapDrawable = new BitmapDrawable(builder.mContext.getResources(), bitmap);
+                    imageView.setBackgroundDrawable(bitmapDrawable);
+                    snackbarLayout.addView(imageView, 0, layoutParams);
+                } else {
+                    if (blnLogSwitch) {
+                        Log.d("AWDSnackbarMgr", "mBacakgroundPicture : " + String.valueOf(builder.mBacakgroundPicture));
+                    }
+                }
+
             } else {
                 if (blnLogSwitch) {
                     Log.d("AWDSnackbarMgr", "mContext : " + String.valueOf(builder.mContext));
@@ -171,17 +202,18 @@ public class AWDSnackbarMgr {
     };
 
     public static class initi {
-        private View mView = null;
+        private View mView = null;  //SnackBar依附的View
         private Context mContext = null;   //只有基本的話不用Context
         private String mMessage = null;    //設定文字訊息
-        private int mDuration = 529;  //設定顯示方式，預設短時間(Duration_LENGTH_SHORT)、還有長時間(Duration_LENGTH_LONG)、固定顯示(LENGTH_INDEFINITE)
-        private int mTextColor = 0;     //設定文字顏色
-        private int mBackgroundColor = 0;   //設定背景顏色
-        private int mLayout = 0;    //設定自定頁面
+        private int mDuration = NoSetting;  //設定顯示方式，預設短時間(Duration_LENGTH_SHORT)、還有長時間(Duration_LENGTH_LONG)、固定顯示(LENGTH_INDEFINITE)
+        private int mTextColor = NoSetting;     //設定文字顏色
+        private int mTextSize = NoSetting;   //設定文字大小
+        private int mBackgroundColor = NoSetting;   //設定背景顏色
+        private int mBacakgroundPicture = NoSetting;    //設定SnackBar背景圖片
+        private int mLayout = NoSetting;    //設定自定頁面
         private String mActionText = null;  //設定按鈕文字
-        private int mActionTextColor = 0;   //設定按鈕文字顏色
+        private int mActionTextColor = NoSetting;   //設定按鈕文字顏色
         private setOnActionClickListener mActionClickListener;  //按鈕監聽
-        private int mTextSize = 0;   //設定文字大小
 
         public initi setView(View view) {
             this.mView = view;
@@ -208,8 +240,18 @@ public class AWDSnackbarMgr {
             return this;
         }
 
+        public initi setTextSize(int textSize) {
+            this.mTextSize = textSize;
+            return this;
+        }
+
         public initi setBacakgroundColor(int bacakgroundColor) {
             this.mBackgroundColor = bacakgroundColor;
+            return this;
+        }
+
+        public initi setBacakgroundPicture(int bacakgroundPicture) {
+            this.mBacakgroundPicture = bacakgroundPicture;
             return this;
         }
 
@@ -230,11 +272,6 @@ public class AWDSnackbarMgr {
 
         public initi setOnActionClickListener(setOnActionClickListener ActionClickListener) {
             this.mActionClickListener = ActionClickListener;
-            return this;
-        }
-
-        public initi setTextSize(int textSize) {
-            this.mTextSize = textSize;
             return this;
         }
 
