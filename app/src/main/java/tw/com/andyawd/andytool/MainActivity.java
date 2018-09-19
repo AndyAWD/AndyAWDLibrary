@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import tw.com.andyawd.andyawdlibrary.AWDSnackbarMgr;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private AWDSnackbarMgr awdSnackbarMgr;
     private AWDSnackbarMgr awdSnackbarMgr2;
 
+    private TextView tvVae_Message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +82,13 @@ public class MainActivity extends AppCompatActivity {
                 .setGravity(Gravity.CENTER, 200, 500)
                 .setTextColor(R.color.white)
                 .setTextSize(50)
-                .setBacakgroundPicture(R.drawable.background_bigtest)
+                .setLayout(R.layout.view_api_error)
                 .setTextBacakgroundColor(R.color.deepskyblue)
                 .build();
 
         awdToastMgr.setLog(AWDToastMgr.Log_On);
+        tvVae_Message = (TextView) awdToastMgr.getView(R.id.tvVae_Message);
+//
 
         /*
         .setTextColor(R.color.metro_ae113d)
@@ -95,8 +100,9 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btAm_Toast_CLick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            awdToastMgr.show("吐司測試");
-
+            //awdToastMgr.show("吐司測試");
+            tvVae_Message.setText("9999999999999");
+            awdToastMgr.show("3333");
         }
     };
 

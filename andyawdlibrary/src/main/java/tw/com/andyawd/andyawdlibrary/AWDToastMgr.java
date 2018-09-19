@@ -27,6 +27,7 @@ public class AWDToastMgr {
     private static final int NoSetting = 529;
 
     private static Toast toast;
+    private View vToast;
     private initi builder;
     private TextView tvToast;
     private LinearLayout.LayoutParams layoutParams;
@@ -36,94 +37,113 @@ public class AWDToastMgr {
 
     public AWDToastMgr(initi builder) {
         this.builder = builder;
-    }
-
-    public void show(String message) {
         if (null != builder.mContext) {
-            if (null == toast) {
+            toast = Toast.makeText(builder.mContext, "", builder.mDuration);
 
-                toast = Toast.makeText(builder.mContext, message, builder.mDuration);
-                linearLayout = (LinearLayout) toast.getView();
-                tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
-                layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.gravity = Gravity.CENTER_VERTICAL;
+            linearLayout = (LinearLayout) toast.getView();
+            tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
+            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.gravity = Gravity.CENTER_VERTICAL;
 
-                if (NoSetting != builder.mGravity && NoSetting != builder.mXOffset && NoSetting != builder.mYOffset) {
-                    toast.setGravity(builder.mGravity, builder.mXOffset, builder.mYOffset);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mYOffset : " + String.valueOf(builder.mYOffset));
-                    }
-                }
-
-                if (NoSetting != builder.mTextColor) {
-                    tvToast.setTextColor(ContextCompat.getColor(builder.mContext, builder.mTextColor));
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
-                    }
-                }
-
-                if (NoSetting != builder.mTextBackgroundColor) {
-                    tvToast.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mTextBackgroundColor));
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mTextBackgroundColor : " + String.valueOf(builder.mTextBackgroundColor));
-                    }
-                }
-
-                if (0 != builder.mTextSize) {
-                    tvToast.setTextSize(builder.mTextSize);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mTextSize : " + String.valueOf(builder.mTextSize));
-                    }
-                }
-
-                if (NoSetting != builder.mBackgroundColor) {
-                    linearLayout.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mBackgroundColor));
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mBackgroundColor : " + String.valueOf(builder.mBackgroundColor));
-                    }
-                }
-
-                if (NoSetting != builder.mBacakgroundPicture) {
-                    ImageView imageView = new ImageView(builder.mContext);
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inPreferredConfig = Bitmap.Config.RGB_565;
-                    options.inPurgeable = true;
-                    options.inInputShareable = true;
-                    InputStream inputStream = builder.mContext.getResources().openRawResource(builder.mBacakgroundPicture);
-                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
-                    BitmapDrawable bitmapDrawable = new BitmapDrawable(builder.mContext.getResources(), bitmap);
-                    imageView.setBackgroundDrawable(bitmapDrawable);
-                    linearLayout.addView(imageView, 0, layoutParams);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mBacakgroundPicture : " + String.valueOf(builder.mBacakgroundPicture));
-                    }
-                }
-
-                if (NoSetting != builder.mLayout) {
-
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDToastMgr", "mLayout : " + String.valueOf(builder.mLayout));
-                    }
-                }
-
+            if (NoSetting != builder.mGravity && NoSetting != builder.mXOffset && NoSetting != builder.mYOffset) {
+                toast.setGravity(builder.mGravity, builder.mXOffset, builder.mYOffset);
             } else {
-                toast.setText(message);
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mYOffset : " + String.valueOf(builder.mYOffset));
+                }
             }
 
-            toast.show();
+            if (NoSetting != builder.mTextColor) {
+                tvToast.setTextColor(ContextCompat.getColor(builder.mContext, builder.mTextColor));
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
+                }
+            }
+
+            if (NoSetting != builder.mTextBackgroundColor) {
+                tvToast.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mTextBackgroundColor));
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mTextBackgroundColor : " + String.valueOf(builder.mTextBackgroundColor));
+                }
+            }
+
+            if (0 != builder.mTextSize) {
+                tvToast.setTextSize(builder.mTextSize);
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mTextSize : " + String.valueOf(builder.mTextSize));
+                }
+            }
+
+            if (NoSetting != builder.mBackgroundColor) {
+                linearLayout.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mBackgroundColor));
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mBackgroundColor : " + String.valueOf(builder.mBackgroundColor));
+                }
+            }
+
+            if (NoSetting != builder.mBacakgroundPicture) {
+                ImageView imageView = new ImageView(builder.mContext);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.RGB_565;
+                options.inPurgeable = true;
+                options.inInputShareable = true;
+                InputStream inputStream = builder.mContext.getResources().openRawResource(builder.mBacakgroundPicture);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+                BitmapDrawable bitmapDrawable = new BitmapDrawable(builder.mContext.getResources(), bitmap);
+                imageView.setBackgroundDrawable(bitmapDrawable);
+                linearLayout.addView(imageView, 0, layoutParams);
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mBacakgroundPicture : " + String.valueOf(builder.mBacakgroundPicture));
+                }
+            }
+
+            if (NoSetting != builder.mLayout) {
+                vToast = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
+                toast.setView(vToast);
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mLayout : " + String.valueOf(builder.mLayout));
+                }
+            }
 
         } else {
             if (blnLogSwitch) {
                 Log.d("AWDToastMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
             }
         }
+    }
+
+    public void show(String message) {
+        if (null == toast) {
+
+        } else {
+            if (NoSetting != builder.mLayout) {
+
+            } else {
+                toast.setText(message);
+            }
+        }
+        toast.show();
+    }
+
+    /**
+     * @param view 取得元件
+     * @return
+     */
+    public View getView(int view) {
+        if (toast != null) {
+            return this.vToast.findViewById(view);
+        } else {
+            if (blnLogSwitch) {
+                Log.d("AWDToastMgr", "vToast : " + String.valueOf(vToast));
+            }
+        }
+        return null;
     }
 
     public void setLog(boolean Log_OnOff) {
@@ -137,7 +157,7 @@ public class AWDToastMgr {
         private int mGravity = NoSetting;   //起始位置
         private int mXOffset = NoSetting;   //橫向偏移量，X軸
         private int mYOffset = NoSetting;   //縱向偏移量，Y軸
-        private int mLayout = NoSetting;    //設定自定頁面
+        private int mLayout = NoSetting;    //設定自定頁面Layout
         private int mBackgroundColor = NoSetting;   //設定吐司背景顏色
         private int mBacakgroundPicture = NoSetting;    //設定吐司背景圖片
         private int mTextColor = NoSetting;     //設定文字顏色
