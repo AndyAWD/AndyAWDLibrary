@@ -7,9 +7,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         awdToastMgr.setLog(AWDToastMgr.Log_On);
-        tvVae_Message = (TextView) awdToastMgr.getView(R.id.tvVae_Message);
+        tvVae_Message = (TextView) awdToastMgr.findViewById(R.id.tvVae_Message);
 //
 
         /*

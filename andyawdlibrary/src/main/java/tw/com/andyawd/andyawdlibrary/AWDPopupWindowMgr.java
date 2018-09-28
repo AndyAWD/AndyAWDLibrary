@@ -86,7 +86,7 @@ public class AWDPopupWindowMgr {
      * @param view 取得元件
      * @return
      */
-    public View getView(int view) {
+    public View findViewById(int view) {
         if (popupWindow != null) {
             return this.view.findViewById(view);
         }
@@ -94,7 +94,7 @@ public class AWDPopupWindowMgr {
     }
 
     public void setFocusListener(int view, View.OnFocusChangeListener listener) {
-        View vFocusListener = getView(view);
+        View vFocusListener = findViewById(view);
         vFocusListener.setOnFocusChangeListener(listener);
     }
 

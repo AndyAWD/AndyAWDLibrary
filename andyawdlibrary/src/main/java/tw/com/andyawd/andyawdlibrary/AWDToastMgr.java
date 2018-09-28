@@ -148,7 +148,7 @@ public class AWDToastMgr {
      * @param view 取得元件
      * @return
      */
-    public View getView(int view) {
+    public View findViewById(int view) {
         if (toast != null) {
             return this.vToast.findViewById(view);
         } else {
