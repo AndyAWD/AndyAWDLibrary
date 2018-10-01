@@ -72,7 +72,9 @@ public class AWDSnackbarMgr {
             vSnackbar = snackbar.getView();
             tvSnackbarText = (TextView) vSnackbar.findViewById(android.support.design.R.id.snackbar_text);
             snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
-            vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
+            if (null != builder.mContext){
+                vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
+            }
             layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.gravity = Gravity.CENTER_VERTICAL;
 
@@ -101,7 +103,7 @@ public class AWDSnackbarMgr {
                     }
                 }
 
-                if (NoSetting != builder.mLayout) {
+                if (NoSetting != builder.mLayout && null != builder.mContext) {
                     snackbarLayout.addView(vSnackbarLayout, 0, layoutParams);
                 } else {
                     if (blnLogSwitch) {

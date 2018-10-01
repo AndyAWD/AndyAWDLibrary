@@ -60,17 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         awdSnackbarMgr = new AWDSnackbarMgr.initi()
                 .setView(getWindow().getDecorView())
-                .setContext(MainActivity.this)
-                .setDuration(Snackbar.LENGTH_INDEFINITE)
-                .setBacakgroundColor(R.color.metro_f4b300)
-                .setTextColor(R.color.metro_ae113d)
-                .setLayout(R.layout.view_show_select)
-                .setActionTextColor(R.color.deepskyblue)
-                .setActionText("按鈕文字")
+                .setDuration(Snackbar.LENGTH_SHORT)
                 .setMessage("這邊顯示文字")
-                .setBacakgroundPicture(R.drawable.dynamic_aboutit_nodata)
-                .setOnActionClickListener(awdSnackbarMgr2_Action)
-                .setTextSize(50)
                 .build();
         awdSnackbarMgr.setLog(AWDSnackbarMgr.Log_On);
 
@@ -107,16 +98,14 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btAm_SnackBarMode0_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            for (int i = 0; i < 10000; i++) {
-                awdSnackbarMgr.show();
-            }
+            awdSnackbarMgr.show();
+
         }
     };
 
     private View.OnClickListener btAm_SnackBarMode1_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            awdSnackbarMgr.show();
         }
     };
 
