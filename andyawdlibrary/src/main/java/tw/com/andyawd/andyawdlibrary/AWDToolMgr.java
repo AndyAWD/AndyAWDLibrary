@@ -59,21 +59,6 @@ public class AWDToolMgr {
     }
 
     /**
-     * 吐司訊息
-     *
-     * @param message
-     */
-    public void Toast(Context context, String message, int durationToast) {
-        if (toast == null) {
-            toast = Toast.makeText(context, message, durationToast);
-        } else {
-            toast.setText(message);
-        }
-        toast.show();
-        context = null;
-    }
-
-    /**
      * 圖檔轉Bas64
      *
      * @param pathName

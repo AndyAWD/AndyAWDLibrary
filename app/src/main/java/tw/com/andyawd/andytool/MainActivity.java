@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void Action() {
             Log.d("AWDSnackbarMgr", "snackbar_Action_002");
-            AWDToolMgr.getInstance().Toast(MainActivity.this, "6666666666", Toast.LENGTH_SHORT);
         }
     };
 }

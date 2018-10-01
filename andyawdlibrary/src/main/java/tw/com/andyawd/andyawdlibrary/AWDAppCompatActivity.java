@@ -7,5 +7,5 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 public abstract class AWDAppCompatActivity extends AppCompatActivity {
-    public abstract void refreshView(String tabName);
+    public abstract void refreshView(String data);
 }
