@@ -61,6 +61,14 @@ public class AWDToastMgr {
                 }
             }
 
+            if (NoSetting != builder.mTextGravity) {
+                tvToast.setGravity(builder.mTextGravity);
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDToastMgr", "mTextGravity : " + String.valueOf(builder.mTextGravity));
+                }
+            }
+
             if (NoSetting != builder.mTextBackgroundColor) {
                 tvToast.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mTextBackgroundColor));
             } else {
@@ -176,6 +184,7 @@ public class AWDToastMgr {
         private int mTextColor = NoSetting;     //設定文字顏色
         private int mTextSize = 0;   //設定文字大小
         private int mTextBackgroundColor = NoSetting;   //設定文字背景顏色
+        private int mTextGravity = NoSetting;   //設定文字位置
 
         public initi setContext(Context context) {
             this.mContext = context;
@@ -221,6 +230,11 @@ public class AWDToastMgr {
 
         public initi setTextBacakgroundColor(int textbacakgroundColor) {
             this.mTextBackgroundColor = textbacakgroundColor;
+            return this;
+        }
+
+        public initi setTextGravity(int textGravity) {
+            this.mTextGravity = textGravity;
             return this;
         }
 
