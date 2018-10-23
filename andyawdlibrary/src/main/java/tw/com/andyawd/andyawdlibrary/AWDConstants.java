@@ -19,6 +19,8 @@ public class AWDConstants {
     public static final int BluetoothGetMessage = 406;
     public static final int BluetoothError = 407;
 
+    public static final String MahoroMode = "maho";
+
     public static final int VERBOSE = 1;    //Log模式等級
     public static final int DEBUG = 2;  //Log模式等級
     public static final int WARN = 3;   //Log模式等級

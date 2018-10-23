@@ -197,4 +197,22 @@ public class AWDToolMgr {
         }
         context = null;
     }
+
+    /**
+     * 手機有沒有使用代理伺服器
+     * 有使用 true
+     * 沒有使用 false
+     * @return
+     */
+    public boolean isPhoneSetProxy() {
+        if (TextUtils.isEmpty(System.getProperty("http.proxyHost"))) {
+            if (TextUtils.isEmpty(System.getProperty("http.proxyPort"))) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
 }

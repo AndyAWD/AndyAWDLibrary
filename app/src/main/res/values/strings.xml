@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndyTool</string>
+
+    <string name="ApiErrorMsg">\n功能未執行\n錯誤碼&#160;:&#160;</string>
+    <string name="ApiErrorMsg2">\n錯誤碼&#160;:&#160;</string>
+    <string name="PostUrl_FailMsg">網址錯誤</string>
+    <string name="Socket_FailMsg">後台連線</string>
+    <string name="NoConnectionMsg">無法連線，請檢查網路環境</string>
+    <string name="PostJson_FailMsg">字串建立</string>
+    <string name="ReturnJson_FailMsg">字串檢查</string>
 </resources>

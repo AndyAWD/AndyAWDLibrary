@@ -1,20 +1,22 @@
-package tw.com.andyawd.andyawdlibrary;
+package tw.com.andyawd.andytool.base;
 
 import android.app.Application;
 import android.content.Context;
 
 /**
- * Created by andydai on 2018/9/12.
+ * Created by andydai on 2018/10/22.
  */
 
-public class AWDApplication extends Application {
+public class AWDPApplication extends Application {
 
     private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
         context = getApplicationContext();
+
     }
 
     public static Context getContext() {

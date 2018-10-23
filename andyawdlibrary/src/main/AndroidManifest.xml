@@ -11,6 +11,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"></application>
 
+
+
     <!-- targetSdkVersion 24以後File權限有變，要多加這個 -->
     <provider
         android:name="android.support.v4.content.FileProvider"

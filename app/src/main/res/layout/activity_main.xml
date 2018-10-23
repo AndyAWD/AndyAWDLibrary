@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/wheat"
-        tools:context="tw.com.andyawd.andytool.MainActivity">
+        tools:context="tw.com.andyawd.andytool.ui.activity.MainActivity">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/tbAm_ShowMessage"
@@ -17,102 +17,22 @@
             android:layout_height="wrap_content"
             android:background="@color/skyblue"
             android:minHeight="50dp"
+            android:maxHeight="500dp"
+            android:scrollbars="horizontal"
+            android:text="這邊顯示訊息"
             android:textColor="@color/metro_252525"
             app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/btAm_Toast"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_Toast"
+            android:id="@+id/btAm_Start"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="4dp"
-            android:text="Toast"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="80dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tbAm_ShowMessage" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarMode0"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="4dp"
-            android:text="Sn0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode1"
-            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
+            app:layout_constraintTop_toBottomOf="@+id/tbAm_ShowMessage"/>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarMode1"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="4dp"
-            android:text="Sn1"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode0"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode2"
-            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarMode2"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="4dp"
-            android:text="Sn2"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode1"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode3"
-            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarMode3"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="4dp"
-            android:text="Sn3"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode2"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarMode4"
-            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarMode4"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="4dp"
-            android:text="Sn4"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode3"
-            app:layout_constraintRight_toLeftOf="@+id/btAm_SnackBarModeDismass"
-            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btAm_SnackBarModeDismass"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="4dp"
-            android:text="Dismass"
-            app:layout_constraintLeft_toRightOf="@+id/btAm_SnackBarMode4"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btAm_Toast" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

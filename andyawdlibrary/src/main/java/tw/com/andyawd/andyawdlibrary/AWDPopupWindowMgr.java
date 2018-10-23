@@ -103,6 +103,7 @@ public class AWDPopupWindowMgr {
             }
         });
     }
+
     /**
      * 懶人的showAtLocation寫法
      *
@@ -118,11 +119,10 @@ public class AWDPopupWindowMgr {
     }
 
     /**
-     *
-     * @param fatherLayout  主頁面(父類別)Xml
-     * @param gravity       是否置中，不知道要打什麼的話輸入"Gravity.BOTTOM"
-     * @param x             不知道要打什麼的話輸入"0"
-     * @param y             不知道要打什麼的話輸入"0"
+     * @param fatherLayout 主頁面(父類別)Xml
+     * @param gravity      是否置中，不知道要打什麼的話輸入"Gravity.BOTTOM"
+     * @param x            不知道要打什麼的話輸入"0"
+     * @param y            不知道要打什麼的話輸入"0"
      * @return
      */
     public AWDPopupWindowMgr showAtLocation(int fatherLayout, int gravity, int x, int y) {
@@ -166,7 +166,7 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public int getPopupWindowWidth() {
-        return vPopupWindow.getMeasuredWidth();
+        return vPopupWindow != null ? vPopupWindow.getMeasuredWidth() : 0;
     }
 
     /**
@@ -175,7 +175,7 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public int getPopupWindowHeight() {
-        return vPopupWindow.getMeasuredHeight();
+        return vPopupWindow != null ? vPopupWindow.getMeasuredHeight() : 0;
     }
 
     /**
