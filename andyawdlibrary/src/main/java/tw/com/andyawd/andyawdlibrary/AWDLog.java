@@ -21,22 +21,22 @@ public class AWDLog {
     private static final int WARN = 3;
     private static final int INFO = 4;
     private static final int ERROR = 5;
-    private static final int MahoroModeOpen = 100;
-    private static final int MahoroModeClose = 101;
-    private static final int BeautifulModeOpen = 102;
-    private static final int BeautifulModeClose = 103;
+    private static final int MahoroModeOpen = 1046;
+    private static final int MahoroModeClose = 1047;
+    private static final int BeautifulModeOpen = 1048;
+    private static final int BeautifulModeClose = 1049;
 
-    //    private static final int level = AWDLog.LogOFF;   //關閉全部的Log
-    private static int level = AWDLog.VERBOSE;    //開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
-//    private static final int level = AWDLog.DEBUG;    //開啟.d等級以上的Log
-//    private static final int level = AWDLog.WARN;    //開啟.w等級以上的Log
-//    private static final int level = AWDLog.INFO;    //開啟.i等級以上的Log
-//    private static final int level = AWDLog.ERROR;    //開啟.e等級以上的Log
+    //    private static final int level = LogOFF;   //關閉全部的Log
+    private static int level = VERBOSE;    //開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
+//    private static final int level = DEBUG;    //開啟.d等級以上的Log
+//    private static final int level = WARN;    //開啟.w等級以上的Log
+//    private static final int level = INFO;    //開啟.i等級以上的Log
+//    private static final int level = ERROR;    //開啟.e等級以上的Log
 
-    private static int MahoroMode = AWDLog.MahoroModeClose;   //Tag額外加上maho
+    private static int MahoroMode = MahoroModeClose;   //Tag額外加上maho
 //    private static final int MahoroMode = AWDLog.MahoroModeOpen;  //Tag不加maho
 
-    private static int BeautifulMode = AWDLog.BeautifulModeOpen;  //讓Log變得很漂亮，小心不要烤了他
+    private static int BeautifulMode = BeautifulModeOpen;  //讓Log變得很漂亮，小心不要烤了他
 //    private static final int BeautifulMode = AWDLog.BeautifulModeClose;   //讓Log正常顯示
 
     /**
@@ -86,15 +86,15 @@ public class AWDLog {
                 case MahoroModeOpen:
                     switch (BeautifulMode){
                         case BeautifulModeOpen:
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.v(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.v(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
+                            Log.v(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.v(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
+                            Log.v(MahoroName + MahoroDate() + tag, "◢◤" + msg);
+                            Log.v(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                             break;
                         case BeautifulModeClose:
-                            Log.v(AWDLog.MahoroName + MahoroDate() + tag, msg);
+                            Log.v(MahoroName + MahoroDate() + tag, msg);
                             break;
                     }
                     break;
@@ -103,7 +103,7 @@ public class AWDLog {
                         case BeautifulModeOpen:
                             Log.v(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
                             Log.v(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.v(tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.v(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
                             Log.v(tag, "◥◣==============================================================");
                             Log.v(tag, "◢◤" + msg);
                             Log.v(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
@@ -121,15 +121,15 @@ public class AWDLog {
         if (level <= AWDLog.VERBOSE) {
             switch (BeautifulMode){
                 case BeautifulModeOpen:
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                    Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                    Log.v(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
+                    Log.v(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                    Log.v(MahoroName + MahoroDate(), "◥◣==============================================================");
+                    Log.v(MahoroName + MahoroDate(), "◢◤" + msg);
+                    Log.v(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                     break;
                 case BeautifulModeClose:
-                    Log.v(AWDLog.MahoroName + MahoroDate(), msg);
+                    Log.v(MahoroName + MahoroDate(), msg);
                     break;
             }
         }
@@ -148,15 +148,15 @@ public class AWDLog {
                 case MahoroModeOpen:
                     switch (BeautifulMode){
                         case BeautifulModeOpen:
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.d(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.d(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
+                            Log.d(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.d(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
+                            Log.d(MahoroName + MahoroDate() + tag, "◢◤" + msg);
+                            Log.d(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                             break;
                         case BeautifulModeClose:
-                            Log.d(AWDLog.MahoroName + MahoroDate() + tag, msg);
+                            Log.d(MahoroName + MahoroDate() + tag, msg);
                             break;
                     }
                     break;
@@ -165,7 +165,7 @@ public class AWDLog {
                         case BeautifulModeOpen:
                             Log.d(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
                             Log.d(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.d(tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.d(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
                             Log.d(tag, "◥◣==============================================================");
                             Log.d(tag, "◢◤" + msg);
                             Log.d(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
@@ -183,15 +183,15 @@ public class AWDLog {
         if (level <= AWDLog.DEBUG) {
             switch (BeautifulMode){
                 case BeautifulModeOpen:
-                    Log.d(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.d(AWDLog.MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.d(AWDLog.MahoroName + MahoroDate(), "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.d(AWDLog.MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.d(AWDLog.MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.d(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                    Log.d(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                    Log.d(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
+                    Log.d(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                    Log.d(MahoroName + MahoroDate(), "◥◣==============================================================");
+                    Log.d(MahoroName + MahoroDate(), "◢◤" + msg);
+                    Log.d(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                     break;
                 case BeautifulModeClose:
-                    Log.d(AWDLog.MahoroName + MahoroDate(), msg);
+                    Log.d(MahoroName + MahoroDate(), msg);
                     break;
             }
         }
@@ -210,15 +210,15 @@ public class AWDLog {
                 case MahoroModeOpen:
                     switch (BeautifulMode){
                         case BeautifulModeOpen:
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.w(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.w(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
+                            Log.w(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.w(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
+                            Log.w(MahoroName + MahoroDate() + tag, "◢◤" + msg);
+                            Log.w(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                             break;
                         case BeautifulModeClose:
-                            Log.w(AWDLog.MahoroName + MahoroDate() + tag, msg);
+                            Log.w(MahoroName + MahoroDate() + tag, msg);
                             break;
                     }
                     break;
@@ -227,7 +227,7 @@ public class AWDLog {
                         case BeautifulModeOpen:
                             Log.w(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
                             Log.w(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.w(tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.w(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
                             Log.w(tag, "◥◣==============================================================");
                             Log.w(tag, "◢◤" + msg);
                             Log.w(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
@@ -245,15 +245,15 @@ public class AWDLog {
         if (level <= AWDLog.WARN) {
             switch (BeautifulMode){
                 case BeautifulModeOpen:
-                    Log.w(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.w(AWDLog.MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.w(AWDLog.MahoroName + MahoroDate(), "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.w(AWDLog.MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.w(AWDLog.MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.w(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                    Log.w(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                    Log.w(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
+                    Log.w(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                    Log.w(MahoroName + MahoroDate(), "◥◣==============================================================");
+                    Log.w(MahoroName + MahoroDate(), "◢◤" + msg);
+                    Log.w(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                     break;
                 case BeautifulModeClose:
-                    Log.w(AWDLog.MahoroName + MahoroDate(), msg);
+                    Log.w(MahoroName + MahoroDate(), msg);
                     break;
             }
         }
@@ -272,15 +272,15 @@ public class AWDLog {
                 case MahoroModeOpen:
                     switch (BeautifulMode){
                         case BeautifulModeOpen:
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.i(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.i(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
+                            Log.i(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.i(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
+                            Log.i(MahoroName + MahoroDate() + tag, "◢◤" + msg);
+                            Log.i(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                             break;
                         case BeautifulModeClose:
-                            Log.i(AWDLog.MahoroName + MahoroDate() + tag, msg);
+                            Log.i(MahoroName + MahoroDate() + tag, msg);
                             break;
                     }
                     break;
@@ -289,7 +289,7 @@ public class AWDLog {
                         case BeautifulModeOpen:
                             Log.i(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
                             Log.i(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.i(tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.i(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
                             Log.i(tag, "◥◣==============================================================");
                             Log.i(tag, "◢◤" + msg);
                             Log.i(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
@@ -307,15 +307,15 @@ public class AWDLog {
         if (level <= AWDLog.INFO) {
             switch (BeautifulMode){
                 case BeautifulModeOpen:
-                    Log.i(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.i(AWDLog.MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.i(AWDLog.MahoroName + MahoroDate(), "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.i(AWDLog.MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.i(AWDLog.MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.i(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                    Log.i(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                    Log.i(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
+                    Log.i(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                    Log.i(MahoroName + MahoroDate(), "◥◣==============================================================");
+                    Log.i(MahoroName + MahoroDate(), "◢◤" + msg);
+                    Log.i(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                     break;
                 case BeautifulModeClose:
-                    Log.i(AWDLog.MahoroName + MahoroDate(), msg);
+                    Log.i(MahoroName + MahoroDate(), msg);
                     break;
             }
         }
@@ -333,15 +333,15 @@ public class AWDLog {
                 case MahoroModeOpen:
                     switch (BeautifulMode){
                         case BeautifulModeOpen:
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.e(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.e(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
+                            Log.e(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.e(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
+                            Log.e(MahoroName + MahoroDate() + tag, "◢◤" + msg);
+                            Log.e(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                             break;
                         case BeautifulModeClose:
-                            Log.e(AWDLog.MahoroName + MahoroDate() + tag, msg);
+                            Log.e(MahoroName + MahoroDate() + tag, msg);
                             break;
                     }
                     break;
@@ -350,7 +350,7 @@ public class AWDLog {
                         case BeautifulModeOpen:
                             Log.e(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
                             Log.e(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.e(tag, "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                            Log.e(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
                             Log.e(tag, "◥◣==============================================================");
                             Log.e(tag, "◢◤" + msg);
                             Log.e(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
@@ -368,15 +368,15 @@ public class AWDLog {
         if (level <= AWDLog.ERROR) {
             switch (BeautifulMode){
                 case BeautifulModeOpen:
-                    Log.e(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.e(AWDLog.MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.e(AWDLog.MahoroName + MahoroDate(), "◢◤位置 : " + "at " + getStackTraceElement().getClassName() + "." + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.e(AWDLog.MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.e(AWDLog.MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.e(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                    Log.e(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                    Log.e(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
+                    Log.e(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
+                    Log.e(MahoroName + MahoroDate(), "◥◣==============================================================");
+                    Log.e(MahoroName + MahoroDate(), "◢◤" + msg);
+                    Log.e(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                     break;
                 case BeautifulModeClose:
-                    Log.e(AWDLog.MahoroName + MahoroDate(), msg);
+                    Log.e(MahoroName + MahoroDate(), msg);
                     break;
             }
         }
@@ -386,40 +386,40 @@ public class AWDLog {
         switch (BeautifulMode){
             case BeautifulModeOpen:
                 if (TextUtils.isEmpty(apiJson)) {
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                    Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                    Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                    Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
+                    Log.v(MahoroName + MahoroDate(), "◢◤◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                 } else {
                     try {
                         if (apiJson.startsWith("{")) {
                             JSONObject joMsg = new JSONObject(apiJson);
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤==============================================================");
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣Post字串無縮排 : " + apiJson);
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤Post字串有縮排 : " + "\n" + joMsg.toString(4));
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
+                            Log.v(MahoroName + MahoroDate(), "◢◤==============================================================");
+                            Log.v(MahoroName + MahoroDate(), "◥◣Post字串無縮排 : \n" + apiJson);
+                            Log.v(MahoroName + MahoroDate(), "◢◤Post字串有縮排 : \n" + joMsg.toString(4));
+                            Log.v(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                         }
                         if (apiJson.startsWith("[")) {
                             JSONArray jaMsg = new JSONArray(apiJson);
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤==============================================================");
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣Post字串無縮排 : " + apiJson);
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤Post字串有縮排 : " + "\n" + jaMsg.toString(4));
-                            Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                            Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                            Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
+                            Log.v(MahoroName + MahoroDate(), "◢◤==============================================================");
+                            Log.v(MahoroName + MahoroDate(), "◥◣Post字串無縮排 : \n" + apiJson);
+                            Log.v(MahoroName + MahoroDate(), "◢◤Post字串有縮排 : \n" + jaMsg.toString(4));
+                            Log.v(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                         }
                     } catch (Exception e) {
-                        Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                        Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                        Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤==============================================================");
-                        Log.v(AWDLog.MahoroName + MahoroDate(), "◥◣Post字串無縮排 : " + apiJson);
-                        Log.v(AWDLog.MahoroName + MahoroDate(), "◢◤◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
+                        Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
+                        Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
+                        Log.v(MahoroName + MahoroDate(), "◢◤==============================================================");
+                        Log.v(MahoroName + MahoroDate(), "◥◣Post字串無縮排 : \n" + apiJson);
+                        Log.v(MahoroName + MahoroDate(), "◢◤◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
                     }
                 }
                 break;
             case BeautifulModeClose:
-                Log.v(AWDLog.MahoroName + MahoroDate(), apiInfo + "\n" + "Post字串 : " + apiJson);
+                Log.v(MahoroName + MahoroDate(), apiInfo + "\n" + "Post字串 : " + apiJson);
                 break;
         }
     }
