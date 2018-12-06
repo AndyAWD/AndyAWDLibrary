@@ -9,6 +9,7 @@ import android.view.View;
 import org.json.JSONException;
 
 import tw.com.andyawd.andyawdlibrary.AWDLog;
+import tw.com.andyawd.andyawdlibrary.AWDToastMgr;
 import tw.com.andyawd.andytool.R;
 import tw.com.andyawd.andytool.logic.AWDPAndroidAsyncHttpMgr;
 
@@ -35,15 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btAm_Start_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            AWDPAndroidAsyncHttpMgr.getInstance().Call_AppVersionV2_GService_Api(new AWDPAndroidAsyncHttpMgr.AndroidAsyncHttpListener() {
-                @Override
-                public void AndroidAsyncHttpReturnZero(String message) throws JSONException {
-                }
-
-                @Override
-                public void AndroidAsyncHttpReturnOther(String otherCode, String otherMessage) {
-                }
-            });
+            new AWDToastMgr.initi().setTextSize(26).build().show("3333");
         }
     };
 }

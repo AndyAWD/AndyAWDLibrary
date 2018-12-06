@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="tw.com.andyawd.andyawdlibrary">
 
 
@@ -14,14 +15,15 @@
 
 
     <!-- targetSdkVersion 24以後File權限有變，要多加這個 -->
-    <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="andyawd.com.tw.costperformancecalculator2.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/tool_provider_paths" />
-    </provider>
+    <!--<provider-->
+        <!--android:name="android.support.v4.content.FileProvider"-->
+        <!--android:authorities="andyawd.com.tw.costperformancecalculator2.fileprovider"-->
+        <!--android:exported="false"-->
+        <!--android:grantUriPermissions="true"-->
+        <!--tools:ignore="WrongManifestParent">-->
+        <!--<meta-data-->
+            <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+            <!--android:resource="@xml/tool_provider_paths" />-->
+    <!--</provider>-->
 
 </manifest>
