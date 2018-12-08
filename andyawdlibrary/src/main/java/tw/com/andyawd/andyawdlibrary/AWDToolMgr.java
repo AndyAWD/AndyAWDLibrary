@@ -1,5 +1,6 @@
 package tw.com.andyawd.andyawdlibrary;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -161,6 +162,7 @@ public class AWDToolMgr {
      *
      * @param context
      */
+    @SuppressLint("MissingPermission")
     public void setVibrator(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("Vibrator", MODE_PRIVATE);
         boolean strVibratorSelect = sharedPreferences.getBoolean("Vibrator", false);
@@ -183,6 +185,7 @@ public class AWDToolMgr {
      * @param VibratorTimer     設定毫秒數
      * @param VibratorAmplitude 設定震動強度0~255
      */
+    @SuppressLint("MissingPermission")
     public void setVibrator(Context context, int VibratorTimer, int VibratorAmplitude) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("Vibrator", MODE_PRIVATE);
         boolean strVibratorSelect = sharedPreferences.getBoolean("Vibrator", false);

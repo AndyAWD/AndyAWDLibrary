@@ -13,12 +13,15 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 /**
- * Created by andydai on 2018/3/21.
- * 覺得PopupWindow每次都要打一堆碼很麻煩嗎，來用這個吧
- * 如何設定︰如果只要用基本的功能只需要設定Context(.setContext)、要顯示的Xml(.setShowView)，最後再執行(.build)就好
- * 範例︰new HLPopupWindowMgr.initi().setContext(TCLivePlayerActivity.this).setShowView(R.layout.dialog_hlgetgiftlistv2_mk3).build();
+ * Created by andydai on 2018/10/2.
+ * 第二版PopupWindowMgr，以後維護這版，第一版不維護囉
  * <p>
- * 如何顯示︰showAtLocation(主頁面(父類別)Xml, Gravity.BOTTOM, 0, 0)
+ * 如何設定︰如果只要用基本的功能只需要設定Context(.setContext)、要顯示的Xml(.setShowView)，最後再執行(.build)就好
+ * 範例︰new AWDPopupWindowMgr.initi()2.setContext(TCLivePlayerActivity.this).setShowView(R.layout.dialog_hlgetgiftlistv2_mk3).build();
+ * <p>
+ * 從底往上顯示︰showAtLocation(主頁面(父類別)Xml, Gravity.BOTTOM, 0, 0)，或懶人寫法showAtLocation(主頁面(父類別)Xml)
+ * 指定View往上顯示︰showAsDropDown(指定View, Gravity.BOTTOM, 0, getPopupWindowHeight())
+ * 指定View往下上顯示︰showAsDropDown(指定View, Gravity.BOTTOM, 0, -getPopupWindowHeight())
  */
 
 public class AWDPopupWindowMgr {
@@ -32,22 +35,23 @@ public class AWDPopupWindowMgr {
     private PopupWindow mPopupWindow;
     private View vPopupWindow;
     private initi builder;
-    private setAWDPopupWindowMgrV2Listener listener;    //命名
+    private setAWDPopupWindowMgrListener listener;    //命名
 
     private boolean blnLogSwitch = Log_Off;
 
-    public interface setAWDPopupWindowMgrV2Listener {    //建立interface
+    public interface setAWDPopupWindowMgrListener {    //建立interface
         void OnDismiss();
 
         void OnBackgroundTouch(View view, MotionEvent motionEvent);
     }
 
-    public void setHLPopupWindowMgrV2Listener(setAWDPopupWindowMgrV2Listener listener) {    //初始化interface
+    public void setAWDPopupWindowMgrListener(setAWDPopupWindowMgrListener listener) {    //初始化interface
         this.listener = listener;
     }
 
     public AWDPopupWindowMgr(initi builder) {
         this.builder = builder;
+
         if (null != builder.mContext && AWDPopupWindowMgr.NoSetting != builder.mLayout) {
 
             vPopupWindow = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
@@ -72,7 +76,7 @@ public class AWDPopupWindowMgr {
             }
         } else {
             if (blnLogSwitch) {
-                Log.d("HLPopupWindowMgr", "mContext : " + String.valueOf(builder.mContext) + "\n" + "mLayout : " + String.valueOf(builder.mLayout));
+                Log.d("AWDPopupWindowMgr", "mContext : " + String.valueOf(builder.mContext) + "\n" + "mLayout : " + String.valueOf(builder.mLayout));
             }
         }
 
@@ -83,7 +87,7 @@ public class AWDPopupWindowMgr {
                     listener.OnDismiss();
                 } else {
                     if (blnLogSwitch) {
-                        Log.d("HLPopupWindowMgr", "listener : " + String.valueOf(listener));
+                        Log.d("AWDPopupWindowMgr", "listener : " + String.valueOf(listener));
                     }
                 }
             }
@@ -96,7 +100,7 @@ public class AWDPopupWindowMgr {
                     listener.OnBackgroundTouch(view, motionEvent);
                 } else {
                     if (blnLogSwitch) {
-                        Log.d("HLPopupWindowMgr", "listener : " + String.valueOf(listener));
+                        Log.d("AWDPopupWindowMgr", "listener : " + String.valueOf(listener));
                     }
                 }
                 return false;
@@ -144,6 +148,10 @@ public class AWDPopupWindowMgr {
         if (mPopupWindow != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 mPopupWindow.showAsDropDown(targeView, x, y, gravity);
+            } else {
+                if (blnLogSwitch) {
+                    Log.d("AWDPopupWindowMgr", "SDK低於19");
+                }
             }
         }
         return this;
@@ -166,7 +174,7 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public int getPopupWindowWidth() {
-        return vPopupWindow != null ? vPopupWindow.getMeasuredWidth() : 0;
+        return vPopupWindow.getMeasuredWidth();
     }
 
     /**
@@ -175,7 +183,7 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public int getPopupWindowHeight() {
-        return vPopupWindow != null ? vPopupWindow.getMeasuredHeight() : 0;
+        return vPopupWindow.getMeasuredHeight();
     }
 
     /**
