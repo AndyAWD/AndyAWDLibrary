@@ -1,7 +1,7 @@
 package tw.com.andyawd.andyawdlibrary;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -9,7 +9,7 @@ import android.widget.ImageView;
  * Created by andydai on 2018/8/22.
  */
 
-public class AWDSquareImageView extends android.support.v7.widget.AppCompatImageView {
+public class AWDSquareImageView extends androidx.appcompat.widget.AppCompatImageView {
 
 
     public AWDSquareImageView(Context context) {

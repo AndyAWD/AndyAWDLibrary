@@ -1,6 +1,6 @@
 package tw.com.andyawd.andyawdlibrary;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by andydai on 2018/7/10.

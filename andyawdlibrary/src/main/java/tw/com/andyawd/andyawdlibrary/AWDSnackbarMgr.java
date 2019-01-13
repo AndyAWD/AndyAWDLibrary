@@ -5,9 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.CountDownTimer;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -70,7 +70,7 @@ public class AWDSnackbarMgr {
             blnSnackbarIsCanShow = Show_On;
 
             vSnackbar = snackbar.getView();
-            tvSnackbarText = (TextView) vSnackbar.findViewById(android.support.design.R.id.snackbar_text);
+            tvSnackbarText = (TextView) vSnackbar.findViewById(com.google.android.material.R.id.snackbar_text);
             snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
             if (null != builder.mContext){
                 vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
