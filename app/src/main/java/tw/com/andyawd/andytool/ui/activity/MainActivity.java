@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -36,7 +39,16 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener btAm_Start_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            new AWDToastMgr.initi().setTextSize(26).build().show("3333");
+            new AWDToastMgr.init(MainActivity.this)
+                    .setBackgroundColor(R.color.yellow)
+                    .setTextBackgroundColor(R.color.blue)
+                    .setTextColor(R.color.white)
+                    .setTextSize(100)
+                    .setTextGravity(Gravity.BOTTOM)
+                    .setGravity(Gravity.TOP, 300, 300)
+                    .setDuration(AWDToastMgr.LENGTH_LONG)
+                    .setBackgroundPicture(R.drawable.background_bigtest)
+                    .build().show("333");
         }
     };
 }
