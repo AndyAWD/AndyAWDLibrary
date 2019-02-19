@@ -13,6 +13,8 @@
     AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文。
     AWDToolMgr：還沒有大到可以拆成Class的工具，有圖檔轉Bas64｀取得這隻手機已經安裝的檔案名稱｀TextView Icon上色｀千分位樣式｀X 面骰模擬器｀簡單震動｀自定震動｀手機有沒有使用代理伺服器。
 
+# 1.3.1
++ 其他專案一直引入失敗，再上一版試試
 
 # 1.3.0
 + AWDToastMgr重構，舊有寫法廢棄
