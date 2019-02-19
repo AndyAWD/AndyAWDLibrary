@@ -55,90 +55,91 @@ public class AWDSnackbarMgr {
         InitiSnackbar();
     }
 
+    @Deprecated
     private void InitiSnackbar() {
-        if (null != builder.mView && null != builder.mMessage && NoSetting != builder.mDuration) {
-            if (null != builder.mActionClickListener) {
-                if (NoSetting != builder.mActionTextColor) {
-                    snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback).setAction(builder.mActionText, snackbar_Action).setActionTextColor(builder.mActionTextColor);
-                } else {
-                    snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback).setAction(builder.mActionText, snackbar_Action);
-                }
-            } else {
-                snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback);
-            }
-
-            blnSnackbarIsCanShow = Show_On;
-
-            vSnackbar = snackbar.getView();
-            tvSnackbarText = (TextView) vSnackbar.findViewById(com.google.android.material.R.id.snackbar_text);
-            snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
-            if (null != builder.mContext){
-                vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
-            }
-            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.gravity = Gravity.CENTER_VERTICAL;
-
-            if (null != builder.mContext) {
-                if (NoSetting != builder.mTextColor) {
-                    tvSnackbarText.setTextColor(ContextCompat.getColor(builder.mContext, builder.mTextColor));
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
-                    }
-                }
-
-                if (NoSetting != builder.mBackgroundColor) {
-                    vSnackbar.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mBackgroundColor));
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "mBackgroundColor : " + builder.mBackgroundColor);
-                    }
-                }
-
-                if (NoSetting != builder.mTextSize) {
-                    tvSnackbarText.setTextSize(builder.mTextSize);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "mTextSize : " + String.valueOf(builder.mTextSize));
-                    }
-                }
-
-                if (NoSetting != builder.mLayout && null != builder.mContext) {
-                    snackbarLayout.addView(vSnackbarLayout, 0, layoutParams);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "mLayout : " + String.valueOf(builder.mLayout));
-                    }
-                }
-
-                if (NoSetting != builder.mBacakgroundPicture) {
-                    ImageView imageView = new ImageView(builder.mContext);
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inPreferredConfig = Bitmap.Config.RGB_565;
-                    options.inPurgeable = true;
-                    options.inInputShareable = true;
-                    InputStream inputStream = builder.mContext.getResources().openRawResource(builder.mBacakgroundPicture);
-                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
-                    BitmapDrawable bitmapDrawable = new BitmapDrawable(builder.mContext.getResources(), bitmap);
-                    imageView.setBackgroundDrawable(bitmapDrawable);
-                    snackbarLayout.addView(imageView, 0, layoutParams);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDSnackbarMgr", "mBacakgroundPicture : " + String.valueOf(builder.mBacakgroundPicture));
-                    }
-                }
-
-            } else {
-                if (blnLogSwitch) {
-                    Log.d("AWDSnackbarMgr", "mContext : " + String.valueOf(builder.mContext));
-                }
-            }
-        } else {
-            if (blnLogSwitch) {
-                Log.d("AWDSnackbarMgr", "View : " + builder.mView + " / Message : " + builder.mMessage + " / Duration : " + builder.mDuration);
-            }
-            blnSnackbarIsCanShow = Show_Off;
-        }
+//        if (null != builder.mView && null != builder.mMessage && NoSetting != builder.mDuration) {
+//            if (null != builder.mActionClickListener) {
+//                if (NoSetting != builder.mActionTextColor) {
+//                    snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback).setAction(builder.mActionText, snackbar_Action).setActionTextColor(builder.mActionTextColor);
+//                } else {
+//                    snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback).setAction(builder.mActionText, snackbar_Action);
+//                }
+//            } else {
+//                snackbar = Snackbar.make(builder.mView, builder.mMessage, builder.mDuration).addCallback(snackbar_Callback);
+//            }
+//
+//            blnSnackbarIsCanShow = Show_On;
+//
+//            vSnackbar = snackbar.getView();
+//            tvSnackbarText = (TextView) vSnackbar.findViewById(com.google.android.material.R.id.snackbar_text);
+//            snackbarLayout = (Snackbar.SnackbarLayout) vSnackbar;
+//            if (null != builder.mContext){
+//                vSnackbarLayout = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
+//            }
+//            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//            layoutParams.gravity = Gravity.CENTER_VERTICAL;
+//
+//            if (null != builder.mContext) {
+//                if (NoSetting != builder.mTextColor) {
+//                    tvSnackbarText.setTextColor(ContextCompat.getColor(builder.mContext, builder.mTextColor));
+//                } else {
+//                    if (blnLogSwitch) {
+//                        Log.d("AWDSnackbarMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
+//                    }
+//                }
+//
+//                if (NoSetting != builder.mBackgroundColor) {
+//                    vSnackbar.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mBackgroundColor));
+//                } else {
+//                    if (blnLogSwitch) {
+//                        Log.d("AWDSnackbarMgr", "mBackgroundColor : " + builder.mBackgroundColor);
+//                    }
+//                }
+//
+//                if (NoSetting != builder.mTextSize) {
+//                    tvSnackbarText.setTextSize(builder.mTextSize);
+//                } else {
+//                    if (blnLogSwitch) {
+//                        Log.d("AWDSnackbarMgr", "mTextSize : " + String.valueOf(builder.mTextSize));
+//                    }
+//                }
+//
+//                if (NoSetting != builder.mLayout && null != builder.mContext) {
+//                    snackbarLayout.addView(vSnackbarLayout, 0, layoutParams);
+//                } else {
+//                    if (blnLogSwitch) {
+//                        Log.d("AWDSnackbarMgr", "mLayout : " + String.valueOf(builder.mLayout));
+//                    }
+//                }
+//
+//                if (NoSetting != builder.mBacakgroundPicture) {
+//                    ImageView imageView = new ImageView(builder.mContext);
+//                    BitmapFactory.Options options = new BitmapFactory.Options();
+//                    options.inPreferredConfig = Bitmap.Config.RGB_565;
+//                    options.inPurgeable = true;
+//                    options.inInputShareable = true;
+//                    InputStream inputStream = builder.mContext.getResources().openRawResource(builder.mBacakgroundPicture);
+//                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+//                    BitmapDrawable bitmapDrawable = new BitmapDrawable(builder.mContext.getResources(), bitmap);
+//                    imageView.setBackgroundDrawable(bitmapDrawable);
+//                    snackbarLayout.addView(imageView, 0, layoutParams);
+//                } else {
+//                    if (blnLogSwitch) {
+//                        Log.d("AWDSnackbarMgr", "mBacakgroundPicture : " + String.valueOf(builder.mBacakgroundPicture));
+//                    }
+//                }
+//
+//            } else {
+//                if (blnLogSwitch) {
+//                    Log.d("AWDSnackbarMgr", "mContext : " + String.valueOf(builder.mContext));
+//                }
+//            }
+//        } else {
+//            if (blnLogSwitch) {
+//                Log.d("AWDSnackbarMgr", "View : " + builder.mView + " / Message : " + builder.mMessage + " / Duration : " + builder.mDuration);
+//            }
+//            blnSnackbarIsCanShow = Show_Off;
+//        }
     }
 
     public void show() {
