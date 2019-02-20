@@ -1,9 +1,6 @@
 # AndyAWDLibrary
 
-**引用網址**
-
-    implementation 'com.github.AndyAWD:AndyAWDLibrary:'[![](https://jitpack.io/v/AndyAWD/AndyAWDLibrary.svg)](https://jitpack.io/#AndyAWD/AndyAWDLibrary)
-
+[![](https://jitpack.io/v/AndyAWD/AndyAWDLibrary.svg)](https://jitpack.io/#AndyAWD/AndyAWDLibrary)
 
 **個人專案共用工具**
 
@@ -17,6 +14,20 @@
     AWDViewPagerActivityAdapter：繼承Activity的ViewPagerAdapter。
     AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文。
     AWDToolMgr：還沒有大到可以拆成Class的工具，有圖檔轉Bas64｀取得這隻手機已經安裝的檔案名稱｀TextView Icon上色｀千分位樣式｀X 面骰模擬器｀簡單震動｀自定震動｀手機有沒有使用代理伺服器。
+
+**引用網址**
+
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
+
+    dependencies {
+        implementation 'com.github.AndyAWD:AndyAWDLibrary:Tag'
+    }
+
 
 # 1.3.1
 + AndroidX庫對Snackbar有問題，要找時間重構。
