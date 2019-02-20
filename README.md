@@ -1,7 +1,9 @@
 # AndyAWDLibrary
 
 **引用網址**
-    implementation 'com.github.AndyAWD:AndyAWDLibrary:'[![](https://jitpack.io/v/AndyAWD/AndyAWDLibrary.svg)](https://jitpack.io/#AndyAWD/AndyAWDLibrary)
+
+    implementation 'com.github.AndyAWD:AndyAWDLibrary:' [![](https://jitpack.io/v/AndyAWD/AndyAWDLibrary.svg)](https://jitpack.io/#AndyAWD/AndyAWDLibrary)
+
 
 **個人專案共用工具**
 
