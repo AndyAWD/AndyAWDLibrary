@@ -15,48 +15,61 @@ import java.util.Date;
 public class AWDLog {
 
     private static String MahoroName = "maho";
-    private static final int LogOFF = 6;
+    private static final int LOG_OFF = 6;
     private static final int VERBOSE = 1;
     private static final int DEBUG = 2;
     private static final int WARN = 3;
     private static final int INFO = 4;
     private static final int ERROR = 5;
-    private static final int MahoroModeOpen = 1046;
-    private static final int MahoroModeClose = 1047;
-    private static final int BeautifulModeOpen = 1048;
-    private static final int BeautifulModeClose = 1049;
+    private static final int MAHORO_MODE_OPEN = 1046;
+    private static final int MAHORO_MODE_CLOSE = 1047;
+    private static final int BEAUTIFUL_MODE_OPEN = 1048;
+    private static final int BEAUTIFUL_MODE_CLOSE = 1049;
 
-    //    private static final int level = LogOFF;   //關閉全部的Log
-    private static int level = VERBOSE;    //開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
+    private static final int level = LOG_OFF;   //關閉全部的Log
+//    private static int level = VERBOSE;    //開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
 //    private static final int level = DEBUG;    //開啟.d等級以上的Log
 //    private static final int level = WARN;    //開啟.w等級以上的Log
 //    private static final int level = INFO;    //開啟.i等級以上的Log
 //    private static final int level = ERROR;    //開啟.e等級以上的Log
 
-    private static int MahoroMode = MahoroModeClose;   //Tag額外加上maho
-//    private static final int MahoroMode = AWDLog.MahoroModeOpen;  //Tag不加maho
+    private static int mahoroMode = MAHORO_MODE_CLOSE;   //Tag額外加上maho
+//    private static final int mahoroMode = AWDLog.MAHORO_MODE_OPEN;  //Tag不加maho
 
-    private static int BeautifulMode = BeautifulModeOpen;  //讓Log變得很漂亮，小心不要烤了他
-//    private static final int BeautifulMode = AWDLog.BeautifulModeClose;   //讓Log正常顯示
+    private static int beautifulMode = BEAUTIFUL_MODE_OPEN;  //讓Log變得很漂亮，小心不要烤了他
+//    private static final int beautifulMode = AWDLog.BEAUTIFUL_MODE_CLOSE;   //讓Log正常顯示
+
+    private static final String LOG_HEADER = "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣";
+    private static final String LOG_THREAD = "◥◣執行緒 : ";
+    private static final String LOG_FUNCTION = "◢◤執行方法(類名:行數) : ";
+    private static final String LOG_HORIZONTAL = "◥◣==============================================================";
+    private static final String LOG_MESSAGE_WALL = "◢◤";
+    private static final String LOG_FOOTER = "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤";
+    private static final String LOG_LEFT_PARENTHESES = "(";
+    private static final String LOG_RIGHT_PARENTHESES = ")";
+    private static final String LOG_LEFT_SQUARE_BRACKET = "[";
+    private static final String LOG_RIGHT_SQUARE_BRACKET = "]";
+    private static final String LOG_LEFT_CURLY_BRACKET = "{";
+    private static final String LOG_RIGHT_CURLY_BRACKET = "}";
+    private static final String LOG_COLON = ":";
+    private static final String LOG_POST = "◥◣Post字串無縮排 : \n";
+    private static final String LOG_POST_NORMAL = "\n Post字串 : ";
+    private static final String LOG_POST_INDENTATION = "◢◤Post字串有縮排 : \n";
 
     /**
      * 讓Log的Tag自動加上月、日
-     *
-     * @return 回傳月 + 日
      */
-    private static String MahoroDate() {
+    private static String mahoroDate() {
 
         Date date = new Date();
-        String strMonth = String.format("%tm", date);
-        String strDay = String.format("%td", date);
+        String month = String.format("%tm", date);
+        String day = String.format("%td", date);
 
-        return strMonth + strDay;
+        return month + day;
     }
 
     /**
      * 抓Log的相關資料
-     *
-     * @return
      */
     private static StackTraceElement getStackTraceElement() {
         StackTraceElement stackTraceElement = null;
@@ -74,359 +87,378 @@ public class AWDLog {
         return stackTraceElement;
     }
 
+    private static void log(int level, String tag, String message) {
+        switch (level) {
+            case VERBOSE:
+                Log.v(tag, message);
+                break;
+            case DEBUG:
+                Log.d(tag, message);
+                break;
+            case WARN:
+                Log.w(tag, message);
+                break;
+            case INFO:
+                Log.i(tag, message);
+                break;
+            case ERROR:
+                Log.e(tag, message);
+                break;
+        }
+    }
+
     /**
      * Log級別 VERBOSE
-     *
-     * @param tag
-     * @param msg
      */
     public static void v(String tag, String msg) {
-        if (level <= AWDLog.VERBOSE) {
-            switch (MahoroMode){
-                case MahoroModeOpen:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.v(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.v(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.v(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.v(MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.v(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.v(MahoroName + MahoroDate() + tag, msg);
-                            break;
-                    }
-                    break;
-                case MahoroModeClose:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.v(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.v(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.v(tag, "◥◣==============================================================");
-                            Log.v(tag, "◢◤" + msg);
-                            Log.v(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.v(tag, msg);
-                            break;
-                    }
-                    break;
-            }
+        if (level >= AWDLog.VERBOSE) {
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(VERBOSE, MahoroName + mahoroDate() + tag, LOG_HEADER);
+            log(VERBOSE, MahoroName + mahoroDate() + tag, LOG_THREAD + Thread.currentThread().getName());
+            log(VERBOSE, MahoroName + mahoroDate() + tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(VERBOSE, MahoroName + mahoroDate() + tag, LOG_HORIZONTAL);
+            log(VERBOSE, MahoroName + mahoroDate() + tag, LOG_MESSAGE_WALL + msg);
+            log(VERBOSE, MahoroName + mahoroDate() + tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(VERBOSE, MahoroName + mahoroDate() + tag, msg);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(VERBOSE, tag, LOG_HEADER);
+            log(VERBOSE, tag, LOG_THREAD + Thread.currentThread().getName());
+            log(VERBOSE, tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(VERBOSE, tag, LOG_HORIZONTAL);
+            log(VERBOSE, tag, LOG_MESSAGE_WALL + msg);
+            log(VERBOSE, tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(VERBOSE, tag, msg);
+            return;
         }
     }
 
     public static void v(String msg) {
-        if (level <= AWDLog.VERBOSE) {
-            switch (BeautifulMode){
-                case BeautifulModeOpen:
-                    Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.v(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.v(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.v(MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.v(MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.v(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                    break;
-                case BeautifulModeClose:
-                    Log.v(MahoroName + MahoroDate(), msg);
-                    break;
-            }
+        if (level >= AWDLog.VERBOSE) {
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_HEADER);
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_THREAD + Thread.currentThread().getName());
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + msg);
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_FOOTER);
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(VERBOSE, MahoroName + mahoroDate(), msg);
         }
     }
 
 
     /**
      * Log級別 DEBUG
-     *
-     * @param tag
-     * @param msg
      */
     public static void d(String tag, String msg) {
-        if (level <= AWDLog.DEBUG) {
-            switch (MahoroMode){
-                case MahoroModeOpen:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.d(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.d(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.d(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.d(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.d(MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.d(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.d(MahoroName + MahoroDate() + tag, msg);
-                            break;
-                    }
-                    break;
-                case MahoroModeClose:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.d(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.d(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.d(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.d(tag, "◥◣==============================================================");
-                            Log.d(tag, "◢◤" + msg);
-                            Log.d(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.d(tag, msg);
-                            break;
-                    }
-                    break;
-            }
+        if (level >= AWDLog.DEBUG) {
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(DEBUG, MahoroName + mahoroDate() + tag, LOG_HEADER);
+            log(DEBUG, MahoroName + mahoroDate() + tag, LOG_THREAD + Thread.currentThread().getName());
+            log(DEBUG, MahoroName + mahoroDate() + tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(DEBUG, MahoroName + mahoroDate() + tag, LOG_HORIZONTAL);
+            log(DEBUG, MahoroName + mahoroDate() + tag, LOG_MESSAGE_WALL + msg);
+            log(DEBUG, MahoroName + mahoroDate() + tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            Log.v(MahoroName + mahoroDate() + tag, msg);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(DEBUG, tag, LOG_HEADER);
+            log(DEBUG, tag, LOG_THREAD + Thread.currentThread().getName());
+            log(DEBUG, tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(DEBUG, tag, LOG_HORIZONTAL);
+            log(DEBUG, tag, LOG_MESSAGE_WALL + msg);
+            log(DEBUG, tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(DEBUG, tag, msg);
+            return;
         }
     }
 
     public static void d(String msg) {
-        if (level <= AWDLog.DEBUG) {
-            switch (BeautifulMode){
-                case BeautifulModeOpen:
-                    Log.d(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.d(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.d(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.d(MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.d(MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.d(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                    break;
-                case BeautifulModeClose:
-                    Log.d(MahoroName + MahoroDate(), msg);
-                    break;
-            }
+        if (level >= AWDLog.DEBUG) {
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(DEBUG, MahoroName + mahoroDate(), LOG_HEADER);
+            log(DEBUG, MahoroName + mahoroDate(), LOG_THREAD + Thread.currentThread().getName());
+            log(DEBUG, MahoroName + mahoroDate(), LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(DEBUG, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+            log(DEBUG, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + msg);
+            log(DEBUG, MahoroName + mahoroDate(), LOG_FOOTER);
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            Log.d(MahoroName + mahoroDate(), msg);
+            return;
         }
     }
 
 
     /**
      * Log級別 WARN
-     *
-     * @param tag
-     * @param msg
      */
     public static void w(String tag, String msg) {
-        if (level <= AWDLog.DEBUG) {
-            switch (MahoroMode){
-                case MahoroModeOpen:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.w(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.w(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.w(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.w(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.w(MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.w(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.w(MahoroName + MahoroDate() + tag, msg);
-                            break;
-                    }
-                    break;
-                case MahoroModeClose:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.w(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.w(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.w(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.w(tag, "◥◣==============================================================");
-                            Log.w(tag, "◢◤" + msg);
-                            Log.w(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.w(tag, msg);
-                            break;
-                    }
-                    break;
-            }
+        if (level >= AWDLog.DEBUG) {
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(WARN, MahoroName + mahoroDate() + tag, LOG_HEADER);
+            log(WARN, MahoroName + mahoroDate() + tag, LOG_THREAD + Thread.currentThread().getName());
+            log(WARN, MahoroName + mahoroDate() + tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(WARN, MahoroName + mahoroDate() + tag, LOG_HORIZONTAL);
+            log(WARN, MahoroName + mahoroDate() + tag, LOG_MESSAGE_WALL + msg);
+            log(WARN, MahoroName + mahoroDate() + tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(WARN, MahoroName + mahoroDate() + tag, msg);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(WARN, tag, LOG_HEADER);
+            log(WARN, tag, LOG_THREAD + Thread.currentThread().getName());
+            log(WARN, tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(WARN, tag, LOG_HORIZONTAL);
+            log(WARN, tag, LOG_MESSAGE_WALL + msg);
+            log(WARN, tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(WARN, tag, msg);
+            return;
         }
     }
 
     public static void w(String msg) {
-        if (level <= AWDLog.WARN) {
-            switch (BeautifulMode){
-                case BeautifulModeOpen:
-                    Log.w(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.w(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.w(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.w(MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.w(MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.w(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                    break;
-                case BeautifulModeClose:
-                    Log.w(MahoroName + MahoroDate(), msg);
-                    break;
-            }
+        if (level >= AWDLog.WARN) {
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(WARN, MahoroName + mahoroDate(), LOG_HEADER);
+            log(WARN, MahoroName + mahoroDate(), LOG_THREAD + Thread.currentThread().getName());
+            log(WARN, MahoroName + mahoroDate(), LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(WARN, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+            log(WARN, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + msg);
+            log(WARN, MahoroName + mahoroDate(), LOG_FOOTER);
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(WARN, MahoroName + mahoroDate(), msg);
+            return;
         }
     }
 
 
     /**
      * Log級別 INFO
-     *
-     * @param tag
-     * @param msg
      */
     public static void i(String tag, String msg) {
-        if (level <= AWDLog.DEBUG) {
-            switch (MahoroMode){
-                case MahoroModeOpen:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.i(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.i(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.i(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.i(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.i(MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.i(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.i(MahoroName + MahoroDate() + tag, msg);
-                            break;
-                    }
-                    break;
-                case MahoroModeClose:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.i(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.i(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.i(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.i(tag, "◥◣==============================================================");
-                            Log.i(tag, "◢◤" + msg);
-                            Log.i(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.i(tag, msg);
-                            break;
-                    }
-                    break;
-            }
+        if (level >= AWDLog.DEBUG) {
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(INFO, MahoroName + mahoroDate() + tag, LOG_HEADER);
+            log(INFO, MahoroName + mahoroDate() + tag, LOG_THREAD + Thread.currentThread().getName());
+            log(INFO, MahoroName + mahoroDate() + tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(INFO, MahoroName + mahoroDate() + tag, LOG_HORIZONTAL);
+            log(INFO, MahoroName + mahoroDate() + tag, LOG_MESSAGE_WALL + msg);
+            log(INFO, MahoroName + mahoroDate() + tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(INFO, MahoroName + mahoroDate() + tag, msg);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(INFO, tag, LOG_HEADER);
+            log(INFO, tag, LOG_THREAD + Thread.currentThread().getName());
+            log(INFO, tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(INFO, tag, LOG_HORIZONTAL);
+            log(INFO, tag, LOG_MESSAGE_WALL + msg);
+            log(INFO, tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(INFO, tag, msg);
+            return;
         }
     }
 
     public static void i(String msg) {
-        if (level <= AWDLog.INFO) {
-            switch (BeautifulMode){
-                case BeautifulModeOpen:
-                    Log.i(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.i(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.i(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.i(MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.i(MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.i(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                    break;
-                case BeautifulModeClose:
-                    Log.i(MahoroName + MahoroDate(), msg);
-                    break;
-            }
+        if (level >= AWDLog.INFO) {
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(INFO, MahoroName + mahoroDate(), LOG_HEADER);
+            log(INFO, MahoroName + mahoroDate(), LOG_THREAD + Thread.currentThread().getName());
+            log(INFO, MahoroName + mahoroDate(), LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(INFO, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+            log(INFO, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + msg);
+            log(INFO, MahoroName + mahoroDate(), LOG_FOOTER);
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(INFO, MahoroName + mahoroDate(), msg);
+            return;
         }
     }
 
     /**
      * Log級別 ERROR
-     *
-     * @param tag
-     * @param msg
      */
     public static void e(String tag, String msg) {
-        if (level <= AWDLog.ERROR) {
-            switch (MahoroMode){
-                case MahoroModeOpen:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.e(MahoroName + MahoroDate() + tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.e(MahoroName + MahoroDate() + tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.e(MahoroName + MahoroDate() + tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.e(MahoroName + MahoroDate() + tag, "◥◣==============================================================");
-                            Log.e(MahoroName + MahoroDate() + tag, "◢◤" + msg);
-                            Log.e(MahoroName + MahoroDate() + tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.e(MahoroName + MahoroDate() + tag, msg);
-                            break;
-                    }
-                    break;
-                case MahoroModeClose:
-                    switch (BeautifulMode){
-                        case BeautifulModeOpen:
-                            Log.e(tag, "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.e(tag, "◥◣執行緒 : " + Thread.currentThread().getName());
-                            Log.e(tag, "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                            Log.e(tag, "◥◣==============================================================");
-                            Log.e(tag, "◢◤" + msg);
-                            Log.e(tag, "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                            break;
-                        case BeautifulModeClose:
-                            Log.e(tag, msg);
-                            break;
-                    }
-                    break;
-            }
+        if (level >= AWDLog.ERROR) {
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(ERROR, MahoroName + mahoroDate() + tag, LOG_HEADER);
+            log(ERROR, MahoroName + mahoroDate() + tag, LOG_THREAD + Thread.currentThread().getName());
+            log(ERROR, MahoroName + mahoroDate() + tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(ERROR, MahoroName + mahoroDate() + tag, LOG_HORIZONTAL);
+            log(ERROR, MahoroName + mahoroDate() + tag, LOG_MESSAGE_WALL + msg);
+            log(ERROR, MahoroName + mahoroDate() + tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_OPEN && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(ERROR, MahoroName + mahoroDate() + tag, msg);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(ERROR, tag, LOG_HEADER);
+            log(ERROR, tag, LOG_THREAD + Thread.currentThread().getName());
+            log(ERROR, tag, LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(ERROR, tag, LOG_HORIZONTAL);
+            log(ERROR, tag, LOG_MESSAGE_WALL + msg);
+            log(ERROR, tag, LOG_FOOTER);
+            return;
+        }
+
+        if (mahoroMode == MAHORO_MODE_CLOSE && beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(ERROR, tag, msg);
+            return;
         }
     }
 
     public static void e(String msg) {
-        if (level <= AWDLog.ERROR) {
-            switch (BeautifulMode){
-                case BeautifulModeOpen:
-                    Log.e(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.e(MahoroName + MahoroDate(), "◥◣執行緒 : " + Thread.currentThread().getName());
-                    Log.e(MahoroName + MahoroDate(), "◢◤執行方法(類名:行數) : " + getStackTraceElement().getMethodName() + "(" + getStackTraceElement().getFileName() + ":" + getStackTraceElement().getLineNumber() + ")");
-                    Log.e(MahoroName + MahoroDate(), "◥◣==============================================================");
-                    Log.e(MahoroName + MahoroDate(), "◢◤" + msg);
-                    Log.e(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                    break;
-                case BeautifulModeClose:
-                    Log.e(MahoroName + MahoroDate(), msg);
-                    break;
-            }
+        if (level >= AWDLog.ERROR) {
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN) {
+            log(ERROR, MahoroName + mahoroDate(), LOG_HEADER);
+            log(ERROR, MahoroName + mahoroDate(), LOG_THREAD + Thread.currentThread().getName());
+            log(ERROR, MahoroName + mahoroDate(), LOG_FUNCTION + getStackTraceElement().getMethodName() + LOG_LEFT_PARENTHESES + getStackTraceElement().getFileName() + LOG_COLON + getStackTraceElement().getLineNumber() + LOG_RIGHT_PARENTHESES);
+            log(ERROR, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+            log(ERROR, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + msg);
+            log(ERROR, MahoroName + mahoroDate(), LOG_FOOTER);
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(ERROR, MahoroName + mahoroDate(), msg);
+            return;
         }
     }
 
     public static void api(String apiInfo, String apiJson) {
-        switch (BeautifulMode){
-            case BeautifulModeOpen:
-                if (TextUtils.isEmpty(apiJson)) {
-                    Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                    Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                    Log.v(MahoroName + MahoroDate(), "◢◤◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                } else {
-                    try {
-                        if (apiJson.startsWith("{")) {
-                            JSONObject joMsg = new JSONObject(apiJson);
-                            Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                            Log.v(MahoroName + MahoroDate(), "◢◤==============================================================");
-                            Log.v(MahoroName + MahoroDate(), "◥◣Post字串無縮排 : \n" + apiJson);
-                            Log.v(MahoroName + MahoroDate(), "◢◤Post字串有縮排 : \n" + joMsg.toString(4));
-                            Log.v(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                        }
-                        if (apiJson.startsWith("[")) {
-                            JSONArray jaMsg = new JSONArray(apiJson);
-                            Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                            Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                            Log.v(MahoroName + MahoroDate(), "◢◤==============================================================");
-                            Log.v(MahoroName + MahoroDate(), "◥◣Post字串無縮排 : \n" + apiJson);
-                            Log.v(MahoroName + MahoroDate(), "◢◤Post字串有縮排 : \n" + jaMsg.toString(4));
-                            Log.v(MahoroName + MahoroDate(), "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                        }
-                    } catch (Exception e) {
-                        Log.v(MahoroName + MahoroDate(), "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣");
-                        Log.v(MahoroName + MahoroDate(), "◥◣" + apiInfo);
-                        Log.v(MahoroName + MahoroDate(), "◢◤==============================================================");
-                        Log.v(MahoroName + MahoroDate(), "◥◣Post字串無縮排 : \n" + apiJson);
-                        Log.v(MahoroName + MahoroDate(), "◢◤◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤");
-                    }
+        if (level >= AWDLog.VERBOSE) {
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN && TextUtils.isEmpty(apiJson)) {
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_HEADER);
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + apiInfo);
+            log(VERBOSE, MahoroName + mahoroDate(), LOG_FOOTER);
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_OPEN && !TextUtils.isEmpty(apiJson)) {
+            try {
+                if (apiJson.startsWith(LOG_LEFT_CURLY_BRACKET)) {
+                    JSONObject joMsg = new JSONObject(apiJson);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_HEADER);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + apiInfo);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_POST + apiJson);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_POST_INDENTATION + joMsg.toString(4));
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_FOOTER);
                 }
-                break;
-            case BeautifulModeClose:
-                Log.v(MahoroName + MahoroDate(), apiInfo + "\n" + "Post字串 : " + apiJson);
-                break;
+                if (apiJson.startsWith(LOG_LEFT_SQUARE_BRACKET)) {
+                    JSONArray jaMsg = new JSONArray(apiJson);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_HEADER);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + apiInfo);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_POST + apiJson);
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_POST_INDENTATION + jaMsg.toString(4));
+                    log(VERBOSE, MahoroName + mahoroDate(), LOG_FOOTER);
+                }
+            } catch (Exception e) {
+                log(VERBOSE, MahoroName + mahoroDate(), LOG_HEADER);
+                log(VERBOSE, MahoroName + mahoroDate(), LOG_MESSAGE_WALL + apiInfo);
+                log(VERBOSE, MahoroName + mahoroDate(), LOG_HORIZONTAL);
+                log(VERBOSE, MahoroName + mahoroDate(), LOG_POST + apiJson);
+                log(VERBOSE, MahoroName + mahoroDate(), LOG_FOOTER);
+            }
+            return;
+        }
+
+        if (beautifulMode == BEAUTIFUL_MODE_CLOSE) {
+            log(VERBOSE, MahoroName + mahoroDate(), apiInfo + LOG_POST_NORMAL + apiJson);
+            return;
         }
     }
 
     /**
      * 設定Log的Tag名稱，預設maho + 月日
-     * @param mahoroName
      */
     public static void setMahoroName(String mahoroName) {
         MahoroName = mahoroName;
@@ -434,17 +466,15 @@ public class AWDLog {
 
     /**
      * Tag額外加上maho
-     * @param mahoroMode
      */
     public static void setMahoroMode(int mahoroMode) {
-        MahoroMode = mahoroMode;
+        AWDLog.mahoroMode = mahoroMode;
     }
 
     /**
      * 讓Log變得很漂亮，小心不要烤了他
-     * @param beautifulMode
      */
     public static void setBeautifulMode(int beautifulMode) {
-        BeautifulMode = beautifulMode;
+        AWDLog.beautifulMode = beautifulMode;
     }
 }
