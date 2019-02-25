@@ -14,30 +14,55 @@ import java.util.Date;
 
 public class AWDLog {
 
-    private static String MahoroName = "maho";
-    private static final int LOG_OFF = 6;
-    private static final int VERBOSE = 1;
-    private static final int DEBUG = 2;
-    private static final int WARN = 3;
-    private static final int INFO = 4;
-    private static final int ERROR = 5;
-    private static final int MAHORO_MODE_OPEN = 1046;
-    private static final int MAHORO_MODE_CLOSE = 1047;
-    private static final int BEAUTIFUL_MODE_OPEN = 1048;
-    private static final int BEAUTIFUL_MODE_CLOSE = 1049;
+    /**
+     * Tag額外加上maho
+     */
+    public static final int MAHORO_MODE_OPEN = 1046;
 
-    private static final int level = LOG_OFF;   //關閉全部的Log
-//    private static int level = VERBOSE;    //開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
-//    private static final int level = DEBUG;    //開啟.d等級以上的Log
-//    private static final int level = WARN;    //開啟.w等級以上的Log
-//    private static final int level = INFO;    //開啟.i等級以上的Log
-//    private static final int level = ERROR;    //開啟.e等級以上的Log
+    /**
+     * Tag不加maho
+     */
+    public static final int MAHORO_MODE_CLOSE = 1047;
 
-    private static int mahoroMode = MAHORO_MODE_CLOSE;   //Tag額外加上maho
-//    private static final int mahoroMode = AWDLog.MAHORO_MODE_OPEN;  //Tag不加maho
+    /**
+     * 讓Log變得很漂亮，小心不要烤了他
+     */
+    public static final int BEAUTIFUL_MODE_OPEN = 1048;
 
-    private static int beautifulMode = BEAUTIFUL_MODE_OPEN;  //讓Log變得很漂亮，小心不要烤了他
-//    private static final int beautifulMode = AWDLog.BEAUTIFUL_MODE_CLOSE;   //讓Log正常顯示
+    /**
+     * 讓Log正常顯示
+     */
+    public static final int BEAUTIFUL_MODE_CLOSE = 1049;
+
+    /**
+     * 關閉全部的Log
+     */
+    public static final int LOG_OFF = 6;
+
+    /**
+     * 開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
+     */
+    public static final int VERBOSE = 1;
+
+    /**
+     * 開啟.d等級以上的Log
+     */
+    public static final int DEBUG = 2;
+
+    /**
+     * 開啟.w等級以上的Log
+     */
+    public static final int WARN = 3;
+
+    /**
+     * 開啟.i等級以上的Log
+     */
+    public static final int INFO = 4;
+
+    /**
+     * 開啟.e等級以上的Log
+     */
+    public static final int ERROR = 5;
 
     private static final String LOG_HEADER = "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣";
     private static final String LOG_THREAD = "◥◣執行緒 : ";
@@ -55,6 +80,40 @@ public class AWDLog {
     private static final String LOG_POST = "◥◣Post字串無縮排 : \n";
     private static final String LOG_POST_NORMAL = "\n Post字串 : ";
     private static final String LOG_POST_INDENTATION = "◢◤Post字串有縮排 : \n";
+    private static int level = LOG_OFF;
+    private static int mahoroMode = MAHORO_MODE_CLOSE;
+    private static int beautifulMode = BEAUTIFUL_MODE_OPEN;
+    private static String MahoroName = "maho";
+
+    /**
+     * 設定Log的Tag名稱，預設maho + 月日
+     */
+    public static void setMahoroName(String mahoroName) {
+        MahoroName = mahoroName;
+    }
+
+    /**
+     * Tag額外加上maho
+     */
+    public static void setMahoroMode(int mahoroMode) {
+        AWDLog.mahoroMode = mahoroMode;
+    }
+
+    /**
+     * 設定漂亮模式
+     */
+    public static void setBeautifulMode(int beautifulMode) {
+        AWDLog.beautifulMode = beautifulMode;
+    }
+
+    /**
+     * 設定Log顯示等級
+     *
+     * @param level
+     */
+    public static void setLogShowLevel(int level) {
+        AWDLog.level = level;
+    }
 
     /**
      * 讓Log的Tag自動加上月、日
@@ -104,6 +163,10 @@ public class AWDLog {
             case ERROR:
                 Log.e(tag, message);
                 break;
+            default:
+                Log.v(tag, message);
+                break;
+
         }
     }
 
@@ -457,24 +520,4 @@ public class AWDLog {
         }
     }
 
-    /**
-     * 設定Log的Tag名稱，預設maho + 月日
-     */
-    public static void setMahoroName(String mahoroName) {
-        MahoroName = mahoroName;
-    }
-
-    /**
-     * Tag額外加上maho
-     */
-    public static void setMahoroMode(int mahoroMode) {
-        AWDLog.mahoroMode = mahoroMode;
-    }
-
-    /**
-     * 讓Log變得很漂亮，小心不要烤了他
-     */
-    public static void setBeautifulMode(int beautifulMode) {
-        AWDLog.beautifulMode = beautifulMode;
-    }
 }
