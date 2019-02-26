@@ -10,6 +10,7 @@ import java.util.Date;
 
 /**
  * Created by andydai on 2018/2/2.
+ * 使用時需要設定setLogLevel()，怕麻煩的話可以做在Application
  */
 
 public class AWDLog {
@@ -40,27 +41,27 @@ public class AWDLog {
     public static final int LOG_OFF = 6;
 
     /**
-     * 開啟.v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
+     * v等級以上的Log，打開這個的話能看到全部的API發送和接收訊息
      */
     public static final int VERBOSE = 1;
 
     /**
-     * 開啟.d等級以上的Log
+     * d等級以上的Log
      */
     public static final int DEBUG = 2;
 
     /**
-     * 開啟.w等級以上的Log
+     * w等級以上的Log
      */
     public static final int WARN = 3;
 
     /**
-     * 開啟.i等級以上的Log
+     * i等級以上的Log
      */
     public static final int INFO = 4;
 
     /**
-     * 開啟.e等級以上的Log
+     * e等級以上的Log
      */
     public static final int ERROR = 5;
 
@@ -80,10 +81,11 @@ public class AWDLog {
     private static final String LOG_POST = "◥◣Post字串無縮排 : \n";
     private static final String LOG_POST_NORMAL = "\n Post字串 : ";
     private static final String LOG_POST_INDENTATION = "◢◤Post字串有縮排 : \n";
+
+    private static String mahoroTegText = "maho";
     private static int level = LOG_OFF;
     private static boolean mahoroTagMode = MAHORO_TAG_MODE_CLOSE;
     private static boolean messageBeautifulMode = MESSAGE_BEAUTIFUL_MODE_OPEN;
-    private static String mahoroTegText = "maho";
 
     /**
      * 設定Tag的自定義文字，預設"maho日期"
@@ -113,6 +115,17 @@ public class AWDLog {
         AWDLog.level = level;
     }
 
+    /**
+     * 判斷能不能顯示Log
+     */
+    private static boolean isLogCanShow(int logLevel) {
+        if (level > logLevel) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private static void logBuild(int level, String tag, String message) {
         if (isLogCanShow(level)) {
             return;
@@ -134,13 +147,6 @@ public class AWDLog {
         }
     }
 
-    private static boolean isLogCanShow(int logLevel) {
-        if (level >= logLevel) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * 讓Log的Tag自動加上月、日
@@ -251,17 +257,22 @@ public class AWDLog {
         logBuild(ERROR, "", message);
     }
 
+    /**
+     * Log級別 VERBOSE，印出JSON字串用
+     */
     public static void api(String apiInfo, String apiJson) {
-        isLogCanShow(VERBOSE);
+        if (isLogCanShow(VERBOSE)) {
+            return;
+        }
 
-        if (messageBeautifulMode == MESSAGE_BEAUTIFUL_MODE_OPEN && TextUtils.isEmpty(apiJson)) {
+        if (messageBeautifulMode && TextUtils.isEmpty(apiJson)) {
             logShow(VERBOSE, mahoroTegText + getToday(), LOG_HEADER);
             logShow(VERBOSE, mahoroTegText + getToday(), LOG_MESSAGE_WALL + apiInfo);
             logShow(VERBOSE, mahoroTegText + getToday(), LOG_FOOTER);
             return;
         }
 
-        if (messageBeautifulMode == MESSAGE_BEAUTIFUL_MODE_OPEN && !TextUtils.isEmpty(apiJson)) {
+        if (messageBeautifulMode && !TextUtils.isEmpty(apiJson)) {
             try {
                 if (apiJson.startsWith(LOG_LEFT_CURLY_BRACKET)) {
                     JSONObject joMsg = new JSONObject(apiJson);
