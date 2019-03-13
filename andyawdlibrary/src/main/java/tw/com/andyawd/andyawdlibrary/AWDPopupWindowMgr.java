@@ -145,6 +145,7 @@ public class AWDPopupWindowMgr {
 
     /**
      * 懶人的showAtLocation寫法
+     * 
      */
     public AWDPopupWindowMgr showAtLocation(int fatherLayout) {
         if (null == popupWindow){
