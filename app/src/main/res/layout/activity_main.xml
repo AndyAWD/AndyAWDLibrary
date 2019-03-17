@@ -16,8 +16,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/skyblue"
-            android:minHeight="50dp"
             android:maxHeight="500dp"
+            android:minHeight="50dp"
             android:scrollbars="horizontal"
             android:text="這邊顯示訊息"
             android:textColor="@color/metro_252525"
@@ -30,9 +30,18 @@
             android:id="@+id/btAm_Start"
             android:layout_width="0dp"
             android:layout_height="80dp"
-            app:layout_constraintRight_toRightOf="parent"
+            android:text="1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tbAm_ShowMessage"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tbAm_ShowMessage" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAm_Button2"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:text="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btAm_Start" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
