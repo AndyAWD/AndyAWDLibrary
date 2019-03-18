@@ -53,7 +53,7 @@ public class AWDToastMgr {
     private static final int NO_SETTING = 529;
 
     /**
-     * Logcat會用到的常數
+     * Logcat會用到的字串
      */
     private static final String NO_TEXT = "";
     private static final String CONTEXT = "context : ";
@@ -85,7 +85,7 @@ public class AWDToastMgr {
 
     private void setToastSetting() {
         checkContext();
-        setToastInfo();
+        initToastInfo();
         setToastView();
         setToastGravity();
         setToastTextColor();
@@ -96,6 +96,101 @@ public class AWDToastMgr {
         setToastBackgroundPicture();
     }
 
+    /**
+     * 檢查Context
+     */
+    private void checkContext() {
+        if (null == init.context) {
+            return;
+        }
+    }
+
+    /**
+     * 設定吐司layout的id
+     */
+    private void setToastViewLayoutInflater() {
+        if (NO_SETTING != init.layout) {
+            vToast = LayoutInflater.from(init.context).inflate(init.layout, null);
+        }
+    }
+
+    /**
+     * 初始化吐司
+     */
+    private void initToastInfo() {
+        toast = Toast.makeText(init.context, NO_TEXT, init.duration);
+        linearLayout = (LinearLayout) toast.getView();
+        tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
+        layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.gravity = Gravity.CENTER_VERTICAL;
+    }
+
+    /**
+     * 設定吐司layout
+     */
+    private void setToastView() {
+        if (NO_SETTING != init.layout) {
+            toast.setView(vToast);
+        }
+    }
+
+    /**
+     * 設定吐司位置和偏移量
+     */
+    private void setToastGravity() {
+        if (NO_SETTING != init.gravity && NO_SETTING != init.xOffset && NO_SETTING != init.yOffset) {
+            toast.setGravity(init.gravity, init.xOffset, init.yOffset);
+        }
+    }
+
+    /**
+     * 設定吐司文字顏色
+     */
+    private void setToastTextColor() {
+        if (NO_SETTING != init.textColor) {
+            tvToast.setTextColor(ContextCompat.getColor(init.context, init.textColor));
+        }
+    }
+
+    /**
+     * 設定吐司文字位置和偏移量
+     */
+    private void setToastTextGravity() {
+        if (NO_SETTING != init.textGravity) {
+            tvToast.setGravity(init.textGravity);
+        }
+    }
+
+    /**
+     * 設定吐司文字背景顏色
+     */
+    private void setToastTextBackgroundColor() {
+        if (NO_SETTING != init.textBackgroundColor) {
+            tvToast.setBackgroundColor(ContextCompat.getColor(init.context, init.textBackgroundColor));
+        }
+    }
+
+    /**
+     * 設定吐司文字大小
+     */
+    private void setToastTextSize() {
+        if (0 != init.textSize) {
+            tvToast.setTextSize(init.textSize);
+        }
+    }
+
+    /**
+     * 設定吐司背景顏色
+     */
+    private void setToastBackgroundColor() {
+        if (NO_SETTING != init.backgroundColor) {
+            linearLayout.setBackgroundColor(ContextCompat.getColor(init.context, init.backgroundColor));
+        }
+    }
+
+    /**
+     * 設定吐司圖案
+     */
     private void setToastBackgroundPicture() {
         if (NO_SETTING != init.backgroundPicture) {
             ImageView imageView = new ImageView(init.context);
@@ -111,68 +206,16 @@ public class AWDToastMgr {
         }
     }
 
-    private void setToastBackgroundColor() {
-        if (NO_SETTING != init.backgroundColor) {
-            linearLayout.setBackgroundColor(ContextCompat.getColor(init.context, init.backgroundColor));
-        }
+    /**
+     * @param id 取得元件
+     */
+    public View findViewById(int id) {
+        return this.vToast.findViewById(id);
     }
 
-    private void setToastTextSize() {
-        if (0 != init.textSize) {
-            tvToast.setTextSize(init.textSize);
-        }
-    }
-
-    private void setToastTextBackgroundColor() {
-        if (NO_SETTING != init.textBackgroundColor) {
-            tvToast.setBackgroundColor(ContextCompat.getColor(init.context, init.textBackgroundColor));
-        }
-    }
-
-    private void setToastTextGravity() {
-        if (NO_SETTING != init.textGravity) {
-            tvToast.setGravity(init.textGravity);
-        }
-    }
-
-    private void setToastTextColor() {
-        if (NO_SETTING != init.textColor) {
-            tvToast.setTextColor(ContextCompat.getColor(init.context, init.textColor));
-        }
-    }
-
-    private void setToastGravity() {
-        if (NO_SETTING != init.gravity && NO_SETTING != init.xOffset && NO_SETTING != init.yOffset) {
-            toast.setGravity(init.gravity, init.xOffset, init.yOffset);
-        }
-    }
-
-    private void setToastViewLayoutInflater() {
-        if (NO_SETTING != init.layout) {
-            vToast = LayoutInflater.from(init.context).inflate(init.layout, null);
-        }
-    }
-
-    private void setToastView() {
-        if (NO_SETTING != init.layout) {
-            toast.setView(vToast);
-        }
-    }
-
-    private void setToastInfo() {
-        toast = Toast.makeText(init.context, NO_TEXT, init.duration);
-        linearLayout = (LinearLayout) toast.getView();
-        tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
-        layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        layoutParams.gravity = Gravity.CENTER_VERTICAL;
-    }
-
-    private void checkContext() {
-        if (null == init.context) {
-            return;
-        }
-    }
-
+    /**
+     * 設定吐司顯示的方式
+     */
     private void setToastShow(String message) {
         if (null == toast) {
             return;
@@ -192,8 +235,6 @@ public class AWDToastMgr {
 
     /**
      * 顯示文字吐司，如果有設定Layout那就不顯示文字只顯示Layout
-     *
-     * @param message
      */
     public void show(String message) {
         setToastSetting();
@@ -206,14 +247,6 @@ public class AWDToastMgr {
     public void show() {
         setToastSetting();
         setToastShow(NO_TEXT);
-    }
-
-    /**
-     * @param id 取得元件
-     * @return
-     */
-    public View findViewById(int id) {
-        return this.vToast.findViewById(id);
     }
 
     public static class init {
