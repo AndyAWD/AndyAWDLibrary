@@ -10,17 +10,17 @@ public class AWDConstants {
     public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static final String IPIFY = "https://api.ipify.org/";
 
-    public static final String MahoroMode = "maho";
-    public static final String BluetoothName = "AWDBlueTooth";
+    public static final String MAHORO_MODE = "maho";
+    public static final String BLUETOOTH_NAME = "AWDBlueTooth";
 
-    public static final int BluetoothOpen = 401;
-    public static final int BluetoothFind = 408;
-    public static final int BluetoothStartListening = 402;
-    public static final int BluetoothFinishListening = 403;
-    public static final int BluetoothConnectClinet = 404;
-    public static final int BluetoothConnectServer = 405;
-    public static final int BluetoothGetMessage = 406;
-    public static final int BluetoothError = 407;
+    public static final int BLUETOOTH_OPEN = 401;
+    public static final int BLUETOOTH_FIND = 408;
+    public static final int BLUETOOTH_START_LISTENING = 402;
+    public static final int BLUETOOTH_FINISH_LISTENING = 403;
+    public static final int BLUETOOTH_CONNECT_CLINET = 404;
+    public static final int BLUETOOTH_CONNECT_SERVER = 405;
+    public static final int BLUETOOTH_GET_MESSAGE = 406;
+    public static final int BLUETOOTH_ERROR = 407;
 
     public static final int PERMISSIONS_CAMERA = 100;
     public static final int PERMISSIONS_IMAGE = 101;
@@ -35,13 +35,13 @@ public class AWDConstants {
     public static final int PERMISSIONS_SENSORS = 110;
     public static final int PERMISSIONS_SMS = 111;
     public static final int PERMISSIONS_STORAGE = 112;
-    
+
     public static final int VERBOSE = 1;    //Log模式等級
     public static final int DEBUG = 2;  //Log模式等級
     public static final int WARN = 3;   //Log模式等級
     public static final int INFO = 4;   //Log模式等級
     public static final int ERROR = 5;  //Log模式等級
-    public static final int LogOFF = 6; //Log模式等級
+    public static final int LOG_CLOSE = 6; //Log模式等級
 
     public static final String SYMBOL_AT = "@";
     public static final String SYMBOL_OCTOTHORPE = "#";

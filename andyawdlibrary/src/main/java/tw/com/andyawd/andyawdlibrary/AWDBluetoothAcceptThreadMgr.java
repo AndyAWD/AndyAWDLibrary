@@ -25,7 +25,7 @@ public class AWDBluetoothAcceptThreadMgr extends Thread {
         BluetoothServerSocket bluetoothServerSocket = null;
 
         try {
-            bluetoothServerSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(AWDConstants.BluetoothName, AWDConstants.MY_UUID);
+            bluetoothServerSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(AWDConstants.BLUETOOTH_NAME, AWDConstants.MY_UUID);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,17 +37,17 @@ public class AWDBluetoothAcceptThreadMgr extends Thread {
 
         while (true) {
             try {
-                mHandler.sendEmptyMessage(AWDConstants.BluetoothStartListening);
+                mHandler.sendEmptyMessage(AWDConstants.BLUETOOTH_START_LISTENING);
                 bluetoothSocket = mBluetoothServerSocket.accept();
             } catch (IOException e) {
-                mHandler.sendMessage(mHandler.obtainMessage(AWDConstants.BluetoothError, e));
+                mHandler.sendMessage(mHandler.obtainMessage(AWDConstants.BLUETOOTH_ERROR, e));
                 break;
             }
             if (bluetoothSocket != null) {
                 BlockBluetoothSocket(bluetoothSocket);
                 try {
                     mBluetoothServerSocket.close();
-                    mHandler.sendEmptyMessage(AWDConstants.BluetoothFinishListening);
+                    mHandler.sendEmptyMessage(AWDConstants.BLUETOOTH_FINISH_LISTENING);
                 } catch (IOException e) {
                 }
                 break;
@@ -60,7 +60,7 @@ public class AWDBluetoothAcceptThreadMgr extends Thread {
             awdBluetoothMessageThreadMgr.CancelMessageThread();
         }
 
-        mHandler.sendEmptyMessage(AWDConstants.BluetoothConnectClinet);
+        mHandler.sendEmptyMessage(AWDConstants.BLUETOOTH_CONNECT_CLINET);
         awdBluetoothMessageThreadMgr = new AWDBluetoothMessageThreadMgr(bluetoothSocket, mHandler);
         awdBluetoothMessageThreadMgr.start();
     }
@@ -74,7 +74,7 @@ public class AWDBluetoothAcceptThreadMgr extends Thread {
     public void CancelAcceptThread() {
         try {
             mBluetoothServerSocket.close();
-            mHandler.sendEmptyMessage(AWDConstants.BluetoothFinishListening);
+            mHandler.sendEmptyMessage(AWDConstants.BLUETOOTH_FINISH_LISTENING);
         } catch (IOException e) {
         }
     }
