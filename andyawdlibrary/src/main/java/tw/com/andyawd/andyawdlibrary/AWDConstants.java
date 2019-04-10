@@ -7,7 +7,7 @@ import java.util.UUID;
  */
 
 public class AWDConstants {
-    public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    public static final UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static final String IPIFY = "https://api.ipify.org/";
 
     public static final String MAHORO_MODE = "maho";

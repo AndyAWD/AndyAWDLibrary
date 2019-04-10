@@ -25,7 +25,7 @@ public class AWDBluetoothAcceptThreadMgr extends Thread {
         BluetoothServerSocket bluetoothServerSocket = null;
 
         try {
-            bluetoothServerSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(AWDConstants.BLUETOOTH_NAME, AWDConstants.MY_UUID);
+            bluetoothServerSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(AWDConstants.BLUETOOTH_NAME, AWDConstants.BLUETOOTH_UUID);
         } catch (IOException e) {
             e.printStackTrace();
         }
