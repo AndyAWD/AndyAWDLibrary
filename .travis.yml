@@ -40,7 +40,7 @@ deploy:
   # 部署到GitHub Release。
   # 除此之外，Travis CI還支持發佈到fir.im、AWS、Google App Engine等
   provider: releases
-  api_key: ${SIToken}
+  api_key: ${AWDToken}
   # 部署文件路徑；對於Android就部署生成的 apk 文件
   # file: "app/build/outputs/apk/release/app-release-unsigned.apk"
   file: "app/build/outputs/apk/debug/app-debug.apk"
