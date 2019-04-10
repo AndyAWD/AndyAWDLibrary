@@ -1,7 +1,6 @@
 # AndyAWDLibrary
-
-***
 [![Build Status](https://travis-ci.org/AndyAWD/AndyAWDLibrary.svg?branch=master)](https://travis-ci.org/AndyAWD/AndyAWDLibrary)
+***
 還是需要一個自己的工具箱，管理起來才方便啊。
     
 ### 我的專案工具
