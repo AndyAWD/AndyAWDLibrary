@@ -9,7 +9,8 @@ import java.util.UUID;
 public class AWDConstants {
     public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static final String IPIFY = "https://api.ipify.org/";
-    
+
+    public static final String MahoroMode = "maho";
     public static final String BluetoothName = "AWDBlueTooth";
 
     public static final int BluetoothOpen = 401;
@@ -34,9 +35,7 @@ public class AWDConstants {
     public static final int PERMISSIONS_SENSORS = 110;
     public static final int PERMISSIONS_SMS = 111;
     public static final int PERMISSIONS_STORAGE = 112;
-
-    public static final String MahoroMode = "maho";
-
+    
     public static final int VERBOSE = 1;    //Log模式等級
     public static final int DEBUG = 2;  //Log模式等級
     public static final int WARN = 3;   //Log模式等級
@@ -79,4 +78,9 @@ public class AWDConstants {
     public static final String SYMBOL_COMMA = ",";
     public static final String SYMBOL_PERIOD = ".";
     public static final String SYMBOL_QUESTION = "?";
+
+    public static final String IMAGE_INTENT_TYPE = "image/*";
+    public static final String VIDEO_INTENT_TYPE = "video/*";
+    public static final String AUDIO_INTENT_TYPE = "audio/*";
+    public static final String TEXT_INTENT_TYPE = "text/*";
 }
