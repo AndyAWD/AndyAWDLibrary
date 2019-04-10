@@ -7,11 +7,10 @@ import android.graphics.drawable.BitmapDrawable;
 
 import androidx.core.content.ContextCompat;
 
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,7 +53,7 @@ public class AWDToastMgr {
     private static final int NO_SETTING = 529;
 
     /**
-     * Logcat會用到的常數
+     * Logcat會用到的字串
      */
     private static final String NO_TEXT = "";
     private static final String CONTEXT = "context : ";
@@ -77,83 +76,122 @@ public class AWDToastMgr {
     private TextView tvToast;
     private LinearLayout.LayoutParams layoutParams;
     private LinearLayout linearLayout;
-    private boolean isLogOpen = LOG_OFF;
-
-    @Deprecated
-    private static final int NoSetting = 529;
-    @Deprecated
-    public static final boolean Log_On = true;
-    @Deprecated
-    public static final boolean Log_Off = false;
-    @Deprecated
-    private boolean blnLogSwitch = Log_Off;
-    @Deprecated
-    private initi builder;
 
     public AWDToastMgr(init init) {
         this.init = init;
+        checkContext();
+        setToastViewLayoutInflater();
+    }
 
+    private void setToastSetting() {
+        checkContext();
+        initToastInfo();
+        setToastView();
+        setToastGravity();
+        setToastTextColor();
+        setToastTextGravity();
+        setToastTextBackgroundColor();
+        setToastTextSize();
+        setToastBackgroundColor();
+        setToastBackgroundPicture();
+    }
+
+    /**
+     * 檢查Context
+     */
+    private void checkContext() {
         if (null == init.context) {
-            if (isLogOpen) {
-                Log.d(TAG, CONTEXT + String.valueOf(init.context));
-            }
             return;
         }
+    }
 
+    /**
+     * 設定吐司layout的id
+     */
+    private void setToastViewLayoutInflater() {
+        if (NO_SETTING != init.layout) {
+            vToast = LayoutInflater.from(init.context).inflate(init.layout, null);
+        }
+    }
+
+    /**
+     * 初始化吐司
+     */
+    private void initToastInfo() {
         toast = Toast.makeText(init.context, NO_TEXT, init.duration);
         linearLayout = (LinearLayout) toast.getView();
         tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
-        layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER_VERTICAL;
+    }
 
+    /**
+     * 設定吐司layout
+     */
+    private void setToastView() {
+        if (NO_SETTING != init.layout) {
+            toast.setView(vToast);
+        }
+    }
+
+    /**
+     * 設定吐司位置和偏移量
+     */
+    private void setToastGravity() {
         if (NO_SETTING != init.gravity && NO_SETTING != init.xOffset && NO_SETTING != init.yOffset) {
             toast.setGravity(init.gravity, init.xOffset, init.yOffset);
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, GRAVITY + String.valueOf(init.gravity) + SEPARATION_LINE + X_OFFSET + String.valueOf(init.xOffset) + SEPARATION_LINE + Y_OFFSET + String.valueOf(init.yOffset));
-            }
         }
+    }
 
+    /**
+     * 設定吐司文字顏色
+     */
+    private void setToastTextColor() {
         if (NO_SETTING != init.textColor) {
             tvToast.setTextColor(ContextCompat.getColor(init.context, init.textColor));
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, TEXT_COLOR + String.valueOf(init.textColor));
-            }
         }
+    }
 
+    /**
+     * 設定吐司文字位置和偏移量
+     */
+    private void setToastTextGravity() {
         if (NO_SETTING != init.textGravity) {
             tvToast.setGravity(init.textGravity);
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, TEXT_GRAVITY + String.valueOf(init.textGravity));
-            }
         }
+    }
 
+    /**
+     * 設定吐司文字背景顏色
+     */
+    private void setToastTextBackgroundColor() {
         if (NO_SETTING != init.textBackgroundColor) {
             tvToast.setBackgroundColor(ContextCompat.getColor(init.context, init.textBackgroundColor));
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, TEXT_BACKGROUND_COLOR + String.valueOf(init.textBackgroundColor));
-            }
         }
+    }
 
+    /**
+     * 設定吐司文字大小
+     */
+    private void setToastTextSize() {
         if (0 != init.textSize) {
             tvToast.setTextSize(init.textSize);
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, TEXT_SIZE + String.valueOf(init.textSize));
-            }
         }
+    }
 
+    /**
+     * 設定吐司背景顏色
+     */
+    private void setToastBackgroundColor() {
         if (NO_SETTING != init.backgroundColor) {
             linearLayout.setBackgroundColor(ContextCompat.getColor(init.context, init.backgroundColor));
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, BACKGROUND_COLOR + String.valueOf(init.backgroundColor));
-            }
         }
+    }
 
+    /**
+     * 設定吐司圖案
+     */
+    private void setToastBackgroundPicture() {
         if (NO_SETTING != init.backgroundPicture) {
             ImageView imageView = new ImageView(init.context);
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -165,25 +203,53 @@ public class AWDToastMgr {
             BitmapDrawable bitmapDrawable = new BitmapDrawable(init.context.getResources(), bitmap);
             imageView.setBackgroundDrawable(bitmapDrawable);
             linearLayout.addView(imageView, 0, layoutParams);
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, BACKGROUND_PICTURE + String.valueOf(init.backgroundPicture));
-            }
-        }
-
-        if (NO_SETTING != init.layout) {
-            vToast = LayoutInflater.from(init.context).inflate(init.layout, null);
-            toast.setView(vToast);
-        } else {
-            if (isLogOpen) {
-                Log.d(TAG, LAYOUT + String.valueOf(init.layout));
-            }
         }
     }
 
+    /**
+     * @param id 取得元件
+     */
+    public View findViewById(int id) {
+        return this.vToast.findViewById(id);
+    }
+
+    /**
+     * 設定吐司顯示的方式
+     */
+    private void setToastShow(String message) {
+        if (null == toast) {
+            return;
+        }
+
+        if (NO_SETTING != init.layout) {
+            toast.show();
+            return;
+        }
+
+        if (!TextUtils.isEmpty(message)) {
+            toast.setText(message);
+        }
+
+        toast.show();
+    }
+
+    /**
+     * 顯示文字吐司，如果有設定Layout那就不顯示文字只顯示Layout
+     */
+    public void show(String message) {
+        setToastSetting();
+        setToastShow(message);
+    }
+
+    /**
+     * 顯示沒文字的吐司，如果有設定Layout那就不顯示文字只顯示Layout
+     */
+    public void show() {
+        setToastSetting();
+        setToastShow(NO_TEXT);
+    }
 
     public static class init {
-
         private Context context = null;
         private int duration = Toast.LENGTH_SHORT;  //設定顯示方式，預設短時間(LENGTH_SHORT)、還有長時間(LENGTH_LONG)
         private int gravity = NO_SETTING;   //起始位置
@@ -245,262 +311,6 @@ public class AWDToastMgr {
 
         public init setTextGravity(int textGravity) {
             this.textGravity = textGravity;
-            return this;
-        }
-
-        public AWDToastMgr build() {
-            return new AWDToastMgr(this);
-        }
-    }
-
-    /**
-     * 顯示文字吐司，如果有設定Layout那就不顯示文字只顯示Layout
-     *
-     * @param message
-     */
-    public void show(String message) {
-        if (null == toast) {
-            if (isLogOpen) {
-                Log.d(TAG, TOAST + String.valueOf(toast));
-            }
-            return;
-        }
-
-        if (NO_SETTING != init.layout) {
-            toast.show();
-            return;
-        }
-
-        toast.setText(message);
-        toast.show();
-    }
-
-    /**
-     * 顯示沒文字的吐司，如果有設定Layout那就不顯示文字只顯示Layout
-     */
-    public void show() {
-        if (null == toast) {
-            if (isLogOpen) {
-                Log.d(TAG, TOAST + String.valueOf(toast));
-            }
-            return;
-        }
-
-        if (NO_SETTING != init.layout) {
-            toast.show();
-            return;
-        }
-
-        toast.setText(NO_TEXT);
-        toast.show();
-    }
-
-
-    /**
-     * @param view 取得元件
-     * @return
-     */
-    public View findViewById(int view) {
-        if (null == toast) {
-            if (isLogOpen) {
-                Log.d(TAG, TOAST + String.valueOf(vToast));
-            }
-            return null;
-        }
-
-        return this.vToast.findViewById(view);
-    }
-
-    /**
-     * 設定Log開關
-     *
-     * @param Log_OnOff
-     */
-    public void setLog(boolean Log_OnOff) {
-        this.blnLogSwitch = Log_OnOff;
-        this.isLogOpen = Log_OnOff;
-    }
-
-
-    @Deprecated
-    public AWDToastMgr(initi builder) {
-        this.builder = builder;
-
-        if (null == builder.mContext) {
-            if (isLogOpen) {
-                Log.d(TAG, "mContext : " + String.valueOf(builder.mContext));
-            }
-            return;
-        }
-
-        toast = Toast.makeText(builder.mContext, "", builder.mDuration);
-        linearLayout = (LinearLayout) toast.getView();
-        tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
-        layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.CENTER_VERTICAL;
-
-        if (NO_SETTING != builder.mGravity && NO_SETTING != builder.mXOffset && NO_SETTING != builder.mYOffset) {
-            toast.setGravity(builder.mGravity, builder.mXOffset, builder.mYOffset);
-        } else {
-            if (isLogOpen) {
-                Log.d("AWDToastMgr", "mYOffset : " + String.valueOf(builder.mYOffset));
-            }
-        }
-
-
-        if (null != builder.mContext) {
-            toast = Toast.makeText(builder.mContext, "", builder.mDuration);
-
-            linearLayout = (LinearLayout) toast.getView();
-            tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
-            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.gravity = Gravity.CENTER_VERTICAL;
-
-            if (NO_SETTING != builder.mGravity && NO_SETTING != builder.mXOffset && NO_SETTING != builder.mYOffset) {
-                toast.setGravity(builder.mGravity, builder.mXOffset, builder.mYOffset);
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mYOffset : " + String.valueOf(builder.mYOffset));
-                }
-            }
-
-            if (NO_SETTING != builder.mTextColor) {
-                tvToast.setTextColor(ContextCompat.getColor(builder.mContext, builder.mTextColor));
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
-                }
-            }
-
-            if (NO_SETTING != builder.mTextGravity) {
-                tvToast.setGravity(builder.mTextGravity);
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mTextGravity : " + String.valueOf(builder.mTextGravity));
-                }
-            }
-
-            if (NO_SETTING != builder.mTextBackgroundColor) {
-                tvToast.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mTextBackgroundColor));
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mTextBackgroundColor : " + String.valueOf(builder.mTextBackgroundColor));
-                }
-            }
-
-            if (0 != builder.mTextSize) {
-                tvToast.setTextSize(builder.mTextSize);
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mTextSize : " + String.valueOf(builder.mTextSize));
-                }
-            }
-
-            if (NO_SETTING != builder.mBackgroundColor) {
-                linearLayout.setBackgroundColor(ContextCompat.getColor(builder.mContext, builder.mBackgroundColor));
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mBackgroundColor : " + String.valueOf(builder.mBackgroundColor));
-                }
-            }
-
-            if (NO_SETTING != builder.mBackgroundPicture) {
-                ImageView imageView = new ImageView(builder.mContext);
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.RGB_565;
-                options.inPurgeable = true;
-                options.inInputShareable = true;
-                InputStream inputStream = builder.mContext.getResources().openRawResource(builder.mBackgroundPicture);
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
-                BitmapDrawable bitmapDrawable = new BitmapDrawable(builder.mContext.getResources(), bitmap);
-                imageView.setBackgroundDrawable(bitmapDrawable);
-                linearLayout.addView(imageView, 0, layoutParams);
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mBackgroundPicture : " + String.valueOf(builder.mBackgroundPicture));
-                }
-            }
-
-            if (NO_SETTING != builder.mLayout) {
-                vToast = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
-                toast.setView(vToast);
-            } else {
-                if (isLogOpen) {
-                    Log.d("AWDToastMgr", "mLayout : " + String.valueOf(builder.mLayout));
-                }
-            }
-
-        } else {
-            if (isLogOpen) {
-                Log.d("AWDToastMgr", "mTextColor : " + String.valueOf(builder.mTextColor));
-            }
-        }
-    }
-
-    @Deprecated
-    public static class initi {
-        private Context mContext = null;
-        private int mDuration = Toast.LENGTH_SHORT;  //設定顯示方式，預設短時間(LENGTH_SHORT)、還有長時間(LENGTH_LONG)
-        private int mGravity = NoSetting;   //起始位置
-        private int mXOffset = NoSetting;   //橫向偏移量，X軸
-        private int mYOffset = NoSetting;   //縱向偏移量，Y軸
-        private int mLayout = NoSetting;    //設定自定頁面Layout
-        private int mBackgroundColor = NoSetting;   //設定吐司背景顏色
-        private int mBackgroundPicture = NoSetting;    //設定吐司背景圖片
-        private int mTextColor = NoSetting;     //設定文字顏色
-        private int mTextSize = 0;   //設定文字大小
-        private int mTextBackgroundColor = NoSetting;   //設定文字背景顏色
-        private int mTextGravity = NoSetting;   //設定文字位置
-
-        public initi setContext(Context context) {
-            this.mContext = context;
-            return this;
-        }
-
-        public initi setDuration(int duration) {
-            this.mDuration = duration;
-            return this;
-        }
-
-        public initi setGravity(int gravity, int xOffset, int yOffset) {
-            this.mGravity = gravity;
-            this.mXOffset = xOffset;
-            this.mYOffset = yOffset;
-            return this;
-        }
-
-        public initi setLayout(int layout) {
-            this.mLayout = layout;
-            return this;
-        }
-
-        public initi setBackgroundColor(int backgroundColor) {
-            this.mBackgroundColor = backgroundColor;
-            return this;
-        }
-
-        public initi setBackgroundPicture(int backgroundPicture) {
-            this.mBackgroundPicture = backgroundPicture;
-            return this;
-        }
-
-        public initi setTextColor(int textColor) {
-            this.mTextColor = textColor;
-            return this;
-        }
-
-        public initi setTextSize(int textSize) {
-            this.mTextSize = textSize;
-            return this;
-        }
-
-        public initi setTextBackgroundColor(int textbackgroundColor) {
-            this.mTextBackgroundColor = textbackgroundColor;
-            return this;
-        }
-
-        public initi setTextGravity(int textGravity) {
-            this.mTextGravity = textGravity;
             return this;
         }
 

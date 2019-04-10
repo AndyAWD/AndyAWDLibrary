@@ -37,7 +37,7 @@ public class AWDBluetoothConnectThreadMgr extends Thread {
         try {
             mBluetoothSocket.connect();
         } catch (Exception e) {
-            mHandler.sendMessage(mHandler.obtainMessage(AWDConstants.BluetoothError, e));
+            mHandler.sendMessage(mHandler.obtainMessage(AWDConstants.BLUETOOTH_ERROR, e));
 
             try {
                 mBluetoothSocket.close();
@@ -49,7 +49,7 @@ public class AWDBluetoothConnectThreadMgr extends Thread {
     }
 
     private void BluetoothSocket(BluetoothSocket bluetoothSocket) {
-        mHandler.sendEmptyMessage(AWDConstants.BluetoothConnectServer);
+        mHandler.sendEmptyMessage(AWDConstants.BLUETOOTH_CONNECT_SERVER);
         awdBluetoothMessageThreadMgr = new AWDBluetoothMessageThreadMgr(bluetoothSocket, mHandler);
         awdBluetoothMessageThreadMgr.start();
     }
