@@ -19,6 +19,20 @@ public class AWDConstants {
     public static final int BluetoothGetMessage = 406;
     public static final int BluetoothError = 407;
 
+    public static final int PERMISSIONS_CAMERA = 100;
+    public static final int PERMISSIONS_IMAGE = 101;
+    public static final int PERMISSIONS_LOCATION = 102;
+    public static final int PERMISSIONS_PHONE = 103;
+    public static final int PERMISSIONS_RECORD = 104;
+    public static final int PERMISSIONS_SYSTEM = 105;
+    public static final int PERMISSIONS_VIDEO = 106;
+    public static final int PERMISSIONS_CALENDAR = 107;
+    public static final int PERMISSIONS_CONTACTS = 108;
+    public static final int PERMISSIONS_AUDIO = 109;
+    public static final int PERMISSIONS_SENSORS = 110;
+    public static final int PERMISSIONS_SMS = 111;
+    public static final int PERMISSIONS_STORAGE = 112;
+
     public static final String MahoroMode = "maho";
 
     public static final int VERBOSE = 1;    //Log模式等級
