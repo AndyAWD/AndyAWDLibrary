@@ -44,12 +44,12 @@ public class AWDBluetoothMessageThreadMgr extends Thread {
             try {
                 bytes = mInputStream.read(buffer);
                 if (bytes > 0) {
-                    Message message = mHandler.obtainMessage(AWDConstants.BluetoothGetMessage, new String(buffer, 0, bytes, "utf-8"));
+                    Message message = mHandler.obtainMessage(AWDConstants.BLUETOOTH_GET_MESSAGE, new String(buffer, 0, bytes, "utf-8"));
                     mHandler.sendMessage(message);
                 }
 
             } catch (IOException e) {
-                //mHandler.sendMessage(mHandler.obtainMessage(ADConstants.BluetoothError, e));
+                //mHandler.sendMessage(mHandler.obtainMessage(ADConstants.BLUETOOTH_ERROR, e));
                 //ADLog.d("ADBluetoothMessageThreadMgr - run : " + e);
             }
         }
