@@ -25,7 +25,7 @@ public class AWDBluetoothConnectThreadMgr extends Thread {
         this.mBluetoothAdapter = bluetoothAdapter;
         this.mHandler = handler;
         try {
-            bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(AWDConstants.MY_UUID);
+            bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(AWDConstants.BLUETOOTH_UUID);
         } catch (IOException e) {
         }
         this.mBluetoothSocket = bluetoothSocket;
