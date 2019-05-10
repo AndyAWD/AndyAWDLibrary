@@ -83,4 +83,10 @@ public class AWDConstants {
     public static final String VIDEO_INTENT_TYPE = "video/*";
     public static final String AUDIO_INTENT_TYPE = "audio/*";
     public static final String TEXT_INTENT_TYPE = "text/*";
+
+    public static final String DATETIME_STYLE_01 = "yyyy-MM-dd HH:mm:ss";   //HH是24小時
+    public static final String DATETIME_STYLE_02 = "yyyy-MM-dd hh:mm:ss";   //hh是12小時
+    public static final String DATETIME_STYLE_03 = "aahh:mm";
+    public static final String DATETIME_STYLE_04 = "yyyy/MM/dd";
+
 }
