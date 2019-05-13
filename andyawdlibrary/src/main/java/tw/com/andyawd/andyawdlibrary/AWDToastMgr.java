@@ -94,6 +94,7 @@ public class AWDToastMgr {
         setToastTextSize();
         setToastBackgroundColor();
         setToastBackgroundPicture();
+        setToastBackgroundDrawable();
     }
 
     /**
@@ -189,6 +190,15 @@ public class AWDToastMgr {
     }
 
     /**
+     * 設定吐司繪製背景
+     */
+    private void setToastBackgroundDrawable() {
+        if (NO_SETTING != init.backgroundDrawable) {
+            linearLayout.setBackground(ContextCompat.getDrawable(init.context, init.backgroundDrawable));
+        }
+    }
+
+    /**
      * 設定吐司圖案
      */
     private void setToastBackgroundPicture() {
@@ -258,20 +268,36 @@ public class AWDToastMgr {
         private int layout = NO_SETTING;    //設定自定頁面Layout
         private int backgroundColor = NO_SETTING;   //設定吐司背景顏色
         private int backgroundPicture = NO_SETTING;    //設定吐司背景圖片
+        private int backgroundDrawable = NO_SETTING;   //設定吐司背景顏色
         private int textColor = NO_SETTING;     //設定文字顏色
         private int textSize = 0;   //設定文字大小
         private int textBackgroundColor = NO_SETTING;   //設定文字背景顏色
         private int textGravity = NO_SETTING;   //設定文字位置
 
+        /**
+         * 初始化
+         * @param context
+         */
         public init(Context context) {
             this.context = context;
         }
 
+        /**
+         * 顯示時間
+         * 預設為Toast.LENGTH_SHORT
+         * @param duration EX: Toast.LENGTH_SHORT or Toast.LENGTH_LONG
+         */
         public init setDuration(int duration) {
             this.duration = duration;
             return this;
         }
 
+        /**
+         * 設定顯示位置和偏移量
+         * @param gravity EX: Gravity.CENTER
+         * @param xOffset EX: 0
+         * @param yOffset EX: 0
+         */
         public init setGravity(int gravity, int xOffset, int yOffset) {
             this.gravity = gravity;
             this.xOffset = xOffset;
@@ -279,41 +305,81 @@ public class AWDToastMgr {
             return this;
         }
 
+        /**
+         * 自定義佈局，使用這個不會顯示Toast文字
+         * 要取得佈局內的元件可以用findViewById取得
+         */
         public init setLayout(int layout) {
             this.layout = layout;
             return this;
         }
 
-        public init setBackgroundColor(int backgroundColor) {
-            this.backgroundColor = backgroundColor;
+        /**
+         * 設定背景顏色
+         * @param color EX: R.color.blue
+         */
+        public init setBackgroundColor(int color) {
+            this.backgroundColor = color;
             return this;
         }
 
-        public init setBackgroundPicture(int backgroundPicture) {
-            this.backgroundPicture = backgroundPicture;
+        /**
+         * 設定繪製背景
+         * @param drawable EX: R.drawable.rounded_hollow_fc6392_radius20
+         */
+        public init setBackgroundDrawable(int drawable) {
+            this.backgroundDrawable = drawable;
             return this;
         }
 
-        public init setTextColor(int textColor) {
-            this.textColor = textColor;
+        /**
+         * 設定背景圖片
+         * @param picture EX: R.drawable.background_bigtest
+         */
+        public init setBackgroundPicture(int picture) {
+            this.backgroundPicture = picture;
             return this;
         }
 
-        public init setTextSize(int textSize) {
-            this.textSize = textSize;
+        /**
+         * 設定文字顏色
+         * @param color EX: R.color.red
+         */
+        public init setTextColor(int color) {
+            this.textColor = color;
             return this;
         }
 
-        public init setTextBackgroundColor(int textbackgroundColor) {
-            this.textBackgroundColor = textbackgroundColor;
+        /**
+         * 設定文字大小
+         * @param size EX: 40
+         */
+        public init setTextSize(int size) {
+            this.textSize = size;
             return this;
         }
 
+        /**
+         * 設定文字背景顏色，這個會比背景還要小一點
+         * @param color
+         */
+        public init setTextBackgroundColor(int color) {
+            this.textBackgroundColor = color;
+            return this;
+        }
+
+        /**
+         * 設定文字位置
+         * @param textGravity EX: Gravity.CENTER
+         */
         public init setTextGravity(int textGravity) {
             this.textGravity = textGravity;
             return this;
         }
 
+        /**
+         * 設定完成，要放最後面
+         */
         public AWDToastMgr build() {
             return new AWDToastMgr(this);
         }
