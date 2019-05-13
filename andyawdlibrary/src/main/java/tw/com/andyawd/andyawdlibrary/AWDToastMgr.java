@@ -203,15 +203,17 @@ public class AWDToastMgr {
      */
     private void setToastBackgroundPicture() {
         if (NO_SETTING != init.backgroundPicture) {
-            ImageView imageView = new ImageView(init.context);
+
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.RGB_565;
             options.inPurgeable = true;
             options.inInputShareable = true;
-            InputStream inputStream = init.context.getResources().openRawResource(init.backgroundPicture);
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+
+            Bitmap bitmap = BitmapFactory.decodeStream(init.context.getResources().openRawResource(init.backgroundPicture), null, options);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(init.context.getResources(), bitmap);
-            imageView.setBackgroundDrawable(bitmapDrawable);
+
+            ImageView imageView = new ImageView(init.context);
+            imageView.setBackground(bitmapDrawable);
             linearLayout.addView(imageView, 0, layoutParams);
         }
     }
@@ -333,7 +335,7 @@ public class AWDToastMgr {
         }
 
         /**
-         * 設定背景圖片
+         * 設定背景圖片，使用這個不會顯示Toast文字
          * @param picture EX: R.drawable.background_bigtest
          */
         public init setBackgroundPicture(int picture) {
@@ -361,7 +363,7 @@ public class AWDToastMgr {
 
         /**
          * 設定文字背景顏色，這個會比背景還要小一點
-         * @param color
+         * @param color EX: R.color.red
          */
         public init setTextBackgroundColor(int color) {
             this.textBackgroundColor = color;
