@@ -83,4 +83,17 @@ public class AWDConstants {
     public static final String VIDEO_INTENT_TYPE = "video/*";
     public static final String AUDIO_INTENT_TYPE = "audio/*";
     public static final String TEXT_INTENT_TYPE = "text/*";
+
+    public static final String DATETIME_INPUT_01 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATETIME_INPUT_02 = "yyyy-MM-dd hh:mm:ss";
+    public static final String DATETIME_INPUT_03 = "yyyy-MM-dd";
+    public static final String DATETIME_INPUT_04 = "hh:mm:ss";
+    public static final String DATETIME_INPUT_05 = "HH:mm:ss";
+
+    public static final String DATETIME_OUTPUT_COLON_01 = "hh:mm";
+    public static final String DATETIME_OUTPUT_COLON_02 = "HH:mm";
+    public static final String DATETIME_OUTPUT_COLON_03 = "aahh:mm";
+    public static final String DATETIME_OUTPUT_COLON_04 = "aaHH:mm";
+    //public static final String DATETIME_STYLE_04 = "yyyy/MM/dd";
+
 }
