@@ -8,7 +8,7 @@ import java.util.Locale;
 public class AWDDateFormat {
 
 
-    public String AWDDateFormat(String inputDate, String inputDatePattern, String youWantDatePattern, Locale locale) {
+    public String getDateFormat(String inputDate, String inputDatePattern, String youWantDatePattern, Locale locale) {
 
         //TODO
         SimpleDateFormat inputDateFormat = new SimpleDateFormat(inputDatePattern, locale);
