@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.DateFormatActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAdf_Message"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/mediumaquamarine"
+        android:padding="@dimen/magic_8dp"
+        app:autoSizeTextType="uniform" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format01"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy-MM-dd HH:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format02"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy/MM/dd HH:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format03"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy-MM-dd hh:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format04"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy/MM/dd hh:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format05"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy-MM-dd hh:mm:ss aa" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format06"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy/MM/dd hh:mm:ss aa" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format07"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy-MM-dd aa hh:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format08"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="yyyy/MM/dd aa hh:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format09"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="aa hh:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format10"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="hh:mm:ss aa" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format11"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="HH:mm:ss" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btAdf_Format12"
+                style="@style/DateFormatListButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoSizeTextType="uniform"
+                tools:text="HH:mm" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

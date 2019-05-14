@@ -1,6 +1,7 @@
 package tw.com.andyawd.andytool.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
 import android.view.Gravity;
@@ -14,16 +15,16 @@ import tw.com.andyawd.andytool.R;
 
 public class ToastShowActivity extends AppCompatActivity {
 
-    private Button btAts_ToastBase;
-    private Button btAts_ToastBaseTextColor;
-    private Button btAts_ToastBaseTextColorBackground;
-    private Button btAts_ToastBaseTextColorDrawableBackground;
-    private Button btAts_ToastBaseTextColorDrawableBackgroundTextSize;
-    private Button btAts_ToastBaseGravity;
-    private Button btAts_ToastBaseTextGravity;
-    private Button btAts_ToastBaseBackgroundTextBackground;
-    private Button btAts_ToastPicture;
-    private Button btAts_ToastLayout;
+    private AppCompatButton btAts_ToastBase;
+    private AppCompatButton btAts_ToastBaseTextColor;
+    private AppCompatButton btAts_ToastBaseTextColorBackground;
+    private AppCompatButton btAts_ToastBaseTextColorDrawableBackground;
+    private AppCompatButton btAts_ToastBaseTextColorDrawableBackgroundTextSize;
+    private AppCompatButton btAts_ToastBaseGravity;
+    private AppCompatButton btAts_ToastBaseTextGravity;
+    private AppCompatButton btAts_ToastBaseBackgroundTextBackground;
+    private AppCompatButton btAts_ToastPicture;
+    private AppCompatButton btAts_ToastLayout;
 
     private AWDToastMgr toastBase;
     private AWDToastMgr toastBaseTextColor;
@@ -46,34 +47,34 @@ public class ToastShowActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
-        btAts_ToastBase = (Button) findViewById(R.id.btAts_ToastBase);
+        btAts_ToastBase = (AppCompatButton) findViewById(R.id.btAts_ToastBase);
         btAts_ToastBase.setOnClickListener(btAts_ToastBase_Click);
 
-        btAts_ToastBaseTextColor = (Button) findViewById(R.id.btAts_ToastBaseTextColor);
+        btAts_ToastBaseTextColor = (AppCompatButton) findViewById(R.id.btAts_ToastBaseTextColor);
         btAts_ToastBaseTextColor.setOnClickListener(btAts_ToastBaseTextColor_Click);
 
-        btAts_ToastBaseTextColorBackground = (Button) findViewById(R.id.btAts_ToastBaseTextColorBackground);
+        btAts_ToastBaseTextColorBackground = (AppCompatButton) findViewById(R.id.btAts_ToastBaseTextColorBackground);
         btAts_ToastBaseTextColorBackground.setOnClickListener(btAts_ToastBaseTextColorBackground_Click);
 
-        btAts_ToastBaseTextColorDrawableBackground = (Button) findViewById(R.id.btAts_ToastBaseTextColorDrawableBackground);
+        btAts_ToastBaseTextColorDrawableBackground = (AppCompatButton) findViewById(R.id.btAts_ToastBaseTextColorDrawableBackground);
         btAts_ToastBaseTextColorDrawableBackground.setOnClickListener(btAts_ToastBaseTextColorDrawableBackground_Click);
 
-        btAts_ToastBaseTextColorDrawableBackgroundTextSize = (Button) findViewById(R.id.btAts_ToastBaseTextColorDrawableBackgroundTextSize);
+        btAts_ToastBaseTextColorDrawableBackgroundTextSize = (AppCompatButton) findViewById(R.id.btAts_ToastBaseTextColorDrawableBackgroundTextSize);
         btAts_ToastBaseTextColorDrawableBackgroundTextSize.setOnClickListener(btAts_ToastBaseTextColorDrawableBackgroundTextSize_Click);
 
-        btAts_ToastBaseGravity = (Button) findViewById(R.id.btAts_ToastBaseGravity);
+        btAts_ToastBaseGravity = (AppCompatButton) findViewById(R.id.btAts_ToastBaseGravity);
         btAts_ToastBaseGravity.setOnClickListener(btAts_ToastBaseGravity_Click);
 
-        btAts_ToastBaseTextGravity = (Button) findViewById(R.id.btAts_ToastBaseTextGravity);
+        btAts_ToastBaseTextGravity = (AppCompatButton) findViewById(R.id.btAts_ToastBaseTextGravity);
         btAts_ToastBaseTextGravity.setOnClickListener(btAts_ToastBaseTextGravity_Click);
 
-        btAts_ToastBaseBackgroundTextBackground = (Button) findViewById(R.id.btAts_ToastBaseBackgroundTextBackground);
+        btAts_ToastBaseBackgroundTextBackground = (AppCompatButton) findViewById(R.id.btAts_ToastBaseBackgroundTextBackground);
         btAts_ToastBaseBackgroundTextBackground.setOnClickListener(btAts_ToastBaseBackgroundTextBackground_Click);
 
-        btAts_ToastPicture = (Button) findViewById(R.id.btAts_ToastPicture);
+        btAts_ToastPicture = (AppCompatButton) findViewById(R.id.btAts_ToastPicture);
         btAts_ToastPicture.setOnClickListener(btAts_ToastPicture_Click);
 
-        btAts_ToastLayout = (Button) findViewById(R.id.btAts_ToastLayout);
+        btAts_ToastLayout = (AppCompatButton) findViewById(R.id.btAts_ToastLayout);
         btAts_ToastLayout.setOnClickListener(btAts_ToastLayout_Click);
 
         toastBase = new AWDToastMgr
