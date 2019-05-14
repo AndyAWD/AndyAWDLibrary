@@ -84,16 +84,18 @@ public class AWDConstants {
     public static final String AUDIO_INTENT_TYPE = "audio/*";
     public static final String TEXT_INTENT_TYPE = "text/*";
 
+    public static final String EMPTY_STRING = "";
+
     public static final String DATETIME_FORMAT_01 = "yyyy-MM-dd HH:mm:ss";
     public static final String DATETIME_FORMAT_02 = "yyyy/MM/dd HH:mm:ss";
     public static final String DATETIME_FORMAT_03 = "yyyy-MM-dd hh:mm:ss";
     public static final String DATETIME_FORMAT_04 = "yyyy/MM/dd hh:mm:ss";
-//    public static final String DATETIME_FORMAT_03 = "yyyy-MM-dd";
-//    public static final String DATETIME_FORMAT_04 = "hh:mm:ss";
-//    public static final String DATETIME_FORMAT_05 = "HH:mm:ss";
-//    public static final String DATETIME_FORMAT_06 = "hh:mm";
-//    public static final String DATETIME_FORMAT_07 = "HH:mm";
-//    public static final String DATETIME_FORMAT_08 = "aahh:mm";
-//    public static final String DATETIME_FORMAT_09 = "aaHH:mm";
-
+    public static final String DATETIME_FORMAT_05 = "yyyy-MM-dd hh:mm:ss aa";
+    public static final String DATETIME_FORMAT_06 = "yyyy/MM/dd hh:mm:ss aa";
+    public static final String DATETIME_FORMAT_07 = "yyyy-MM-dd aa hh:mm:ss";
+    public static final String DATETIME_FORMAT_08 = "yyyy/MM/dd aa hh:mm:ss";
+    public static final String DATETIME_FORMAT_09 = "aa hh:mm:ss";
+    public static final String DATETIME_FORMAT_10 = "hh:mm:ss aa";
+    public static final String DATETIME_FORMAT_11 = "HH:mm:ss";
+    public static final String DATETIME_FORMAT_12 = "HH:mm";
 }
