@@ -26,6 +26,7 @@ import tw.com.andyawd.andytool.logic.AWDPAndroidAsyncHttpMgr;
 public class MainActivity extends AppCompatActivity {
 
     private AppCompatButton btAm_ShowToastPage;
+    private AppCompatButton btAm_ShowDateFormatPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,23 @@ public class MainActivity extends AppCompatActivity {
     private void InitiComponent() {
         btAm_ShowToastPage = (AppCompatButton) findViewById(R.id.btAm_ShowToastPage);
         btAm_ShowToastPage.setOnClickListener(btAm_ShowToastPage_Click);
+
+        btAm_ShowDateFormatPage = (AppCompatButton)findViewById(R.id.btAm_ShowDateFormatPage);
+        btAm_ShowDateFormatPage.setOnClickListener(btAm_ShowDateFormatPage_Click);
     }
 
     private View.OnClickListener btAm_ShowToastPage_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, ToastShowActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener btAm_ShowDateFormatPage_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, DateFormatActivity.class);
             startActivity(intent);
         }
     };
