@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btAm_ShowToastPage"
+            android:id="@+id/btAm_ShowToast"
             style="@style/MainListButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,11 +20,20 @@
             app:autoSizeTextType="uniform" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btAm_ShowDateFormatPage"
+            android:id="@+id/btAm_ShowDateFormat"
             style="@style/MainListButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/showDateFormatPage"
+            app:autoSizeTextType="uniform" />
+
+        <tw.com.andyawd.andyawdlibrary.AWDEditText
+            android:id="@+id/aetAm_EditText"
+            style="@style/MainListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/aetAm_EditText_hint"
             app:autoSizeTextType="uniform" />
     </LinearLayout>
 </ScrollView>

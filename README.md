@@ -29,3 +29,13 @@
     dependencies {
         implementation 'com.github.AndyAWD:AndyAWDLibrary:1.4.0'
     }
+***
+##### AWDEditText使用方法
+
+    AWDEditText = = findViewById(R.id.AWDEditText);
+    AWDEditText.setOnKeycodeBackListener(new AWDOnKeycodeBackListener() {
+        @Override
+        public void KeycodeBack() {
+                
+        }
+    });
