@@ -98,4 +98,6 @@ public class AWDConstants {
     public static final String DATETIME_FORMAT_10 = "hh:mm:ss aa";
     public static final String DATETIME_FORMAT_11 = "HH:mm:ss";
     public static final String DATETIME_FORMAT_12 = "HH:mm";
+
+    public static final int ONE_INT = 1;
 }
