@@ -35,5 +35,13 @@
             android:gravity="center"
             android:hint="@string/aetAm_EditText_hint"
             app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAm_ShowRadioGroup"
+            style="@style/MainListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/showRadioGroupPage"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 </ScrollView>

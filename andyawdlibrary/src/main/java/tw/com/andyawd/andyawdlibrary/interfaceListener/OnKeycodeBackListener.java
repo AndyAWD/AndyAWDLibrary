@@ -1,5 +1,5 @@
 package tw.com.andyawd.andyawdlibrary.interfaceListener;
 
-public interface AWDOnKeycodeBackListener {
+public interface OnKeycodeBackListener {
     void KeycodeBack();
 }

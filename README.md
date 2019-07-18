@@ -8,6 +8,7 @@
 1. AWDToastMgr：重新封裝的Toast，使用鏈式。
 2. AWDDateFormat：日期格式轉換器，使用單例。
 3. AWDEditText：監聽返回鍵的EditText。
+4. AWDConstraintRadioGroup：可以用ConstraintLayout來排RadioButton
 
 1. AWDNoScrollViewPager：無法滑動的ViewPager。
 2. AWDEditText：監聽返回鍵的EditText。
@@ -115,6 +116,17 @@
      */
     AWDDateFormat.getInstance().getDateFormat("yyyy/MM/dd hh:mm:ss aa", "2018-05-29 16:30:54", AWDConstants.DATETIME_FORMAT_01, Locale.ENGLISH);
     
+##### AWDConstraintRadioGroup使用方法
+
+    AWDConstraintRadioGroup = findViewById(R.id.AWDConstraintRadioGroup);
+    
+    AWDConstraintRadioGroup.setOnCheckedChangeListener(new AWDConstraintRadioGroup.OnCheckedChangeListener() {
+        @Override
+            public void onCheckedChanged(AWDConstraintRadioGroup group, int checkedId) {
+                    
+            }
+    });
+        
 ##### AWDEditText使用方法
 
     AWDEditText = findViewById(R.id.AWDEditText);

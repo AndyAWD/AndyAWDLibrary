@@ -7,7 +7,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 
-import tw.com.andyawd.andyawdlibrary.interfaceListener.AWDOnKeycodeBackListener;
+import tw.com.andyawd.andyawdlibrary.interfaceListener.OnKeycodeBackListener;
 
 /**
  * Created by andydai on 2018/6/13.
@@ -17,7 +17,7 @@ import tw.com.andyawd.andyawdlibrary.interfaceListener.AWDOnKeycodeBackListener;
 
 public class AWDEditText extends AppCompatEditText {
 
-    private AWDOnKeycodeBackListener listener;
+    private OnKeycodeBackListener listener;
 
     public AWDEditText(Context context) {
         super(context);
@@ -31,7 +31,7 @@ public class AWDEditText extends AppCompatEditText {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setOnKeycodeBackListener(AWDOnKeycodeBackListener listener) {
+    public void setOnKeycodeBackListener(OnKeycodeBackListener listener) {
         this.listener = listener;
     }
 
