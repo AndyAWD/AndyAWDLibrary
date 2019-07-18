@@ -10,8 +10,10 @@ import android.view.MotionEvent;
 /**
  * Created by andyawd on 2018/7/7.
  * 鎖左右滑動的ViewPager
+ * 都9102年了還有人用ViewPager
  */
 
+@Deprecated
 public class AWDNoScrollViewPager extends ViewPager {
 
     public boolean isScroll = true;

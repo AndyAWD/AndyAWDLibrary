@@ -35,16 +35,4 @@ public class AWDObjectData {
             this.appCompatActivity = appCompatActivity;
         }
     }
-
-    public static class BluetoothInfo{
-        public String paired;
-        public String name;
-        public String address;
-
-        public BluetoothInfo(String paired, String name, String address) {
-            this.paired = paired;
-            this.name = name;
-            this.address = address;
-        }
-    }
 }
