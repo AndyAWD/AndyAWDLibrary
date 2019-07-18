@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.PermissionsTransformerActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btApt_PermissionsStart"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="開始要權限"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/tvApt_PermissionsText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="0.2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvApt_PermissionsText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btApt_PermissionsStart"
+        app:layout_constraintVertical_weight="0.8" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,10 @@
 1. AWDToastMgr：重新封裝的Toast，使用鏈式。
 2. AWDDateFormat：日期格式轉換器，使用單例。
 3. AWDEditText：監聽返回鍵的EditText。
-4. AWDConstraintRadioGroup：可以用ConstraintLayout來排RadioButton
+4. AWDConstraintRadioGroup：可以用ConstraintLayout來排RadioButton。
+5. AWDPermissionsFailAlertDialog：簡單的權限未提供AlertDialog
+6. AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文，使用單例。
+
 
 4. AWDSnackbarMgr：重新封裝的Snackbar，使用鏈式設定。
 6. AWDSquareImageView：正方形ImageView，設定寬就好，高用wrap_content。
@@ -30,7 +33,7 @@
     }
 ***
 
-##### AWDToastMgr使用方法
+##### 1.AWDToastMgr使用方法
 
     //基本用法，有時間鎖
     private AWDToastMgr toastBase;
@@ -100,7 +103,7 @@
             .setLayout(R.layout.view_api_error)
             .build();
 
-##### AWDDateFormat使用方法            
+##### 2.AWDDateFormat使用方法            
     
     /*
      * Locale.TAIWAN 語系預設 
@@ -110,7 +113,17 @@
      */
     AWDDateFormat.getInstance().getDateFormat("yyyy/MM/dd hh:mm:ss aa", "2018-05-29 16:30:54", AWDConstants.DATETIME_FORMAT_01, Locale.ENGLISH);
     
-##### AWDConstraintRadioGroup使用方法
+##### 3.AWDEditText使用方法
+
+    AWDEditText = findViewById(R.id.AWDEditText);
+    AWDEditText.setOnKeycodeBackListener(new AWDOnKeycodeBackListener() {
+        @Override
+        public void KeycodeBack() {
+                
+        }
+    });
+        
+##### 4.AWDConstraintRadioGroup使用方法
 
     AWDConstraintRadioGroup = findViewById(R.id.AWDConstraintRadioGroup);
     
@@ -120,13 +133,23 @@
                     
             }
     });
-        
-##### AWDEditText使用方法
+         
+##### 5.AWDPermissionsFailAlertDialog使用方法
 
-    AWDEditText = findViewById(R.id.AWDEditText);
-    AWDEditText.setOnKeycodeBackListener(new AWDOnKeycodeBackListener() {
-        @Override
-        public void KeycodeBack() {
-                
+    /**
+     * 需要搭配'pub.devrel:easypermissions:2.0.0'使用     
+     */
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(PermissionsTransformerActivity.this, perms)) {
+            new AWDPermissionsFailAlertDialog(PermissionsTransformerActivity.this, perms);
         }
-    });
+    }
+    
+##### 6.AWDPermissionsInfoTransformerTextMgr使用方法
+
+    //傳入權限字串就好
+    AWDPermissionsInfoTransformerTextMgr.getInstance().getTransformerInfo("android.permission.CAMERA")
+    
+ 
+

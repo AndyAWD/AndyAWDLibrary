@@ -1,62 +1,58 @@
 package tw.com.andyawd.andyawdlibrary;
 
+import android.util.Log;
+
 /**
  * Created by andydai on 2018/4/2.
  */
 
 public class AWDPermissionsInfoTransformerTextMgr {
 
-    private String text;
+    public static AWDPermissionsInfoTransformerTextMgr getInstance() {
+        return AWDPermissionsInfoTransformerTextMgrHolder.awdPermissionsInfoTransformerTextMgr;
+    }
 
-    public String TransformerInfo(String perms) {
+    private static class AWDPermissionsInfoTransformerTextMgrHolder {
+        private static final AWDPermissionsInfoTransformerTextMgr awdPermissionsInfoTransformerTextMgr = new AWDPermissionsInfoTransformerTextMgr();
+    }
 
+    public String getTransformerInfo(String perms) {
         switch (perms) {
             case "android.permission.READ_CALENDAR":
             case "android.permission.WRITE_CALENDAR":
-                text = "日曆";
-                break;
+                return "日曆";
             case "android.permission.CAMERA":
-                text = "相機";
-                break;
+                return "相機";
             case "android.permission.READ_CONTACTS":
             case "android.permission.WRITE_CONTACTS":
             case "android.permission.GET_ACCOUNTS":
-                text = "聯絡人";
-                break;
+                return "聯絡人";
             case "android.permission.ACCESS_FINE_LOCATION":
             case "android.permission.ACCESS_COARSE_LOCATION":
-                text = "位置";
-                break;
+                return "位置";
             case "android.permission.RECORD_AUDIO":
-                text = "麥克風";
-                break;
+                return "麥克風";
             case "android.permission.READ_PHONE_STATE":
             case "android.permission.CALL_PHONE":
             case "android.permission.READ_CALL_LOG":
             case "android.permission.WRITE_CALL_LOG":
+            case "com.android.voicemail.permission.ADD_VOICEMAIL":
             case "android.permission.ADD_VOICEMAIL":
             case "android.permission.USE_SIP":
             case "android.permission.PROCESS_OUTGOING_CALLS":
-                text = "電話";
-                break;
+                return "電話";
             case "android.permission.BODY_SENSORS":
-                text = "身體感應器";
-                break;
+                return "人體感應器";
             case "android.permission.RECEIVE_SMS":
             case "android.permission.READ_SMS":
             case "android.permission.RECEIVE_WAP_PUSH":
             case "android.permission.RECEIVE_MMS":
-                text = "簡訊";
-                break;
+                return "簡訊";
             case "android.permission.READ_EXTERNAL_STORAGE":
             case "android.permission.WRITE_EXTERNAL_STORAGE":
-                text = "儲存";
-                break;
+                return "儲存";
             default:
-                text = "未知的權限";
-                break;
+                return "未知的權限";
         }
-
-        return text;
     }
 }

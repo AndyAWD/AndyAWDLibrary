@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private AWDEditText aetAm_EditText;
     private AWDConstraintRadioGroup awdConstraintRadioGroup;
     private AppCompatButton btAm_ShowRadioGroup;
+    private AppCompatButton btAm_ShowPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btAm_ShowDateFormat = findViewById(R.id.btAm_ShowDateFormat);
         aetAm_EditText = findViewById(R.id.aetAm_EditText);
         btAm_ShowRadioGroup = findViewById(R.id.btAm_ShowRadioGroup);
+        btAm_ShowPermissions = findViewById(R.id.btAm_ShowPermissions);
 
         RxView.clicks(btAm_ShowToast)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowToastPage_Click);
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowDateFormatPage_Click);
         RxView.clicks(btAm_ShowRadioGroup)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowRadioGroup_Click);
+        RxView.clicks(btAm_ShowPermissions)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPermissions_CLick);
 
         aetAm_EditText.setOnKeycodeBackListener(aetAm_EditText_KeycodeBack);
     }
@@ -117,6 +121,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onNext(Unit unit) {
             Intent intent = new Intent(MainActivity.this, RadioGroupActivity.class);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+    };
+
+    private Observer<? super Unit> btAm_ShowPermissions_CLick = new Observer<Unit>() {
+        @Override
+        public void onSubscribe(Disposable d) {
+
+        }
+
+        @Override
+        public void onNext(Unit unit) {
+            Intent intent = new Intent(MainActivity.this, PermissionsTransformerActivity.class);
             startActivity(intent);
         }
 

@@ -43,5 +43,13 @@
             android:layout_height="wrap_content"
             android:text="@string/showRadioGroupPage"
             app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAm_ShowPermissions"
+            style="@style/MainListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/showPermissionsPage"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 </ScrollView>
