@@ -12,6 +12,7 @@
     <string name="showToastPage">顯示Toast頁面</string>
     <string name="showDateFormatPage">顯示日期格式頁面</string>
     <string name="showRadioGroupPage">顯示單選按鈕頁面</string>
+    <string name="showPermissionsPage">顯示要求權限頁面</string>
     <string name="ToastBase_text">基本顯示</string>
     <string name="ToastBaseTextColor_text">基本顯示 + 文字顏色</string>
     <string name="ToastBaseTextColorBackground_text">基本顯示 + 文字顏色 + 背景顏色</string>
