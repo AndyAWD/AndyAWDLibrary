@@ -11,7 +11,7 @@
 4. AWDConstraintRadioGroup：可以用ConstraintLayout來排RadioButton。
 5. AWDPermissionsFailAlertDialog：簡單的權限未提供AlertDialog
 6. AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文，使用單例。
-
+7. AWDLog：可以做權限切換和解析Json格式的Log
 
 4. AWDSnackbarMgr：重新封裝的Snackbar，使用鏈式設定。
 6. AWDSquareImageView：正方形ImageView，設定寬就好，高用wrap_content。
@@ -151,5 +151,20 @@
     //傳入權限字串就好
     AWDPermissionsInfoTransformerTextMgr.getInstance().getTransformerInfo("android.permission.CAMERA")
     
+##### 7.AWDLog使用方法
+    
+    //可以先在Application把Log設定等級
+    AWDLog.setLogLevel(AWDConstants.LOG_VERBOSE);
+    
+    //然後就一般使用就好
+    AWDLog.v("Log Message");
+    AWDLog.d("Log Message");
+    AWDLog.w("Log Message");
+    AWDLog.i("Log Message");
+    AWDLog.e("Log Message");
+    AWDLog.api("maho","{\"returnValue\":0,\"returnMsg\":\"執行成功\"}");
+    
+ 
+
  
 

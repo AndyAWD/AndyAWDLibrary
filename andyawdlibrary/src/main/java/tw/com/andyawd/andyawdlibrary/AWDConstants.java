@@ -36,12 +36,28 @@ public class AWDConstants {
     public static final int PERMISSIONS_SMS = 111;
     public static final int PERMISSIONS_STORAGE = 112;
 
-    public static final int VERBOSE = 1;    //Log模式等級
-    public static final int DEBUG = 2;  //Log模式等級
-    public static final int WARN = 3;   //Log模式等級
-    public static final int INFO = 4;   //Log模式等級
-    public static final int ERROR = 5;  //Log模式等級
-    public static final int LOG_CLOSE = 6; //Log模式等級
+    public static final int LOG_VERBOSE = 1;
+    public static final int LOG_DEBUG = 2;
+    public static final int LOG_WARN = 3;
+    public static final int LOG_INFO = 4;
+    public static final int LOG_ERROR = 5;
+    public static final int LOG_CLOSE = 6;
+    public static final String LOG_HEADER = "◢◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◤◥◣";
+    public static final String LOG_THREAD = "◥◣執行緒 : ";
+    public static final String LOG_FUNCTION = "◢◤執行方法(類名:行數) : ";
+    public static final String LOG_HORIZONTAL = "◥◣==============================================================";
+    public static final String LOG_MESSAGE_WALL = "◢◤";
+    public static final String LOG_FOOTER = "◥◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◣◢◤";
+    public static final String LOG_LEFT_PARENTHESES = "(";
+    public static final String LOG_RIGHT_PARENTHESES = ")";
+    public static final String LOG_LEFT_SQUARE_BRACKET = "[";
+    public static final String LOG_RIGHT_SQUARE_BRACKET = "]";
+    public static final String LOG_LEFT_CURLY_BRACKET = "{";
+    public static final String LOG_RIGHT_CURLY_BRACKET = "}";
+    public static final String LOG_COLON = ":";
+    public static final String LOG_POST = "◥◣Post字串無縮排 : \n";
+    public static final String LOG_POST_NORMAL = "\n Post字串 : ";
+    public static final String LOG_POST_INDENTATION = "◢◤Post字串有縮排 : \n";
 
     public static final String SYMBOL_AT = "@";
     public static final String SYMBOL_OCTOTHORPE = "#";
@@ -100,4 +116,6 @@ public class AWDConstants {
     public static final String DATETIME_FORMAT_12 = "HH:mm";
 
     public static final int ONE_INT = 1;
+
+
 }
