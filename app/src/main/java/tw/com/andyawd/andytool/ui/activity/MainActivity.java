@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import kotlin.Unit;
 import tw.com.andyawd.andyawdlibrary.AWDConstants;
 import tw.com.andyawd.andyawdlibrary.AWDConstraintRadioGroup;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private AWDConstraintRadioGroup awdConstraintRadioGroup;
     private AppCompatButton btAm_ShowRadioGroup;
     private AppCompatButton btAm_ShowPermissions;
+    private AppCompatButton btAm_ShowLogCat;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         aetAm_EditText = findViewById(R.id.aetAm_EditText);
         btAm_ShowRadioGroup = findViewById(R.id.btAm_ShowRadioGroup);
         btAm_ShowPermissions = findViewById(R.id.btAm_ShowPermissions);
+        btAm_ShowLogCat = findViewById(R.id.btAm_ShowLogCat);
 
         RxView.clicks(btAm_ShowToast)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowToastPage_Click);
@@ -55,53 +60,26 @@ public class MainActivity extends AppCompatActivity {
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowRadioGroup_Click);
         RxView.clicks(btAm_ShowPermissions)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPermissions_CLick);
+        RxView.clicks(btAm_ShowLogCat)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowLogCat_CLick);
 
         aetAm_EditText.setOnKeycodeBackListener(aetAm_EditText_KeycodeBack);
     }
 
-    private Observer<? super Unit> btAm_ShowToastPage_Click = new Observer<Unit>() {
+    private Consumer<? super Unit> btAm_ShowToastPage_Click = new Consumer<Unit>() {
         @Override
-        public void onSubscribe(Disposable d) {
-
-        }
-
-        @Override
-        public void onNext(Unit unit) {
+        public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, ToastShowActivity.class);
             startActivity(intent);
         }
-
-        @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onComplete() {
-
-        }
     };
 
-    private Observer<? super Unit> btAm_ShowDateFormatPage_Click = new Observer<Unit>() {
-        @Override
-        public void onSubscribe(Disposable d) {
 
-        }
-
+    private Consumer<? super Unit> btAm_ShowDateFormatPage_Click = new Consumer<Unit>() {
         @Override
-        public void onNext(Unit unit) {
+        public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, DateFormatActivity.class);
             startActivity(intent);
-        }
-
-        @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onComplete() {
-
         }
     };
 
@@ -112,49 +90,27 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private Observer<? super Unit> btAm_ShowRadioGroup_Click = new Observer<Unit>() {
+    private Consumer<? super Unit> btAm_ShowRadioGroup_Click = new Consumer<Unit>() {
         @Override
-        public void onSubscribe(Disposable d) {
-
-        }
-
-        @Override
-        public void onNext(Unit unit) {
+        public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, RadioGroupActivity.class);
             startActivity(intent);
         }
-
-        @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onComplete() {
-
-        }
     };
 
-    private Observer<? super Unit> btAm_ShowPermissions_CLick = new Observer<Unit>() {
+    private Consumer<? super Unit> btAm_ShowPermissions_CLick = new Consumer<Unit>() {
         @Override
-        public void onSubscribe(Disposable d) {
-
-        }
-
-        @Override
-        public void onNext(Unit unit) {
+        public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, PermissionsTransformerActivity.class);
             startActivity(intent);
         }
+    };
 
+    private Consumer<? super Unit> btAm_ShowLogCat_CLick = new Consumer<Unit>() {
         @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onComplete() {
-
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, LogCatActivity.class);
+            startActivity(intent);
         }
     };
 }
