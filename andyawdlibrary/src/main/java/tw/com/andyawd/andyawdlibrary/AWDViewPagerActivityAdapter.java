@@ -24,8 +24,11 @@ import java.util.ArrayList;
  *
  * awdViewPagerActivityAdapter = new AWDViewPagerActivityAdapter();
  * awdViewPagerActivityAdapter.copy(lstViewPager);
+ *
+ * 都9102年了還有人用ViewPager
  */
 
+@Deprecated
 public class AWDViewPagerActivityAdapter extends PagerAdapter {
 
     private ArrayList<AWDObjectData.ViewPagerActivity> mViewPagerActivity = new ArrayList<>();
