@@ -11,7 +11,7 @@
         android:id="@+id/tvAdf_Message"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="@color/mediumaquamarine"
+        android:background="@color/mediumAquamarine"
         android:padding="@dimen/magic_8dp"
         app:autoSizeTextType="uniform" />
 

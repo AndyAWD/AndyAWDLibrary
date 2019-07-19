@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">AndyAWDLibrary</string>
-
     <string name="alreadyCopy">已複製</string>
     <string name="copy">複製</string>
     <string name="confirm">確定</string>
@@ -25,8 +24,6 @@
     <string name="update">更新</string>
     <string name="close">關閉</string>
     <string name="space">&#160;</string>
-    <string name="line">LINE</string>
-    <string name="facebook">Facebook</string>
     <string name="finish">完成</string>
     <string name="share">分享</string>
     <string name="signIn">登入</string>

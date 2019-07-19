@@ -29,14 +29,7 @@ public class RadioGroupActivity extends AppCompatActivity {
         argArg_RadioGroup = findViewById(R.id.argArg_RadioGroup);
         argArg_RadioGroup.setOnCheckedChangeListener(argArg_RadioGroup_CheckChange);
 
-        argArg_RadioGroup.setOnCheckedChangeListener(new AWDConstraintRadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(AWDConstraintRadioGroup group, int checkedId) {
-
-            }
-        });
-
-        awdToastMgr = new AWDToastMgr.init(RadioGroupActivity.this).setTextColor(R.color.mediumorchid).build();
+        awdToastMgr = new AWDToastMgr.init(RadioGroupActivity.this).setTextColor(R.color.mediumOrchid).build();
     }
 
     private AWDConstraintRadioGroup.OnCheckedChangeListener argArg_RadioGroup_CheckChange = new AWDConstraintRadioGroup.OnCheckedChangeListener() {
