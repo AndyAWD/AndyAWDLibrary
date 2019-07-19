@@ -13,10 +13,12 @@
 6. AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文，使用單例。
 7. AWDLog：可以做權限切換和解析Json格式的Log
 8. AWDSquareImageView：正方形ImageView。
+9. AWDConstants：符號常數SYMBOL開頭、權限回傳PERMISSIONS開頭、查IP網址IPIFY、藍牙UUID BLUETOOTH_UUID。
+10. color.xml：十六進位值色碼、Modern / Modern色碼表。
 
 4. AWDSnackbarMgr：重新封裝的Snackbar，使用鏈式設定。
 10. AWDToolMgr：還沒有大到可以拆成Class的工具，有圖檔轉Bas64｀取得這隻手機已經安裝的檔案名稱｀TextView Icon上色｀千分位樣式｀X 面骰模擬器｀簡單震動｀自定震動｀手機有沒有使用代理伺服器。
-11. AWDConstants：符號常數SYMBOL開頭、權限回傳PERMISSIONS開頭、查IP網址IPIFY、藍牙UUID BLUETOOTH_UUID。
+
     
 ***
 ### 引用網址

@@ -11,7 +11,6 @@ import com.jakewharton.rxbinding3.view.RxView;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observer;
 import io.reactivex.functions.Consumer;
 import kotlin.Unit;
 import tw.com.andyawd.andyawdlibrary.AWDConstants;
@@ -64,40 +63,40 @@ public class LogCatActivity extends AppCompatActivity {
     private Consumer<? super Unit> btAlc_LogV_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
-            AWDLog.v(AWDConstants.MAHORO_MODE);
-            setLogMessage(AWDConstants.MAHORO_MODE);
+            AWDLog.v(AWDConstants.LOG_MAHORO_MODE);
+            setLogMessage(AWDConstants.LOG_MAHORO_MODE);
         }
     };
 
     private Consumer<? super Unit> btAlc_LogD_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
-            AWDLog.d(AWDConstants.MAHORO_MODE);
-            setLogMessage(AWDConstants.MAHORO_MODE);
+            AWDLog.d(AWDConstants.LOG_MAHORO_MODE);
+            setLogMessage(AWDConstants.LOG_MAHORO_MODE);
         }
     };
 
     private Consumer<? super Unit> btAlc_LogW_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
-            AWDLog.w(AWDConstants.MAHORO_MODE);
-            setLogMessage(AWDConstants.MAHORO_MODE);
+            AWDLog.w(AWDConstants.LOG_MAHORO_MODE);
+            setLogMessage(AWDConstants.LOG_MAHORO_MODE);
         }
     };
 
     private Consumer<? super Unit> btAlc_LogI_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
-            AWDLog.i(AWDConstants.MAHORO_MODE);
-            setLogMessage(AWDConstants.MAHORO_MODE);
+            AWDLog.i(AWDConstants.LOG_MAHORO_MODE);
+            setLogMessage(AWDConstants.LOG_MAHORO_MODE);
         }
     };
 
     private Consumer<? super Unit> btAlc_LogE_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
-            AWDLog.e(AWDConstants.MAHORO_MODE);
-            setLogMessage(AWDConstants.MAHORO_MODE);
+            AWDLog.e(AWDConstants.LOG_MAHORO_MODE);
+            setLogMessage(AWDConstants.LOG_MAHORO_MODE);
         }
     };
 

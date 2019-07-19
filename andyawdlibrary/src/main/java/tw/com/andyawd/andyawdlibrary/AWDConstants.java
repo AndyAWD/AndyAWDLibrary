@@ -7,12 +7,11 @@ import java.util.UUID;
  */
 
 public class AWDConstants {
+    public static final String EMPTY_STRING = "";
     public static final UUID BLUETOOTH_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public static final String IPIFY = "https://api.ipify.org/";
 
-    public static final String MAHORO_MODE = "maho";
     public static final String BLUETOOTH_NAME = "AWDBlueTooth";
-
     public static final int BLUETOOTH_OPEN = 401;
     public static final int BLUETOOTH_FIND = 408;
     public static final int BLUETOOTH_START_LISTENING = 402;
@@ -36,6 +35,7 @@ public class AWDConstants {
     public static final int PERMISSIONS_SMS = 111;
     public static final int PERMISSIONS_STORAGE = 112;
 
+    public static final String LOG_MAHORO_MODE = "maho";
     public static final int LOG_VERBOSE = 1;
     public static final int LOG_DEBUG = 2;
     public static final int LOG_WARN = 3;
@@ -100,8 +100,6 @@ public class AWDConstants {
     public static final String AUDIO_INTENT_TYPE = "audio/*";
     public static final String TEXT_INTENT_TYPE = "text/*";
 
-    public static final String EMPTY_STRING = "";
-
     public static final String DATETIME_FORMAT_01 = "yyyy-MM-dd HH:mm:ss";
     public static final String DATETIME_FORMAT_02 = "yyyy/MM/dd HH:mm:ss";
     public static final String DATETIME_FORMAT_03 = "yyyy-MM-dd hh:mm:ss";
@@ -116,6 +114,4 @@ public class AWDConstants {
     public static final String DATETIME_FORMAT_12 = "HH:mm";
 
     public static final int ONE_INT = 1;
-
-
 }

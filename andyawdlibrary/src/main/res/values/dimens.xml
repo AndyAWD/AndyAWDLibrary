@@ -4,6 +4,4 @@
     <dimen name="magic_4dp">4dp</dimen>
     <dimen name="magic_2dp">2dp</dimen>
     <dimen name="magic_1dp">1dp</dimen>
-
-    <dimen name="rbArg_Select_height">80dp</dimen>
 </resources>

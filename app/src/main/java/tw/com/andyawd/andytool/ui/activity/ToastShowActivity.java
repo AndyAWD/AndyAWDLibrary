@@ -83,25 +83,25 @@ public class ToastShowActivity extends AppCompatActivity {
 
         toastBaseTextColor = new AWDToastMgr
                 .init(ToastShowActivity.this)
-                .setTextColor(R.color.dodgerblue)
+                .setTextColor(R.color.dodgerBlue)
                 .build();
 
         toastBaseTextColorBackground = new AWDToastMgr
                 .init(ToastShowActivity.this)
                 .setBackgroundColor(R.color.metro_91d100)
-                .setTextColor(R.color.dodgerblue)
+                .setTextColor(R.color.dodgerBlue)
                 .build();
 
         toastBaseTextColorDrawableBackground = new AWDToastMgr
                 .init(ToastShowActivity.this)
                 .setBackgroundDrawable(R.drawable.rounded_hollow_rounded_ff83bf_ffb5d2_radius20_angle270)
-                .setTextColor(R.color.dodgerblue)
+                .setTextColor(R.color.dodgerBlue)
                 .build();
 
         toastBaseTextColorDrawableBackgroundTextSize = new AWDToastMgr
                 .init(ToastShowActivity.this)
                 .setBackgroundDrawable(R.drawable.rounded_fc6392_f9baac_radius18_angle270)
-                .setTextColor(R.color.dodgerblue)
+                .setTextColor(R.color.dodgerBlue)
                 .setTextSize(50)
                 .build();
 
@@ -118,7 +118,7 @@ public class ToastShowActivity extends AppCompatActivity {
         toastBaseBackgroundTextBackgroundText = new AWDToastMgr
                 .init(ToastShowActivity.this)
                 .setBackgroundColor(R.color.metro_91d100)
-                .setTextBackgroundColor(R.color.dodgerblue)
+                .setTextBackgroundColor(R.color.dodgerBlue)
                 .build();
 
         toastPicture = new AWDToastMgr
