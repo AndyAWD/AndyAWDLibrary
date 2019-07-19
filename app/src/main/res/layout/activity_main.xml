@@ -67,5 +67,13 @@
             android:layout_height="wrap_content"
             android:text="@string/showSquareImagePage"
             app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAm_ShowThousandBit"
+            style="@style/MainListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/showThousandBitPage"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 </ScrollView>

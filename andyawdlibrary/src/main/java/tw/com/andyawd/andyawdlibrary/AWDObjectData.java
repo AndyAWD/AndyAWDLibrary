@@ -35,4 +35,16 @@ public class AWDObjectData {
             this.appCompatActivity = appCompatActivity;
         }
     }
+
+    public static class ThousandBitNumber<T> {
+        private T t;
+
+        public T getThousandBitNumber() {
+            return t;
+        }
+
+        public void setThousandBitNumber(T number) {
+            this.t = number;
+        }
+    }
 }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton btAm_ShowPermissions;
     private AppCompatButton btAm_ShowLogCat;
     private AppCompatButton btAm_ShowSquareImage;
-
+    private AppCompatButton btAm_ShowThousandBit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btAm_ShowPermissions = findViewById(R.id.btAm_ShowPermissions);
         btAm_ShowLogCat = findViewById(R.id.btAm_ShowLogCat);
         btAm_ShowSquareImage = findViewById(R.id.btAm_ShowSquareImage);
+        btAm_ShowThousandBit = findViewById(R.id.btAm_ShowThousandBit);
 
         RxView.clicks(btAm_ShowToast)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowToastPage_Click);
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowLogCat_Click);
         RxView.clicks(btAm_ShowSquareImage)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowSquareImage_Click);
+        RxView.clicks(btAm_ShowThousandBit)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowThousandBit_Click);
 
         aetAm_EditText.setOnKeycodeBackListener(aetAm_EditText_KeycodeBack);
     }
@@ -121,6 +124,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, SquareImageActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowThousandBit_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, ThousandBitActivity.class);
             startActivity(intent);
         }
     };
