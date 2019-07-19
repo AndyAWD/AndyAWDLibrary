@@ -14,6 +14,7 @@
     <string name="showRadioGroupPage">顯示單選按鈕頁面</string>
     <string name="showPermissionsPage">顯示要求權限頁面</string>
     <string name="showLogCatPage">顯示LogCat頁面</string>
+    <string name="showSquareImagePage">顯示正方形圖案頁面</string>
     <string name="ToastBase_text">基本顯示</string>
     <string name="ToastBaseTextColor_text">基本顯示 + 文字顏色</string>
     <string name="ToastBaseTextColorBackground_text">基本顯示 + 文字顏色 + 背景顏色</string>
@@ -27,4 +28,8 @@
 
     <string name="ClickKeycode_text">你按了返回鍵對吧</string>
     <string name="aetAm_EditText_hint">輸入文字</string>
+
+    <string name="tvAsi_HeightSquareText_text">高度固定正方形</string>
+    <string name="tvAsi_WidthSquareText_text">寬度固定正方形</string>
+
 </resources>

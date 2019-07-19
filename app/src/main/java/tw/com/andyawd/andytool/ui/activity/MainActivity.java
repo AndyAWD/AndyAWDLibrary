@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton btAm_ShowRadioGroup;
     private AppCompatButton btAm_ShowPermissions;
     private AppCompatButton btAm_ShowLogCat;
-
+    private AppCompatButton btAm_ShowSquareImage;
 
 
     @Override
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btAm_ShowRadioGroup = findViewById(R.id.btAm_ShowRadioGroup);
         btAm_ShowPermissions = findViewById(R.id.btAm_ShowPermissions);
         btAm_ShowLogCat = findViewById(R.id.btAm_ShowLogCat);
+        btAm_ShowSquareImage = findViewById(R.id.btAm_ShowSquareImage);
 
         RxView.clicks(btAm_ShowToast)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowToastPage_Click);
@@ -59,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
         RxView.clicks(btAm_ShowRadioGroup)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowRadioGroup_Click);
         RxView.clicks(btAm_ShowPermissions)
-                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPermissions_CLick);
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPermissions_Click);
         RxView.clicks(btAm_ShowLogCat)
-                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowLogCat_CLick);
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowLogCat_Click);
+        RxView.clicks(btAm_ShowSquareImage)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowSquareImage_Click);
 
         aetAm_EditText.setOnKeycodeBackListener(aetAm_EditText_KeycodeBack);
     }
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private Consumer<? super Unit> btAm_ShowPermissions_CLick = new Consumer<Unit>() {
+    private Consumer<? super Unit> btAm_ShowPermissions_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, PermissionsTransformerActivity.class);
@@ -106,10 +109,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private Consumer<? super Unit> btAm_ShowLogCat_CLick = new Consumer<Unit>() {
+    private Consumer<? super Unit> btAm_ShowLogCat_Click = new Consumer<Unit>() {
         @Override
         public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, LogCatActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowSquareImage_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, SquareImageActivity.class);
             startActivity(intent);
         }
     };
