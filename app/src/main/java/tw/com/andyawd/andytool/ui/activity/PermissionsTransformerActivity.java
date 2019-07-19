@@ -13,6 +13,7 @@ import android.view.View;
 import com.jakewharton.rxbinding3.view.RxView;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -32,6 +33,7 @@ public class PermissionsTransformerActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permissions_transformer);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         initComponent();
     }

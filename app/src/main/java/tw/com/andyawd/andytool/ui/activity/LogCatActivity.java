@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.jakewharton.rxbinding3.view.RxView;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -32,6 +33,7 @@ public class LogCatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_cat);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         initComponent();
     }

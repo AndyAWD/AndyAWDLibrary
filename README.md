@@ -12,10 +12,9 @@
 5. AWDPermissionsFailAlertDialog：簡單的權限未提供AlertDialog
 6. AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文，使用單例。
 7. AWDLog：可以做權限切換和解析Json格式的Log
+8. AWDSquareImageView：正方形ImageView。
 
 4. AWDSnackbarMgr：重新封裝的Snackbar，使用鏈式設定。
-6. AWDSquareImageView：正方形ImageView，設定寬就好，高用wrap_content。
-9. AWDPermissionsInfoTransformerTextMgr：權限翻譯成中文。
 10. AWDToolMgr：還沒有大到可以拆成Class的工具，有圖檔轉Bas64｀取得這隻手機已經安裝的檔案名稱｀TextView Icon上色｀千分位樣式｀X 面骰模擬器｀簡單震動｀自定震動｀手機有沒有使用代理伺服器。
 11. AWDConstants：符號常數SYMBOL開頭、權限回傳PERMISSIONS開頭、查IP網址IPIFY、藍牙UUID BLUETOOTH_UUID。
     
@@ -105,7 +104,7 @@
 
 ##### 2.AWDDateFormat使用方法            
     
-    /*
+    /**
      * Locale.TAIWAN 語系預設 
      * inputDate 輸入的日期
      * inputDatePattern 輸入的日期格式，可以從AWDConstants.DATETIME_FORMAT去找想要的格式
@@ -164,7 +163,24 @@
     AWDLog.e("Log Message");
     AWDLog.api("maho","{\"returnValue\":0,\"returnMsg\":\"執行成功\"}");
     
- 
+##### 8.AWDSquareImageView使用方法
+
+    /**
+     * 基本上就是要自己長的設定成wrap_content
+     * 然後lockLayoutSide設定要固定的寬或高
+     * 如果lockLayoutSide沒設定，那就是預設指定寬度，高度自己長
+     */
+    <tw.com.andyawd.andyawdlibrary.AWDSquareImageView
+            android:id="@+id/aivAsi_HeightSquareImage"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            app:lockLayoutSide="width" />
+    
+    <tw.com.andyawd.andyawdlibrary.AWDSquareImageView
+            android:id="@+id/aivAsi_HeightSquareImage"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            app:lockLayoutSide="height" />    
 
  
 
