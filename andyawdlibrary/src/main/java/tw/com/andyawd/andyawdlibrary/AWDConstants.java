@@ -113,11 +113,11 @@ public class AWDConstants {
     public static final String DATETIME_FORMAT_11 = "HH:mm:ss";
     public static final String DATETIME_FORMAT_12 = "HH:mm";
 
-    public static final String THOUSAND_FORMAT_01 = "#,###";
-    public static final String THOUSAND_FORMAT_02 = "#,###.#";
-    public static final String THOUSAND_FORMAT_03 = "#,###.##";
-    public static final String THOUSAND_FORMAT_04 = "#,###.###";
-    public static final String THOUSAND_FORMAT_05 = "#,###.####";
+    public static final String THOUSAND_FORMAT_01 = ",###";
+    public static final String THOUSAND_FORMAT_02 = ",###.#";
+    public static final String THOUSAND_FORMAT_03 = ",###.##";
+    public static final String THOUSAND_FORMAT_04 = ",###.###";
+    public static final String THOUSAND_FORMAT_05 = ",###.####";
 
     public static final int ONE_INT = 1;
 }

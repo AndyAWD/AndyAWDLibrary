@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.jakewharton.rxbinding3.view.RxView;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,6 +33,7 @@ public class ThousandBitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thousand_bit);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         initComponent();
     }
@@ -86,7 +88,7 @@ public class ThousandBitActivity extends AppCompatActivity {
         @Override
         public void accept(Unit unit) throws Exception {
             AWDThousandBitStyleMgr.getInstance().setThousandBitStyle(AWDConstants.THOUSAND_FORMAT_04);
-            tvAtb_Message.setText(AWDThousandBitStyleMgr.getInstance().getThousandBitStyle("987654321.12345"));
+            tvAtb_Message.setText(String.valueOf(AWDThousandBitStyleMgr.getInstance().getThousandBitStyle(654.321)));
         }
     };
 
@@ -94,7 +96,7 @@ public class ThousandBitActivity extends AppCompatActivity {
         @Override
         public void accept(Unit unit) throws Exception {
             AWDThousandBitStyleMgr.getInstance().setThousandBitStyle(AWDConstants.THOUSAND_FORMAT_05);
-            tvAtb_Message.setText(AWDThousandBitStyleMgr.getInstance().getThousandBitStyle("987654321.12345"));
+            tvAtb_Message.setText(String.valueOf(AWDThousandBitStyleMgr.getInstance().getThousandBitStyle(987)));
         }
     };
 }

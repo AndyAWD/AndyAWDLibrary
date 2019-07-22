@@ -17,22 +17,19 @@ public class AWDThousandBitStyleMgr {
     /**
      * 設定傳入的千分位樣式
      */
-    public void setThousandBitStyle(String ThousandPattern) {
-        decimalFormat = new DecimalFormat(ThousandPattern);
+    public void setThousandBitStyle(String thousandPattern) {
+        decimalFormat = new DecimalFormat(thousandPattern);
     }
 
     /**
      * 得到千分位樣式
      */
-    public String getThousandBitStyle(String number) {
-        try {
-            if (null == decimalFormat) {
-                decimalFormat = new DecimalFormat(AWDConstants.THOUSAND_FORMAT_01);
-            }
-
-            return decimalFormat.format(Double.parseDouble(String.valueOf(number)));
-        } catch (Exception e) {
-            return "0";
+    @SuppressWarnings("unchecked")
+    public <T> T getThousandBitStyle(T number) {
+        if (null == decimalFormat) {
+            decimalFormat = new DecimalFormat(AWDConstants.THOUSAND_FORMAT_01);
         }
+
+        return (T) decimalFormat.format(Double.parseDouble(String.valueOf(number)));
     }
 }
