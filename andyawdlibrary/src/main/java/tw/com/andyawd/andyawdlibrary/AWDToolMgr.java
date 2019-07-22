@@ -128,22 +128,7 @@ public class AWDToolMgr {
         context = null;
     }
 
-    /**
-     * 千分位樣式
-     *
-     * @param number
-     * @return
-     */
-    public String setThousandBitStyle(String number) {
-        try {
-            DecimalFormat decimalFormat = new DecimalFormat("###,###,###,###");
-            double dblNumber = Double.parseDouble(number);
-            String strNumber = decimalFormat.format(dblNumber);
-            return strNumber;
-        } catch (Exception e) {
-            return "0";
-        }
-    }
+
 
     /**
      * X 面骰模擬器
