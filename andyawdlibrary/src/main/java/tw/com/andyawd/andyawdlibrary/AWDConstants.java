@@ -119,5 +119,8 @@ public class AWDConstants {
     public static final String THOUSAND_FORMAT_04 = ",###.###";
     public static final String THOUSAND_FORMAT_05 = ",###.####";
 
+    public static final String HTTP_PROXY_HOST = "http.proxyHost";
+    public static final String HTTP_PROXY_PORT = "http.proxyPort";
+
     public static final int ONE_INT = 1;
 }
