@@ -5,9 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.CountDownTimer;
+
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.core.content.ContextCompat;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,44 +22,170 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 
+import tw.com.andyawd.andyawdlibrary.interfaceListener.OnActionClickListener;
+
 
 /**
  * Created by andydai on 2018/9/13.
- *
+ * <p>
  * Activity取View可以用getWindow().getDecorView()
  */
 
+
 public class AWDSnackbarMgr {
-    public static final boolean Log_On = true;
-    public static final boolean Log_Off = false;
-    public static final boolean GC_On = true;
-    public static final boolean GC_Off = false;
-    private static final boolean Show_On = true;
-    private static final boolean Show_Off = false;
-    private static final int NoSetting = 529;
+    /**
+     * 資源檔預設值，用來判斷有沒有另外設定
+     */
+    private static final int NO_SETTING = 529;
 
     private static Snackbar snackbar;
-    private View vSnackbar;
-    private View vSnackbarLayout;
-    private initi builder;
-    private TextView tvSnackbarText;
-    private Snackbar.SnackbarLayout snackbarLayout;
-    private LinearLayout.LayoutParams layoutParams;
 
-    private boolean blnLogSwitch = Log_On;
-    private boolean blnSnackbarIsCanShow = Show_Off;
 
-    public interface setOnActionClickListener {
-        void Action();
+    private init init;
+
+    public AWDSnackbarMgr(init init) {
+        this.init = init;
+
+        snackbar = Snackbar.make(init.view, init.message, Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(init.actionText, snackbar_Click);
+
     }
 
-    public AWDSnackbarMgr(initi builder) {
-        this.builder = builder;
-        InitiSnackbar();
+    public void show() {
+        if (null == snackbar) {
+            return;
+        }
+
+        snackbar.show();
     }
 
-    @Deprecated
-    private void InitiSnackbar() {
+    private final View.OnClickListener snackbar_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+
+    public static class init {
+        private View view = null;  //SnackBar依附的View
+        private Context context = null;   //只有基本的話不用Context
+        private String message = null;    //設定文字訊息
+        private int duration = NO_SETTING;  //設定顯示方式，預設短時間(Duration_LENGTH_SHORT)、還有長時間(Duration_LENGTH_LONG)、固定顯示(LENGTH_INDEFINITE)
+        private int textColor = NO_SETTING;     //設定文字顏色
+        private int textSize = NO_SETTING;   //設定文字大小
+        private int backgroundColor = NO_SETTING;   //設定背景顏色
+        private int bacakgroundPicture = NO_SETTING;    //設定SnackBar背景圖片
+        private int layout = NO_SETTING;    //設定自定頁面
+        private String actionText = null;  //設定按鈕文字
+        private int actionTextColor = NO_SETTING;   //設定按鈕文字顏色
+        private OnActionClickListener listener;  //按鈕監聽
+
+        /**
+         * 初始化
+         *
+         * @param context
+         */
+        public init(Context context) {
+            this.context = context;
+        }
+
+
+        public init setView(View view) {
+            this.view = view;
+            return this;
+        }
+
+        public init setContext(Context context) {
+            this.context = context;
+            return this;
+        }
+
+        public init setMessage(String message) {
+            this.message = message;
+            return this;
+        }
+
+        public init setDuration(int duration) {
+            this.duration = duration;
+            return this;
+        }
+
+        public init setTextColor(int textColor) {
+            this.textColor = textColor;
+            return this;
+        }
+
+        public init setTextSize(int textSize) {
+            this.textSize = textSize;
+            return this;
+        }
+
+        public init setBacakgroundColor(int bacakgroundColor) {
+            this.backgroundColor = bacakgroundColor;
+            return this;
+        }
+
+        public init setBacakgroundPicture(int bacakgroundPicture) {
+            this.bacakgroundPicture = bacakgroundPicture;
+            return this;
+        }
+
+        public init setLayout(int layout) {
+            this.layout = layout;
+            return this;
+        }
+
+        public init setActionText(String buttonText) {
+            this.actionText = buttonText;
+            return this;
+        }
+
+        public init setActionTextColor(int buttonTextColor) {
+            this.actionTextColor = buttonTextColor;
+            return this;
+        }
+
+        public init setOnActionClickListener(OnActionClickListener listener) {
+            this.listener = listener;
+            return this;
+        }
+
+        public AWDSnackbarMgr build() {
+            return new AWDSnackbarMgr(this);
+        }
+    }
+
+
+//    public static final boolean Log_On = true;
+//    public static final boolean Log_Off = false;
+//    public static final boolean GC_On = true;
+//    public static final boolean GC_Off = false;
+//    private static final boolean Show_On = true;
+//    private static final boolean Show_Off = false;
+//    private static final int NoSetting = 529;
+//
+//    private static Snackbar snackbar;
+//    private View vSnackbar;
+//    private View vSnackbarLayout;
+//    private initi builder;
+//    private TextView tvSnackbarText;
+//    private Snackbar.SnackbarLayout snackbarLayout;
+//    private LinearLayout.LayoutParams layoutParams;
+//
+//    private boolean blnLogSwitch = Log_On;
+//    private boolean blnSnackbarIsCanShow = Show_Off;
+//
+//    public interface setOnActionClickListener {
+//        void Action();
+//    }
+//
+//    public AWDSnackbarMgr(initi builder) {
+//        this.builder = builder;
+//        InitiSnackbar();
+//    }
+//
+//    @Deprecated
+//    private void InitiSnackbar() {
 //        if (null != builder.mView && null != builder.mMessage && NoSetting != builder.mDuration) {
 //            if (null != builder.mActionClickListener) {
 //                if (NoSetting != builder.mActionTextColor) {
@@ -140,146 +269,146 @@ public class AWDSnackbarMgr {
 //            }
 //            blnSnackbarIsCanShow = Show_Off;
 //        }
-    }
+//    }
+//
+//    public void show() {
+//        if (blnSnackbarIsCanShow) {
+//            if (null == snackbar) {
+//                InitiSnackbar();
+//            }
+//            snackbar.show();
+//        } else {
+//            return;
+//        }
+//    }
+//
+//    public void setLog(boolean Log_OnOff) {
+//        this.blnLogSwitch = Log_OnOff;
+//    }
+//
+//    public void ClearMemory() {
+//        System.gc();
+//    }
+//
+//    private void SnackbarDismiss() {
+//        snackbar.dismiss();
+//        snackbar = null;
+//    }
+//
+//    public void dismiss(boolean GC_OnOff) {
+//        if (null != snackbar) {
+//            if (GC_OnOff) {
+//                ClearMemory();
+//                SnackbarDismiss();
+//            } else {
+//                SnackbarDismiss();
+//            }
+//        }
+//    }
+//
+//    public void dismiss() {
+//        if (null != snackbar) {
+//            SnackbarDismiss();
+//        }
+//    }
+//
+//    private View.OnClickListener snackbar_Action = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            builder.mActionClickListener.Action();
+//        }
+//    };
+//
+//    private BaseTransientBottomBar.BaseCallback<Snackbar> snackbar_Callback = new BaseTransientBottomBar.BaseCallback<Snackbar>() {
+//        @Override
+//        public void onDismissed(Snackbar transientBottomBar, int event) {
+//            super.onDismissed(transientBottomBar, event);
+//            snackbar = null;
+//        }
+//
+//        @Override
+//        public void onShown(Snackbar transientBottomBar) {
+//            super.onShown(transientBottomBar);
+//
+//        }
+//    };
 
-    public void show() {
-        if (blnSnackbarIsCanShow) {
-            if (null == snackbar) {
-                InitiSnackbar();
-            }
-            snackbar.show();
-        } else {
-            return;
-        }
-    }
-
-    public void setLog(boolean Log_OnOff) {
-        this.blnLogSwitch = Log_OnOff;
-    }
-
-    public void ClearMemory() {
-        System.gc();
-    }
-
-    private void SnackbarDismiss() {
-        snackbar.dismiss();
-        snackbar = null;
-    }
-
-    public void dismiss(boolean GC_OnOff) {
-        if (null != snackbar) {
-            if (GC_OnOff) {
-                ClearMemory();
-                SnackbarDismiss();
-            } else {
-                SnackbarDismiss();
-            }
-        }
-    }
-
-    public void dismiss() {
-        if (null != snackbar) {
-            SnackbarDismiss();
-        }
-    }
-
-    private View.OnClickListener snackbar_Action = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            builder.mActionClickListener.Action();
-        }
-    };
-
-    private BaseTransientBottomBar.BaseCallback<Snackbar> snackbar_Callback = new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-        @Override
-        public void onDismissed(Snackbar transientBottomBar, int event) {
-            super.onDismissed(transientBottomBar, event);
-            snackbar = null;
-        }
-
-        @Override
-        public void onShown(Snackbar transientBottomBar) {
-            super.onShown(transientBottomBar);
-
-        }
-    };
-
-    public static class initi {
-        private View mView = null;  //SnackBar依附的View
-        private Context mContext = null;   //只有基本的話不用Context
-        private String mMessage = null;    //設定文字訊息
-        private int mDuration = NoSetting;  //設定顯示方式，預設短時間(Duration_LENGTH_SHORT)、還有長時間(Duration_LENGTH_LONG)、固定顯示(LENGTH_INDEFINITE)
-        private int mTextColor = NoSetting;     //設定文字顏色
-        private int mTextSize = NoSetting;   //設定文字大小
-        private int mBackgroundColor = NoSetting;   //設定背景顏色
-        private int mBacakgroundPicture = NoSetting;    //設定SnackBar背景圖片
-        private int mLayout = NoSetting;    //設定自定頁面
-        private String mActionText = null;  //設定按鈕文字
-        private int mActionTextColor = NoSetting;   //設定按鈕文字顏色
-        private setOnActionClickListener mActionClickListener;  //按鈕監聽
-
-        public initi setView(View view) {
-            this.mView = view;
-            return this;
-        }
-
-        public initi setContext(Context context) {
-            this.mContext = context;
-            return this;
-        }
-
-        public initi setMessage(String message) {
-            this.mMessage = message;
-            return this;
-        }
-
-        public initi setDuration(int duration) {
-            this.mDuration = duration;
-            return this;
-        }
-
-        public initi setTextColor(int textColor) {
-            this.mTextColor = textColor;
-            return this;
-        }
-
-        public initi setTextSize(int textSize) {
-            this.mTextSize = textSize;
-            return this;
-        }
-
-        public initi setBacakgroundColor(int bacakgroundColor) {
-            this.mBackgroundColor = bacakgroundColor;
-            return this;
-        }
-
-        public initi setBacakgroundPicture(int bacakgroundPicture) {
-            this.mBacakgroundPicture = bacakgroundPicture;
-            return this;
-        }
-
-        public initi setLayout(int layout) {
-            this.mLayout = layout;
-            return this;
-        }
-
-        public initi setActionText(String buttonText) {
-            this.mActionText = buttonText;
-            return this;
-        }
-
-        public initi setActionTextColor(int buttonTextColor) {
-            this.mActionTextColor = buttonTextColor;
-            return this;
-        }
-
-        public initi setOnActionClickListener(setOnActionClickListener ActionClickListener) {
-            this.mActionClickListener = ActionClickListener;
-            return this;
-        }
-
-        public AWDSnackbarMgr build() {
-            return new AWDSnackbarMgr(this);
-        }
-    }
+//    public static class initi {
+//        private View mView = null;  //SnackBar依附的View
+//        private Context mContext = null;   //只有基本的話不用Context
+//        private String mMessage = null;    //設定文字訊息
+//        private int mDuration = NoSetting;  //設定顯示方式，預設短時間(Duration_LENGTH_SHORT)、還有長時間(Duration_LENGTH_LONG)、固定顯示(LENGTH_INDEFINITE)
+//        private int mTextColor = NoSetting;     //設定文字顏色
+//        private int mTextSize = NoSetting;   //設定文字大小
+//        private int mBackgroundColor = NoSetting;   //設定背景顏色
+//        private int mBacakgroundPicture = NoSetting;    //設定SnackBar背景圖片
+//        private int mLayout = NoSetting;    //設定自定頁面
+//        private String mActionText = null;  //設定按鈕文字
+//        private int mActionTextColor = NoSetting;   //設定按鈕文字顏色
+//        private setOnActionClickListener mActionClickListener;  //按鈕監聽
+//
+//        public initi setView(View view) {
+//            this.mView = view;
+//            return this;
+//        }
+//
+//        public initi setContext(Context context) {
+//            this.mContext = context;
+//            return this;
+//        }
+//
+//        public initi setMessage(String message) {
+//            this.mMessage = message;
+//            return this;
+//        }
+//
+//        public initi setDuration(int duration) {
+//            this.mDuration = duration;
+//            return this;
+//        }
+//
+//        public initi setTextColor(int textColor) {
+//            this.mTextColor = textColor;
+//            return this;
+//        }
+//
+//        public initi setTextSize(int textSize) {
+//            this.mTextSize = textSize;
+//            return this;
+//        }
+//
+//        public initi setBacakgroundColor(int bacakgroundColor) {
+//            this.mBackgroundColor = bacakgroundColor;
+//            return this;
+//        }
+//
+//        public initi setBacakgroundPicture(int bacakgroundPicture) {
+//            this.mBacakgroundPicture = bacakgroundPicture;
+//            return this;
+//        }
+//
+//        public initi setLayout(int layout) {
+//            this.mLayout = layout;
+//            return this;
+//        }
+//
+//        public initi setActionText(String buttonText) {
+//            this.mActionText = buttonText;
+//            return this;
+//        }
+//
+//        public initi setActionTextColor(int buttonTextColor) {
+//            this.mActionTextColor = buttonTextColor;
+//            return this;
+//        }
+//
+//        public initi setOnActionClickListener(setOnActionClickListener ActionClickListener) {
+//            this.mActionClickListener = ActionClickListener;
+//            return this;
+//        }
+//
+//        public AWDSnackbarMgr build() {
+//            return new AWDSnackbarMgr(this);
+//        }
+//    }
 }
