@@ -28,7 +28,7 @@
     }
 
     dependencies {
-        implementation 'com.github.AndyAWD:AndyAWDLibrary:1.4.0'
+        implementation 'com.github.AndyAWD:AndyAWDLibrary:2.0.0'
     }
 
 ***
