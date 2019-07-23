@@ -75,5 +75,13 @@
             android:layout_height="wrap_content"
             android:text="@string/showThousandBitPage"
             app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAm_ShowPopupWindow"
+            style="@style/MainListButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/showPopupWindowPage"
+            app:autoSizeTextType="uniform" />
     </LinearLayout>
 </ScrollView>

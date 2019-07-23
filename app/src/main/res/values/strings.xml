@@ -16,6 +16,8 @@
     <string name="showLogCatPage">顯示LogCat頁面</string>
     <string name="showSquareImagePage">顯示正方形圖案頁面</string>
     <string name="showThousandBitPage">顯示千分位樣式頁面</string>
+    <string name="showPopupWindowPage">顯示PopupWindow頁面</string>
+
     <string name="ToastBase_text">基本顯示</string>
     <string name="ToastBaseTextColor_text">基本顯示 + 文字顏色</string>
     <string name="ToastBaseTextColorBackground_text">基本顯示 + 文字顏色 + 背景顏色</string>

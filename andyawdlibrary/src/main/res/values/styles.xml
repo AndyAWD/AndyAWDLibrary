@@ -1,9 +1,7 @@
 <resources>
-
-
     <style name="popupWindowAnim" parent="android:Animation">
-        <item name="@android:windowEnterAnimation">@anim/popup_windows_in</item>
-        <item name="@android:windowExitAnimation">@anim/popup_windows_out</item>
+        <item name="android:windowEnterAnimation">@anim/popup_window_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_window_out</item>
     </style>
 
     <style name="dialogFragment" parent="@android:style/Theme.Dialog">

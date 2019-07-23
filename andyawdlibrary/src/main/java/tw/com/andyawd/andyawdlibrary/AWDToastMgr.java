@@ -1,5 +1,6 @@
 package tw.com.andyawd.andyawdlibrary;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,16 +27,6 @@ public class AWDToastMgr {
     private static final String TAG = AWDToastMgr.class.getSimpleName();
 
     /**
-     * Logcat中開啟訊息
-     */
-    public static final boolean LOG_ON = true;
-
-    /**
-     * Logcat中關閉訊息，預設
-     */
-    public static final boolean LOG_OFF = false;
-
-    /**
      * Show the view or text notification for a short period of time.  This time
      * could be user-definable.  This is the default.
      */
@@ -52,10 +43,6 @@ public class AWDToastMgr {
      */
     private static final int NO_SETTING = 529;
 
-    /**
-     * Logcat會用到的字串
-     */
-    private static final String NO_TEXT = "";
 
     private static Toast toast;
     private View vToast;
@@ -105,8 +92,9 @@ public class AWDToastMgr {
     /**
      * 初始化吐司
      */
+    @SuppressLint("ShowToast")
     private void initToastInfo() {
-        toast = Toast.makeText(init.context, NO_TEXT, init.duration);
+        toast = Toast.makeText(init.context, AWDConstants.EMPTY_STRING, init.duration);
         linearLayout = (LinearLayout) toast.getView();
         tvToast = linearLayout.findViewById(android.R.id.message);
         layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -245,7 +233,7 @@ public class AWDToastMgr {
      */
     public void show() {
         setToastSetting();
-        setToastShow(NO_TEXT);
+        setToastShow(AWDConstants.EMPTY_STRING);
     }
 
     public static class init {

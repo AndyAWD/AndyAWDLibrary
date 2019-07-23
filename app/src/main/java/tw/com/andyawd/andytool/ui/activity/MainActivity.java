@@ -2,6 +2,7 @@ package tw.com.andyawd.andytool.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private AppCompatButton btAm_ShowLogCat;
     private AppCompatButton btAm_ShowSquareImage;
     private AppCompatButton btAm_ShowThousandBit;
+    private AppCompatButton btAm_ShowPopupWindow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         initComponent();
     }
 
+    @SuppressLint("CheckResult")
     private void initComponent() {
         btAm_ShowToast = findViewById(R.id.btAm_ShowToast);
         btAm_ShowDateFormat = findViewById(R.id.btAm_ShowDateFormat);
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         btAm_ShowLogCat = findViewById(R.id.btAm_ShowLogCat);
         btAm_ShowSquareImage = findViewById(R.id.btAm_ShowSquareImage);
         btAm_ShowThousandBit = findViewById(R.id.btAm_ShowThousandBit);
+        btAm_ShowPopupWindow = findViewById(R.id.btAm_ShowPopupWindow);
 
         RxView.clicks(btAm_ShowToast)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowToastPage_Click);
@@ -68,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowSquareImage_Click);
         RxView.clicks(btAm_ShowThousandBit)
                 .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowThousandBit_Click);
+        RxView.clicks(btAm_ShowPopupWindow)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPopupWindow_Click);
 
         aetAm_EditText.setOnKeycodeBackListener(aetAm_EditText_KeycodeBack);
     }
@@ -132,6 +139,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void accept(Unit unit) throws Exception {
             Intent intent = new Intent(MainActivity.this, ThousandBitActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowPopupWindow_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, PopupWindowActivity.class);
             startActivity(intent);
         }
     };

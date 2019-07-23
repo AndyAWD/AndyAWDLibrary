@@ -33,6 +33,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.PopupWindowActivity"></activity>
         <activity android:name=".ui.activity.ThousandBitActivity" />
         <activity android:name=".ui.activity.SquareImageActivity" />
         <activity android:name=".ui.activity.LogCatActivity" />
