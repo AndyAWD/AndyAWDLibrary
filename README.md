@@ -17,7 +17,6 @@
 10. color.xml：十六進位值色碼、Modern / Modern色碼表。
 11. AWDThousandBitStyleMgr：千分位樣式，使用單例。
 12. AWDToolMgr：還沒有大到可以拆成Class的工具和實驗性工具都放在這。
-13. AWDSnackbarMgr：重新封裝的Snackbar，使用鏈式設定。
     
 ***
 ### 引用網址

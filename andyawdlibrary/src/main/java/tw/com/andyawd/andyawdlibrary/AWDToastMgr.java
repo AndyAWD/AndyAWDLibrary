@@ -56,19 +56,6 @@ public class AWDToastMgr {
      * Logcat會用到的字串
      */
     private static final String NO_TEXT = "";
-    private static final String CONTEXT = "context : ";
-    private static final String GRAVITY = "gravity : ";
-    private static final String X_OFFSET = "xOffset : ";
-    private static final String Y_OFFSET = "yOffset : ";
-    private static final String SEPARATION_LINE = " / ";
-    private static final String TEXT_COLOR = "textColor : ";
-    private static final String TEXT_GRAVITY = "textGravity : ";
-    private static final String TEXT_BACKGROUND_COLOR = "textBackgroundColor :";
-    private static final String TEXT_SIZE = "textSize : ";
-    private static final String BACKGROUND_COLOR = "backgroundColor : ";
-    private static final String BACKGROUND_PICTURE = "backgroundPicture : ";
-    private static final String LAYOUT = "layout : ";
-    private static final String TOAST = "toast : ";
 
     private static Toast toast;
     private View vToast;
@@ -121,7 +108,7 @@ public class AWDToastMgr {
     private void initToastInfo() {
         toast = Toast.makeText(init.context, NO_TEXT, init.duration);
         linearLayout = (LinearLayout) toast.getView();
-        tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
+        tvToast = linearLayout.findViewById(android.R.id.message);
         layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER_VERTICAL;
     }
@@ -278,6 +265,7 @@ public class AWDToastMgr {
 
         /**
          * 初始化
+         *
          * @param context
          */
         public init(Context context) {
@@ -287,6 +275,7 @@ public class AWDToastMgr {
         /**
          * 顯示時間
          * 預設為Toast.LENGTH_SHORT
+         *
          * @param duration EX: Toast.LENGTH_SHORT or Toast.LENGTH_LONG
          */
         public init setDuration(int duration) {
@@ -296,6 +285,7 @@ public class AWDToastMgr {
 
         /**
          * 設定顯示位置和偏移量
+         *
          * @param gravity EX: Gravity.CENTER
          * @param xOffset EX: 0
          * @param yOffset EX: 0
@@ -318,6 +308,7 @@ public class AWDToastMgr {
 
         /**
          * 設定背景顏色
+         *
          * @param color EX: R.color.blue
          */
         public init setBackgroundColor(int color) {
@@ -327,6 +318,7 @@ public class AWDToastMgr {
 
         /**
          * 設定繪製背景
+         *
          * @param drawable EX: R.drawable.rounded_hollow_fc6392_radius20
          */
         public init setBackgroundDrawable(int drawable) {
@@ -336,6 +328,7 @@ public class AWDToastMgr {
 
         /**
          * 設定背景圖片，使用這個不會顯示Toast文字
+         *
          * @param picture EX: R.drawable.background_bigtest
          */
         public init setBackgroundPicture(int picture) {
@@ -345,6 +338,7 @@ public class AWDToastMgr {
 
         /**
          * 設定文字顏色
+         *
          * @param color EX: R.color.red
          */
         public init setTextColor(int color) {
@@ -354,6 +348,7 @@ public class AWDToastMgr {
 
         /**
          * 設定文字大小
+         *
          * @param size EX: 40
          */
         public init setTextSize(int size) {
@@ -363,6 +358,7 @@ public class AWDToastMgr {
 
         /**
          * 設定文字背景顏色，這個會比背景還要小一點
+         *
          * @param color EX: R.color.red
          */
         public init setTextBackgroundColor(int color) {
@@ -372,6 +368,7 @@ public class AWDToastMgr {
 
         /**
          * 設定文字位置
+         *
          * @param textGravity EX: Gravity.CENTER
          */
         public init setTextGravity(int textGravity) {
