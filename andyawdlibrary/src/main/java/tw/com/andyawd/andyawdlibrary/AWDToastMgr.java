@@ -1,5 +1,6 @@
 package tw.com.andyawd.andyawdlibrary;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,16 +27,6 @@ public class AWDToastMgr {
     private static final String TAG = AWDToastMgr.class.getSimpleName();
 
     /**
-     * Logcat中開啟訊息
-     */
-    public static final boolean LOG_ON = true;
-
-    /**
-     * Logcat中關閉訊息，預設
-     */
-    public static final boolean LOG_OFF = false;
-
-    /**
      * Show the view or text notification for a short period of time.  This time
      * could be user-definable.  This is the default.
      */
@@ -52,23 +43,6 @@ public class AWDToastMgr {
      */
     private static final int NO_SETTING = 529;
 
-    /**
-     * Logcat會用到的字串
-     */
-    private static final String NO_TEXT = "";
-    private static final String CONTEXT = "context : ";
-    private static final String GRAVITY = "gravity : ";
-    private static final String X_OFFSET = "xOffset : ";
-    private static final String Y_OFFSET = "yOffset : ";
-    private static final String SEPARATION_LINE = " / ";
-    private static final String TEXT_COLOR = "textColor : ";
-    private static final String TEXT_GRAVITY = "textGravity : ";
-    private static final String TEXT_BACKGROUND_COLOR = "textBackgroundColor :";
-    private static final String TEXT_SIZE = "textSize : ";
-    private static final String BACKGROUND_COLOR = "backgroundColor : ";
-    private static final String BACKGROUND_PICTURE = "backgroundPicture : ";
-    private static final String LAYOUT = "layout : ";
-    private static final String TOAST = "toast : ";
 
     private static Toast toast;
     private View vToast;
@@ -94,6 +68,7 @@ public class AWDToastMgr {
         setToastTextSize();
         setToastBackgroundColor();
         setToastBackgroundPicture();
+        setToastBackgroundDrawable();
     }
 
     /**
@@ -117,10 +92,11 @@ public class AWDToastMgr {
     /**
      * 初始化吐司
      */
+    @SuppressLint("ShowToast")
     private void initToastInfo() {
-        toast = Toast.makeText(init.context, NO_TEXT, init.duration);
+        toast = Toast.makeText(init.context, AWDConstants.EMPTY_STRING, init.duration);
         linearLayout = (LinearLayout) toast.getView();
-        tvToast = (TextView) linearLayout.findViewById(android.R.id.message);
+        tvToast = linearLayout.findViewById(android.R.id.message);
         layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.CENTER_VERTICAL;
     }
@@ -189,19 +165,30 @@ public class AWDToastMgr {
     }
 
     /**
+     * 設定吐司繪製背景
+     */
+    private void setToastBackgroundDrawable() {
+        if (NO_SETTING != init.backgroundDrawable) {
+            linearLayout.setBackground(ContextCompat.getDrawable(init.context, init.backgroundDrawable));
+        }
+    }
+
+    /**
      * 設定吐司圖案
      */
     private void setToastBackgroundPicture() {
         if (NO_SETTING != init.backgroundPicture) {
-            ImageView imageView = new ImageView(init.context);
+
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.RGB_565;
             options.inPurgeable = true;
             options.inInputShareable = true;
-            InputStream inputStream = init.context.getResources().openRawResource(init.backgroundPicture);
-            Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, options);
+
+            Bitmap bitmap = BitmapFactory.decodeStream(init.context.getResources().openRawResource(init.backgroundPicture), null, options);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(init.context.getResources(), bitmap);
-            imageView.setBackgroundDrawable(bitmapDrawable);
+
+            ImageView imageView = new ImageView(init.context);
+            imageView.setBackground(bitmapDrawable);
             linearLayout.addView(imageView, 0, layoutParams);
         }
     }
@@ -246,7 +233,7 @@ public class AWDToastMgr {
      */
     public void show() {
         setToastSetting();
-        setToastShow(NO_TEXT);
+        setToastShow(AWDConstants.EMPTY_STRING);
     }
 
     public static class init {
@@ -258,20 +245,39 @@ public class AWDToastMgr {
         private int layout = NO_SETTING;    //設定自定頁面Layout
         private int backgroundColor = NO_SETTING;   //設定吐司背景顏色
         private int backgroundPicture = NO_SETTING;    //設定吐司背景圖片
+        private int backgroundDrawable = NO_SETTING;   //設定吐司背景顏色
         private int textColor = NO_SETTING;     //設定文字顏色
         private int textSize = 0;   //設定文字大小
         private int textBackgroundColor = NO_SETTING;   //設定文字背景顏色
         private int textGravity = NO_SETTING;   //設定文字位置
 
+        /**
+         * 初始化
+         *
+         * @param context
+         */
         public init(Context context) {
             this.context = context;
         }
 
+        /**
+         * 顯示時間
+         * 預設為Toast.LENGTH_SHORT
+         *
+         * @param duration EX: Toast.LENGTH_SHORT or Toast.LENGTH_LONG
+         */
         public init setDuration(int duration) {
             this.duration = duration;
             return this;
         }
 
+        /**
+         * 設定顯示位置和偏移量
+         *
+         * @param gravity EX: Gravity.CENTER
+         * @param xOffset EX: 0
+         * @param yOffset EX: 0
+         */
         public init setGravity(int gravity, int xOffset, int yOffset) {
             this.gravity = gravity;
             this.xOffset = xOffset;
@@ -279,41 +285,88 @@ public class AWDToastMgr {
             return this;
         }
 
+        /**
+         * 自定義佈局，使用這個不會顯示Toast文字
+         * 要取得佈局內的元件可以用findViewById取得
+         */
         public init setLayout(int layout) {
             this.layout = layout;
             return this;
         }
 
-        public init setBackgroundColor(int backgroundColor) {
-            this.backgroundColor = backgroundColor;
+        /**
+         * 設定背景顏色
+         *
+         * @param color EX: R.color.blue
+         */
+        public init setBackgroundColor(int color) {
+            this.backgroundColor = color;
             return this;
         }
 
-        public init setBackgroundPicture(int backgroundPicture) {
-            this.backgroundPicture = backgroundPicture;
+        /**
+         * 設定繪製背景
+         *
+         * @param drawable EX: R.drawable.rounded_hollow_fc6392_radius20
+         */
+        public init setBackgroundDrawable(int drawable) {
+            this.backgroundDrawable = drawable;
             return this;
         }
 
-        public init setTextColor(int textColor) {
-            this.textColor = textColor;
+        /**
+         * 設定背景圖片，使用這個不會顯示Toast文字
+         *
+         * @param picture EX: R.drawable.background_bigtest
+         */
+        public init setBackgroundPicture(int picture) {
+            this.backgroundPicture = picture;
             return this;
         }
 
-        public init setTextSize(int textSize) {
-            this.textSize = textSize;
+        /**
+         * 設定文字顏色
+         *
+         * @param color EX: R.color.red
+         */
+        public init setTextColor(int color) {
+            this.textColor = color;
             return this;
         }
 
-        public init setTextBackgroundColor(int textbackgroundColor) {
-            this.textBackgroundColor = textbackgroundColor;
+        /**
+         * 設定文字大小
+         *
+         * @param size EX: 40
+         */
+        public init setTextSize(int size) {
+            this.textSize = size;
             return this;
         }
 
+        /**
+         * 設定文字背景顏色，這個會比背景還要小一點
+         *
+         * @param color EX: R.color.red
+         */
+        public init setTextBackgroundColor(int color) {
+            this.textBackgroundColor = color;
+            return this;
+        }
+
+        /**
+         * 設定文字位置
+         *
+         * @param textGravity EX: Gravity.CENTER
+         */
         public init setTextGravity(int textGravity) {
             this.textGravity = textGravity;
             return this;
         }
 
+        /**
+         * 設定完成，要放最後面
+         */
         public AWDToastMgr build() {
             return new AWDToastMgr(this);
         }

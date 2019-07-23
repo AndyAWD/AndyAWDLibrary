@@ -2,84 +2,152 @@ package tw.com.andyawd.andytool.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatTextView;
 
-import android.view.Gravity;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.jakewharton.rxbinding3.view.RxView;
 
-import org.json.JSONException;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
-import tw.com.andyawd.andyawdlibrary.AWDLog;
-import tw.com.andyawd.andyawdlibrary.AWDToastMgr;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import kotlin.Unit;
+import tw.com.andyawd.andyawdlibrary.AWDConstants;
+import tw.com.andyawd.andyawdlibrary.AWDConstraintRadioGroup;
+import tw.com.andyawd.andyawdlibrary.AWDEditText;
+import tw.com.andyawd.andyawdlibrary.interfaceListener.OnKeycodeBackListener;
 import tw.com.andyawd.andytool.R;
-import tw.com.andyawd.andytool.logic.AWDPAndroidAsyncHttpMgr;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppCompatTextView tbAm_ShowMessage;
-    private AppCompatButton btAm_Start;
-    private AppCompatButton btAm_Button2;
+    private AppCompatButton btAm_ShowToast;
+    private AppCompatButton btAm_ShowDateFormat;
+    private AWDEditText aetAm_EditText;
+    private AWDConstraintRadioGroup awdConstraintRadioGroup;
+    private AppCompatButton btAm_ShowRadioGroup;
+    private AppCompatButton btAm_ShowPermissions;
+    private AppCompatButton btAm_ShowLogCat;
+    private AppCompatButton btAm_ShowSquareImage;
+    private AppCompatButton btAm_ShowThousandBit;
+    private AppCompatButton btAm_ShowPopupWindow;
 
-    private AWDToastMgr errorToast;
-    private TextView tvVae_Message;
-
-    private AWDToastMgr selectToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        InitiComponent();
+        initComponent();
     }
 
-    private void InitiComponent() {
-        tbAm_ShowMessage = (AppCompatTextView) findViewById(R.id.tbAm_ShowMessage);
-        btAm_Start = (AppCompatButton) findViewById(R.id.btAm_Start);
-        btAm_Start.setOnClickListener(btAm_Start_Click);
+    @SuppressLint("CheckResult")
+    private void initComponent() {
+        btAm_ShowToast = findViewById(R.id.btAm_ShowToast);
+        btAm_ShowDateFormat = findViewById(R.id.btAm_ShowDateFormat);
+        aetAm_EditText = findViewById(R.id.aetAm_EditText);
+        btAm_ShowRadioGroup = findViewById(R.id.btAm_ShowRadioGroup);
+        btAm_ShowPermissions = findViewById(R.id.btAm_ShowPermissions);
+        btAm_ShowLogCat = findViewById(R.id.btAm_ShowLogCat);
+        btAm_ShowSquareImage = findViewById(R.id.btAm_ShowSquareImage);
+        btAm_ShowThousandBit = findViewById(R.id.btAm_ShowThousandBit);
+        btAm_ShowPopupWindow = findViewById(R.id.btAm_ShowPopupWindow);
 
-        btAm_Button2 = (AppCompatButton) findViewById(R.id.btAm_Button2);
-        btAm_Button2.setOnClickListener(btAm_Button2_Click);
+        RxView.clicks(btAm_ShowToast)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowToastPage_Click);
+        RxView.clicks(btAm_ShowDateFormat)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowDateFormatPage_Click);
+        RxView.clicks(btAm_ShowRadioGroup)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowRadioGroup_Click);
+        RxView.clicks(btAm_ShowPermissions)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPermissions_Click);
+        RxView.clicks(btAm_ShowLogCat)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowLogCat_Click);
+        RxView.clicks(btAm_ShowSquareImage)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowSquareImage_Click);
+        RxView.clicks(btAm_ShowThousandBit)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowThousandBit_Click);
+        RxView.clicks(btAm_ShowPopupWindow)
+                .throttleFirst(AWDConstants.ONE_INT, TimeUnit.SECONDS).subscribe(btAm_ShowPopupWindow_Click);
 
-        errorToast = new AWDToastMgr.init(MainActivity.this).setLayout(R.layout.view_api_error).build();
-//        tvVae_Message = (TextView) errorToast.findViewById(R.id.tvVae_Message);
-//        tvVae_Message.setText("");
-
-        selectToast = new AWDToastMgr.init(MainActivity.this).setLayout(R.layout.view_show_select).build();
-
-//        errorToast = new AWDToastMgr.init(MainActivity.this).setTextSize(10).build();
-//        selectToast = new AWDToastMgr.init(MainActivity.this).setTextSize(500).setTextColor(R.color.red).build();
-
+        aetAm_EditText.setOnKeycodeBackListener(aetAm_EditText_KeycodeBack);
     }
 
-    private View.OnClickListener btAm_Start_Click = new View.OnClickListener() {
+    private Consumer<? super Unit> btAm_ShowToastPage_Click = new Consumer<Unit>() {
         @Override
-        public void onClick(View v) {
-//            new AWDToastMgr.init(MainActivity.this)
-//                    .setBackgroundColor(R.color.yellow)
-//                    .setTextBackgroundColor(R.color.blue)
-//                    .setTextColor(R.color.white)
-//                    .setTextSize(100)
-//                    .setTextGravity(Gravity.BOTTOM)
-//                    .setGravity(Gravity.TOP, 300, 300)
-//                    .setDuration(AWDToastMgr.LENGTH_LONG)
-//                    .setBackgroundPicture(R.drawable.background_bigtest)
-//                    .build().show("333");
-            errorToast.show("5");
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, ToastShowActivity.class);
+            startActivity(intent);
         }
     };
 
-    private View.OnClickListener btAm_Button2_Click = new View.OnClickListener() {
+
+    private Consumer<? super Unit> btAm_ShowDateFormatPage_Click = new Consumer<Unit>() {
         @Override
-        public void onClick(View v) {
-            selectToast.show("1");
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, DateFormatActivity.class);
+            startActivity(intent);
         }
     };
 
+    private OnKeycodeBackListener aetAm_EditText_KeycodeBack = new OnKeycodeBackListener() {
+        @Override
+        public void KeycodeBack() {
+            aetAm_EditText.setText(getResources().getString(R.string.ClickKeycode_text));
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowRadioGroup_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, RadioGroupActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowPermissions_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, PermissionsTransformerActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowLogCat_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, LogCatActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowSquareImage_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, SquareImageActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowThousandBit_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, ThousandBitActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Consumer<? super Unit> btAm_ShowPopupWindow_Click = new Consumer<Unit>() {
+        @Override
+        public void accept(Unit unit) throws Exception {
+            Intent intent = new Intent(MainActivity.this, PopupWindowActivity.class);
+            startActivity(intent);
+        }
+    };
 }

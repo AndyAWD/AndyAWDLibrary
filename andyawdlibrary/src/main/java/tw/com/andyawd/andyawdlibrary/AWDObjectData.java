@@ -36,15 +36,15 @@ public class AWDObjectData {
         }
     }
 
-    public static class BluetoothInfo{
-        public String paired;
-        public String name;
-        public String address;
+    public static class ThousandBitNumber<T> {
+        private T t;
 
-        public BluetoothInfo(String paired, String name, String address) {
-            this.paired = paired;
-            this.name = name;
-            this.address = address;
+        public T getThousandBitNumber() {
+            return t;
+        }
+
+        public void setThousandBitNumber(T number) {
+            this.t = number;
         }
     }
 }

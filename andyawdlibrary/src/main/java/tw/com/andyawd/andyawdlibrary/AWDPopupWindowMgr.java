@@ -1,6 +1,7 @@
 package tw.com.andyawd.andyawdlibrary;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -12,113 +13,96 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import tw.com.andyawd.andyawdlibrary.interfaceListener.OnPopupWindowListener;
+
 /**
  * Created by andydai on 2018/10/2.
- * 第二版PopupWindowMgr，以後維護這版，第一版不維護囉
- * <p>
- * 如何設定︰如果只要用基本的功能只需要設定Context(.setContext)、要顯示的Xml(.setShowView)，最後再執行(.build)就好
- * 範例︰new AWDPopupWindowMgr.initi()2.setContext(TCLivePlayerActivity.this).setShowView(R.layout.dialog_hlgetgiftlistv2_mk3).build();
- * <p>
  * 從底往上顯示︰showAtLocation(主頁面(父類別)Xml, Gravity.BOTTOM, 0, 0)，或懶人寫法showAtLocation(主頁面(父類別)Xml)
  * 指定View往上顯示︰showAsDropDown(指定View, Gravity.BOTTOM, 0, getPopupWindowHeight())
  * 指定View往下上顯示︰showAsDropDown(指定View, Gravity.BOTTOM, 0, -getPopupWindowHeight())
  */
 
 public class AWDPopupWindowMgr {
+    private static final String TAG = AWDToastMgr.class.getSimpleName();
 
-    private static final int NoSetting = 529;
-    public static final boolean Log_On = true;
-    public static final boolean Log_Off = false;
-    public static final int Dismiss = 0;
-    public static final int NoDismiss = 1;
+    /**
+     * 資源檔預設值，用來判斷有沒有另外設定
+     */
+    private static final int NO_SETTING = 529;
 
-    private PopupWindow mPopupWindow;
-    private View vPopupWindow;
-    private initi builder;
-    private setAWDPopupWindowMgrListener listener;    //命名
+    private PopupWindow popupWindow;
+    private View view;
+    private init init;
+    private OnPopupWindowListener listener;    //命名
 
-    private boolean blnLogSwitch = Log_Off;
-
-    public interface setAWDPopupWindowMgrListener {    //建立interface
-        void OnDismiss();
-
-        void OnBackgroundTouch(View view, MotionEvent motionEvent);
-    }
-
-    public void setAWDPopupWindowMgrListener(setAWDPopupWindowMgrListener listener) {    //初始化interface
+    public void setOnPopupWindowListener(OnPopupWindowListener listener) {    //初始化interface
         this.listener = listener;
     }
 
-    public AWDPopupWindowMgr(initi builder) {
-        this.builder = builder;
+    public AWDPopupWindowMgr(init init) {
+        this.init = init;
 
-        if (null != builder.mContext && AWDPopupWindowMgr.NoSetting != builder.mLayout) {
-
-            vPopupWindow = LayoutInflater.from(builder.mContext).inflate(builder.mLayout, null);
-            vPopupWindow.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-            mPopupWindow = new PopupWindow(vPopupWindow, builder.mWidth, builder.mHeight);
-            mPopupWindow.setAnimationStyle(builder.mAnimStyle);     //設定動畫
-            mPopupWindow.setSoftInputMode(builder.mMode);           //適配虛擬鍵
-            mPopupWindow.setBackgroundDrawable(builder.mDrawable);  //背景
-
-            switch (builder.mClickBackgroundToDismiss) {
-                case AWDPopupWindowMgr.Dismiss:
-                    mPopupWindow.setFocusable(true);        //獲得焦點
-                    mPopupWindow.setTouchable(true);        //響應點擊事件
-                    mPopupWindow.setOutsideTouchable(true); //響應外部點擊事件
-                    break;
-                case AWDPopupWindowMgr.NoDismiss:
-                    mPopupWindow.setFocusable(true);            //獲得焦點
-                    mPopupWindow.setTouchable(true);            //響應點擊事件
-                    mPopupWindow.setOutsideTouchable(false);    //響應外部點擊事件
-                    break;
-            }
-        } else {
-            if (blnLogSwitch) {
-                Log.d("AWDPopupWindowMgr", "mContext : " + String.valueOf(builder.mContext) + "\n" + "mLayout : " + String.valueOf(builder.mLayout));
-            }
+        if (null == init.context && AWDPopupWindowMgr.NO_SETTING == init.layout) {
+            return;
         }
 
-        mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                if (null != listener) {
-                    listener.OnDismiss();
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDPopupWindowMgr", "listener : " + String.valueOf(listener));
-                    }
-                }
-            }
-        });
+        view = LayoutInflater.from(init.context).inflate(init.layout, null);
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
 
-        mPopupWindow.setTouchInterceptor(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (null != listener) {
-                    listener.OnBackgroundTouch(view, motionEvent);
-                } else {
-                    if (blnLogSwitch) {
-                        Log.d("AWDPopupWindowMgr", "listener : " + String.valueOf(listener));
-                    }
-                }
+        popupWindow = new PopupWindow(view, init.width, init.height);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        popupWindow.setOutsideTouchable(init.isOutsideTouchable); //響應外部點擊事件
+        popupWindow.setAnimationStyle(init.animStyle);     //設定動畫
+        popupWindow.setSoftInputMode(init.mode);           //適配虛擬鍵
+        popupWindow.setFocusable(init.isFocusable);        //獲得焦點
+        popupWindow.setTouchable(init.isTouchable);        //響應點擊事件
+
+        popupWindow.setOnDismissListener(popupWindow_Dismiss);
+        popupWindow.setTouchInterceptor(popupWindow_Touch);
+    }
+
+    private final PopupWindow.OnDismissListener popupWindow_Dismiss = new PopupWindow.OnDismissListener() {
+        @Override
+        public void onDismiss() {
+            if (null == listener) {
+                return;
+            }
+
+            listener.OnDismiss();
+        }
+    };
+
+    private final View.OnTouchListener popupWindow_Touch = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (null == listener) {
                 return false;
             }
-        });
-    }
+
+            listener.OnBackgroundTouch(view, event);
+
+            return false;
+        }
+    };
 
     /**
      * 懶人的showAtLocation寫法
-     *
-     * @param fatherLayout
-     * @return
      */
     public AWDPopupWindowMgr showAtLocation(int fatherLayout) {
-        if (mPopupWindow != null) {
-            View vShowAtLocation = LayoutInflater.from(builder.mContext).inflate(fatherLayout, null);
-            mPopupWindow.showAtLocation(vShowAtLocation, Gravity.BOTTOM, 0, 0);
+        if (null == popupWindow) {
+            return null;
         }
+
+        if (null == init.context) {
+            return null;
+        }
+
+        View vShowAtLocation = LayoutInflater.from(init.context).inflate(fatherLayout, null);
+        popupWindow.showAtLocation(vShowAtLocation, Gravity.BOTTOM, 0, 0);
+
         return this;
     }
 
@@ -130,10 +114,17 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public AWDPopupWindowMgr showAtLocation(int fatherLayout, int gravity, int x, int y) {
-        if (mPopupWindow != null) {
-            View vShowAtLocation = LayoutInflater.from(builder.mContext).inflate(fatherLayout, null);
-            mPopupWindow.showAtLocation(vShowAtLocation, gravity, x, y);
+        if (null == popupWindow) {
+            return null;
         }
+
+        if (null == init.context) {
+            return null;
+        }
+
+        View vShowAtLocation = LayoutInflater.from(init.context).inflate(fatherLayout, null);
+        popupWindow.showAtLocation(vShowAtLocation, gravity, x, y);
+
         return this;
     }
 
@@ -145,15 +136,14 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public AWDPopupWindowMgr showAsDropDown(View targeView, int gravity, int x, int y) {
-        if (mPopupWindow != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                mPopupWindow.showAsDropDown(targeView, x, y, gravity);
-            } else {
-                if (blnLogSwitch) {
-                    Log.d("AWDPopupWindowMgr", "SDK低於19");
-                }
-            }
+        if (null == popupWindow) {
+            return null;
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            popupWindow.showAsDropDown(targeView, x, y, gravity);
+        }
+
         return this;
     }
 
@@ -162,10 +152,11 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public View findViewById(int view) {
-        if (mPopupWindow != null) {
-            return this.vPopupWindow.findViewById(view);
+        if (null == popupWindow) {
+            return null;
         }
-        return null;
+
+        return this.view.findViewById(view);
     }
 
     /**
@@ -174,7 +165,7 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public int getPopupWindowWidth() {
-        return vPopupWindow.getMeasuredWidth();
+        return view.getMeasuredWidth();
     }
 
     /**
@@ -183,77 +174,72 @@ public class AWDPopupWindowMgr {
      * @return
      */
     public int getPopupWindowHeight() {
-        return vPopupWindow.getMeasuredHeight();
+        return view.getMeasuredHeight();
     }
 
     /**
      * 關閉彈跳視窗
      */
     public void dismiss() {
-        if (mPopupWindow != null) {
-            mPopupWindow.dismiss();
+        if (null == popupWindow) {
+            return;
         }
+
+        popupWindow.dismiss();
     }
 
-    /**
-     * 再觀察，用不到就刪
-     *
-     * @param view
-     * @param listener
-     */
-    public void setFocusListener(int view, View.OnFocusChangeListener listener) {
-        View vFocusListener = findViewById(view);
-        vFocusListener.setOnFocusChangeListener(listener);
-    }
+    public static class init {
+        private Context context;
+        private int layout = AWDPopupWindowMgr.NO_SETTING;                         //設定Xml
+        private int width = WindowManager.LayoutParams.MATCH_PARENT;               //設定寬，預設手機寬
+        private int height = WindowManager.LayoutParams.WRAP_CONTENT;              //設定高，預設Xml高
+        private int animStyle = R.style.popupWindowAnim;                        //設定動畫
+        private int mode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;    //適配虛擬鍵
+        private boolean isFocusable = true;
+        private boolean isTouchable = true;
+        private boolean isOutsideTouchable = true;
 
-    public static class initi {
+        public init(Context context) {
+            this.context = context;
+        }
 
-        private Context mContext;
-        private int mLayout = AWDPopupWindowMgr.NoSetting;                         //設定Xml
-        private int mWidth = WindowManager.LayoutParams.MATCH_PARENT;               //設定寬，預設手機寬
-        private int mHeight = WindowManager.LayoutParams.WRAP_CONTENT;              //設定高，預設Xml高
-        private int mAnimStyle = R.style.popupWindowAnim;                        //設定動畫
-        private int mMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;    //適配虛擬鍵
-        private Drawable mDrawable = new ColorDrawable(0x00000000);                 //設定背景，預設透明
-        private int mClickBackgroundToDismiss = AWDPopupWindowMgr.Dismiss;         //點背景時要不要關閉彈跳視窗
-
-        public initi setContext(Context context) {
-            this.mContext = context;
+        public init setLayout(int layout) {
+            this.layout = layout;
             return this;
         }
 
-        public initi setLayout(int layout) {
-            this.mLayout = layout;
+        public init setWidth(int width) {
+            this.width = width;
             return this;
         }
 
-        public initi setWidth(int width) {
-            this.mWidth = width;
+        public init setHeight(int height) {
+            this.height = height;
             return this;
         }
 
-        public initi setHeight(int height) {
-            this.mHeight = height;
+        public init setAnimStyle(int animStyle) {
+            this.animStyle = animStyle;
             return this;
         }
 
-        public initi setAnimStyle(int animStyle) {
-            this.mAnimStyle = animStyle;
+        public init setSoftInputMode(int mode) {
+            this.mode = mode;
             return this;
         }
 
-        public initi setBackground(Drawable drawable) {
-            this.mDrawable = drawable;
+        public init setFocusable(boolean isFocusable) {
+            this.isFocusable = isFocusable;
             return this;
         }
 
-        public initi setSoftInputMode(int mode) {
-            this.mMode = mode;
+        public init setTouchable(boolean isTouchable) {
+            this.isTouchable = isTouchable;
             return this;
         }
 
-        public initi setClickBackground(int selectDismiss) {
-            this.mClickBackgroundToDismiss = selectDismiss;
+        public init setOutsideTouchable(boolean isOutsideTouchable) {
+            this.isOutsideTouchable = isOutsideTouchable;
             return this;
         }
 

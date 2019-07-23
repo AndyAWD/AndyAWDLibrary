@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="magic_8dp">8dp</dimen>
+    <dimen name="magic_4dp">4dp</dimen>
+    <dimen name="magic_2dp">2dp</dimen>
+    <dimen name="magic_1dp">1dp</dimen>
+</resources>

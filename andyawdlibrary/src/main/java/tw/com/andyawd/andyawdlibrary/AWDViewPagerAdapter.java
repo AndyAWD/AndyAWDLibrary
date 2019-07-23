@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 /**
  * Created by andydai on 2018/8/13.
+ * 都9102年了還有人用ViewPager
  */
 
+@Deprecated
 public class AWDViewPagerAdapter extends PagerAdapter {
 
     private ArrayList<AWDViewPager> mViewPager = new ArrayList<>();

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,4 +8,37 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MainListButton">
+        <item name="android:height">56dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/magic_4dp</item>
+        <item name="android:background">@drawable/ripple_569ce3</item>
+        <item name="android:padding">@dimen/magic_8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+    </style>
+
+    <style name="ToastShowListButton">
+        <item name="android:height">56dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/magic_4dp</item>
+        <item name="android:background">@color/metro_ff981d</item>
+        <item name="android:padding">@dimen/magic_8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+    </style>
+
+    <style name="DateFormatListButton">
+        <item name="android:height">56dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_margin">@dimen/magic_4dp</item>
+        <item name="android:background">@color/lightGreen</item>
+        <item name="android:onClick">onClick</item>
+        <item name="android:padding">@dimen/magic_8dp</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+    </style>
 </resources>

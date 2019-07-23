@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.ToastShowActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBase"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBase_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseTextColor"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseTextColor_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseTextColorBackground"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseTextColorBackground_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseTextColorDrawableBackground"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseTextColorDrawableBackground_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseTextColorDrawableBackgroundTextSize"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseTextColorDrawableBackgroundTextSize_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseGravity"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseGravity_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseTextGravity"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseTextGravity_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastBaseBackgroundTextBackground"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastBaseBackgroundTextBackground_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastPicture"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastPicture_text"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btAts_ToastLayout"
+            style="@style/ToastShowListButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ToastLayout_text"
+            app:autoSizeTextType="uniform" />
+    </LinearLayout>
+</ScrollView>

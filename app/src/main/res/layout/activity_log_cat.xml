@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LogCatActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAlc_LogV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="Log.v"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/btAlc_LogD"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAlc_LogD"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="Log.d"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/btAlc_LogW"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAlc_LogV" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAlc_LogW"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="Log.w"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/btAlc_LogI"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAlc_LogD" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAlc_LogI"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="Log.i"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/btAlc_LogE"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAlc_LogW" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAlc_LogE"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="Log.e"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/btAlc_LogApi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAlc_LogI" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btAlc_LogApi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        android:text="Log.api"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/tvAlc_LogMessage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAlc_LogE" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAlc_LogMessage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/magic_8dp"
+        android:padding="@dimen/magic_8dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAlc_LogApi" />
+</androidx.constraintlayout.widget.ConstraintLayout>

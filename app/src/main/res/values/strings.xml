@@ -8,4 +8,31 @@
     <string name="NoConnectionMsg">無法連線，請檢查網路環境</string>
     <string name="PostJson_FailMsg">字串建立</string>
     <string name="ReturnJson_FailMsg">字串檢查</string>
+
+    <string name="showToastPage">顯示Toast頁面</string>
+    <string name="showDateFormatPage">顯示日期格式頁面</string>
+    <string name="showRadioGroupPage">顯示單選按鈕頁面</string>
+    <string name="showPermissionsPage">顯示要求權限頁面</string>
+    <string name="showLogCatPage">顯示LogCat頁面</string>
+    <string name="showSquareImagePage">顯示正方形圖案頁面</string>
+    <string name="showThousandBitPage">顯示千分位樣式頁面</string>
+    <string name="showPopupWindowPage">顯示PopupWindow頁面</string>
+
+    <string name="ToastBase_text">基本顯示</string>
+    <string name="ToastBaseTextColor_text">基本顯示 + 文字顏色</string>
+    <string name="ToastBaseTextColorBackground_text">基本顯示 + 文字顏色 + 背景顏色</string>
+    <string name="ToastBaseTextColorDrawableBackground_text">基本顯示 + 文字顏色 + 繪製背景</string>
+    <string name="ToastBaseTextColorDrawableBackgroundTextSize_text">基本顯示 + 文字顏色 + 繪製背景 + 文字放大</string>
+    <string name="ToastBaseGravity_text">基本顯示 + 背景偏移</string>
+    <string name="ToastBaseTextGravity_text">基本顯示 + 文字偏移</string>
+    <string name="ToastBaseBackgroundTextBackground_text">基本顯示 + 背景顏色 + 文字背景</string>
+    <string name="ToastPicture_text">顯示圖片</string>
+    <string name="ToastLayout_text">顯示佈局</string>
+
+    <string name="ClickKeycode_text">你按了返回鍵對吧</string>
+    <string name="aetAm_EditText_hint">輸入文字</string>
+
+    <string name="tvAsi_HeightSquareText_text">高度固定正方形</string>
+    <string name="tvAsi_WidthSquareText_text">寬度固定正方形</string>
+
 </resources>
