@@ -30,8 +30,13 @@
     dependencies {
         implementation 'com.github.AndyAWD:AndyAWDLibrary:1.4.0'
     }
-***
 
+***
+##### 版本紀錄
+2.0.0
+把功能都翻過一次，版號大耀進！
+
+***
 ##### 1.AWDToastMgr使用方法
 
     //基本用法，有時間鎖
