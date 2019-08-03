@@ -7,7 +7,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "2.0.0"
+        versionName "2.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,8 +30,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly 'androidx.appcompat:appcompat:1.1.0-rc01'
     compileOnly 'androidx.legacy:legacy-support-v4:1.0.0'
-    compileOnly 'com.google.android.material:material:1.1.0-alpha08'
     compileOnly 'androidx.constraintlayout:constraintlayout:1.1.3'
+    compileOnly 'com.google.android.material:material:1.1.0-alpha09'
     compileOnly 'junit:junit:4.12'
     compileOnly 'androidx.test:runner:1.2.0'
     compileOnly 'androidx.test.espresso:espresso-core:3.2.0'
