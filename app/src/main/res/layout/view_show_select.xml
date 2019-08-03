@@ -6,8 +6,8 @@
     <TextView
         android:gravity="center"
         android:text="789456123"
-        android:textColor="@color/metro_252525"
-        android:background="@color/aqua"
+        android:textColor="@color/metroColor001_252525"
+        android:background="@color/hexColor051_Aqua"
         android:layout_width="match_parent"
         android:layout_height="300dp" />
 

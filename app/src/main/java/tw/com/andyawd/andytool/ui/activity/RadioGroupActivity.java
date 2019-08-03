@@ -1,9 +1,8 @@
 package tw.com.andyawd.andytool.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.RadioGroup;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
 
@@ -29,7 +28,7 @@ public class RadioGroupActivity extends AppCompatActivity {
         argArg_RadioGroup = findViewById(R.id.argArg_RadioGroup);
         argArg_RadioGroup.setOnCheckedChangeListener(argArg_RadioGroup_CheckChange);
 
-        awdToastMgr = new AWDToastMgr.init(RadioGroupActivity.this).setTextColor(R.color.mediumOrchid).build();
+        awdToastMgr = new AWDToastMgr.init(RadioGroupActivity.this).setTextColor(R.color.hexColor128_MediumOrchid).build();
     }
 
     private AWDConstraintRadioGroup.OnCheckedChangeListener argArg_RadioGroup_CheckChange = new AWDConstraintRadioGroup.OnCheckedChangeListener() {

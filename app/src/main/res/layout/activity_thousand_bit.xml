@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkSlateBlue"
+    android:background="@color/hexColor134_DarkSlateBlue"
     tools:context=".ui.activity.ThousandBitActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_margin="@dimen/magic_8dp"
-        android:background="@color/lightBlue"
+        android:background="@color/hexColor046_LightBlue"
         android:gravity="center"
         android:padding="@dimen/magic_8dp"
         app:autoSizeTextType="uniform"
