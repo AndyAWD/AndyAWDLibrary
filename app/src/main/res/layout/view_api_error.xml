@@ -13,5 +13,5 @@
         android:layout_height="200dp"
         android:gravity="center"
         android:text="顯示的Layout"
-        android:textColor="@color/white" />
+        android:textColor="@color/hexColor007_White" />
 </LinearLayout>

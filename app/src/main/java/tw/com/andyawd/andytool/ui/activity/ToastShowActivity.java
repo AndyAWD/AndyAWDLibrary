@@ -1,12 +1,11 @@
 package tw.com.andyawd.andytool.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import java.util.Objects;
 
@@ -83,25 +82,25 @@ public class ToastShowActivity extends AppCompatActivity {
 
         toastBaseTextColor = new AWDToastMgr
                 .init(ToastShowActivity.this)
-                .setTextColor(R.color.dodgerBlue)
+                .setTextColor(R.color.hexColor041_DodgerBlue)
                 .build();
 
         toastBaseTextColorBackground = new AWDToastMgr
                 .init(ToastShowActivity.this)
-                .setBackgroundColor(R.color.metro_91d100)
-                .setTextColor(R.color.dodgerBlue)
+                .setBackgroundColor(R.color.metroColor038_91d100)
+                .setTextColor(R.color.hexColor041_DodgerBlue)
                 .build();
 
         toastBaseTextColorDrawableBackground = new AWDToastMgr
                 .init(ToastShowActivity.this)
                 .setBackgroundDrawable(R.drawable.rounded_hollow_rounded_ff83bf_ffb5d2_radius20_angle270)
-                .setTextColor(R.color.dodgerBlue)
+                .setTextColor(R.color.hexColor041_DodgerBlue)
                 .build();
 
         toastBaseTextColorDrawableBackgroundTextSize = new AWDToastMgr
                 .init(ToastShowActivity.this)
                 .setBackgroundDrawable(R.drawable.rounded_fc6392_f9baac_radius18_angle270)
-                .setTextColor(R.color.dodgerBlue)
+                .setTextColor(R.color.hexColor041_DodgerBlue)
                 .setTextSize(50)
                 .build();
 
@@ -117,8 +116,8 @@ public class ToastShowActivity extends AppCompatActivity {
 
         toastBaseBackgroundTextBackgroundText = new AWDToastMgr
                 .init(ToastShowActivity.this)
-                .setBackgroundColor(R.color.metro_91d100)
-                .setTextBackgroundColor(R.color.dodgerBlue)
+                .setBackgroundColor(R.color.metroColor038_91d100)
+                .setTextBackgroundColor(R.color.hexColor041_DodgerBlue)
                 .build();
 
         toastPicture = new AWDToastMgr
