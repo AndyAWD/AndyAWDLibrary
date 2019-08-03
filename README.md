@@ -20,6 +20,9 @@
     
 ***
 ### 引用網址
+    android {
+        ...
+    }
 
     allprojects {
         repositories {
@@ -28,18 +31,15 @@
     }
 
     dependencies {
-        implementation 'com.github.AndyAWD:AndyAWDLibrary:2.0.0'
+        implementation 'com.github.AndyAWD:AndyAWDLibrary:2.1.0'
     }
 
 ***
 ### 版本紀錄
 2.1.0
-
 色碼多了編號，避免字母排列造成顏色混亂
 
-***
 2.0.0
-
 把功能都翻過一次，版號大耀進！
 
 ***
